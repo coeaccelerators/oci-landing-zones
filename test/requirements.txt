@@ -1,0 +1,7 @@
+pytest
+pytest_terraform
+python-hcl2
+paramiko
+oci
+tqdm
+
