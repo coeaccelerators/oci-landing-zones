@@ -22,7 +22,7 @@ at [Official_Documentation/OELZ_Workload_Deployment](./Official_Documentation/OE
 ## Deploy Using Oracle Resource Manager
 1. Click to deploy the stack
 
-[![Deploy to Oracle Cloud](https://oci-resourcemanager-plugin.plugins.oci.oraclecloud.com/latest/deploy-to-oracle-cloud.svg)](https://cloud.oracle.com/resourcemanager/stacks/create?zipUrl=https://github.com/preetomgoswamioracle/oci-landing-zone/archive/refs/heads/main.zip)
+[![Deploy to Oracle Cloud](https://oci-resourcemanager-plugin.plugins.oci.oraclecloud.com/latest/deploy-to-oracle-cloud.svg)](https://cloud.oracle.com/resourcemanager/stacks/create?zipUrl=https://github.com/coeaccelerators/oci-landing-zones/archive/refs/heads/main.zip)
 
     If you aren't already signed in, when prompted, enter the tenancy and user credentials. Review and accept the terms and conditions.
 
