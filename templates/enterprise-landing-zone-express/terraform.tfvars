@@ -4,11 +4,11 @@
 ##########################################################################################################
 
 # Provider
-current_user_ocid    = ""
-region               = "ap-mumbai-1"
-tenancy_ocid         = ""
-api_fingerprint      = ""
-api_private_key_path = ""
+# current_user_ocid    = "ocid1.user.oc1..aaaaaaaakvp276rp7dprbur2d4iuy2cj66uzxtte3ksi4swhxbarj3fr6uqa"
+region               = "ap-mebourne-1"
+# tenancy_ocid         = "ocid1.tenancy.oc1..aaaaaaaaaic2xassu3o5ldumgucfl6i7u6teto4bokkuj6flmbjkuz4dujzq"
+# api_fingerprint      = "04:a0:42:06:fe:14:6e:33:c9:c7:98:67:81:3c:2e:b2"
+# api_private_key_path = "/Users/preegosw/.oci/pg_oci_api_key.pem"
 backup_region        = "dummy"
 enable_landing_zone_replication = false
 
