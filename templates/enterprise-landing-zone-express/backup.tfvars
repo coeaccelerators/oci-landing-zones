@@ -3,11 +3,11 @@
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl. #
 ##########################################################################################################
 
-current_user_ocid    = 
-region               = 
-tenancy_ocid         = 
-api_fingerprint      = 
-api_private_key_path = 
+current_user_ocid    = ""
+region               = "ap-mumbai-1"
+tenancy_ocid         = ""
+api_fingerprint      = ""
+api_private_key_path = ""
 
 
 # budget

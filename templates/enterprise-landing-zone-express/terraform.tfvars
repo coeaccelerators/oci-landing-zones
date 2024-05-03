@@ -5,7 +5,7 @@
 
 # Provider
 current_user_ocid    = ""
-region               = ""
+region               = "ap-mumbai-1"
 tenancy_ocid         = ""
 api_fingerprint      = ""
 api_private_key_path = ""
