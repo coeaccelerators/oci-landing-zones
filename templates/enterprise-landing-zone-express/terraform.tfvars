@@ -10,6 +10,7 @@ tenancy_ocid         = ""
 api_fingerprint      = ""
 api_private_key_path = ""
 backup_region        = "dummy"
+enable_landing_zone_replication = false
 
 # iam
 resource_label             = "RLEXP"
