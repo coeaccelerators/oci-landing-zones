@@ -35,6 +35,7 @@ variable "is_baseline_deploy" {
   description = "TagNameSpace Optimization: Enable this flag to disable dependent module TagNameSpace Tag Creation."
 }
 
+
 # -----------------------------------------------------------------------------
 # Compartment Variables
 # -----------------------------------------------------------------------------

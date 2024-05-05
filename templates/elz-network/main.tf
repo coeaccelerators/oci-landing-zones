@@ -101,6 +101,8 @@ locals {
 }
 
 module "spoke" {
+  count                                          = var.is_baseline_deploy? 0 : 1
+  
   source                                         = "../elz-spoke"
   drg_id                                         = module.hub.drg_id
   enable_nat_gateway_spoke                       = var.enable_nat_gateway_spoke

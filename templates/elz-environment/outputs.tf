@@ -37,11 +37,11 @@ output "identity_idcs_endpoint" {
 }
 
 output "workload_compartment_id" {
-  value = module.workload.compartment_id
+  value = var.is_baseline_deploy ? "" : module.workload.compartment_id
 }
 
 output "workload_compartment_name" {
-  value = module.workload.compartment_name
+  value = var.is_baseline_deploy ? "" : module.workload.compartment_name
 }
 
 output "workload_subnet_cidr_blocks" {

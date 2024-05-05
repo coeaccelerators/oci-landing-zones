@@ -45,8 +45,8 @@ module "identity" {
   workload_admin_group_name    = var.workload_admin_group_name
   application_admin_group_name = var.application_admin_group_name
   database_admin_group_name    = var.database_admin_group_name
-  workload_compartment_id      = module.workload.compartment_id
-  workload_compartment_name    = module.workload.compartment_name
+  workload_compartment_id      = var.is_baseline_deploy ? "" : module.workload.compartment_id
+  workload_compartment_name    = var.is_baseline_deploy ? "" : module.workload.compartment_name
   workload_compartment_names   = var.workload_compartment_names
   home_compartment_id          = var.home_compartment_id
   is_baseline_deploy           = var.is_baseline_deploy
@@ -139,8 +139,8 @@ module "network" {
   service_gw_hub_check      = var.service_gw_hub_check
   nat_gw_spoke_check        = var.nat_gw_spoke_check
   service_gw_spoke_check    = var.service_gw_spoke_check
-  workload_compartment_id   = module.workload.compartment_id
-  workload_compartment_name = module.workload.compartment_name
+  workload_compartment_id   = var.is_baseline_deploy ? "" : module.workload.compartment_id
+  workload_compartment_name = var.is_baseline_deploy ? "" : module.workload.compartment_name
 
   vcn_cidr_block                      = var.vcn_cidr_block
   public_subnet_cidr_block            = var.public_subnet_cidr_block
@@ -213,7 +213,7 @@ module "monitoring" {
   environment_compartment_id = module.compartment.compartments.environment.id
   security_compartment_id    = module.compartment.compartments.security.id
   network_compartment_id     = module.compartment.compartments.network.id
-  workload_compartment_id    = module.workload.compartment_id
+  workload_compartment_id    = var.is_baseline_deploy ? "" : module.workload.compartment_id
 
   is_create_alarms         = var.is_create_alarms
   network_topic_endpoints  = var.network_topic_endpoints

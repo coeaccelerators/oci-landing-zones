@@ -13,7 +13,8 @@ locals {
   }
 
   shared_infra_compartment = {
-    name        = "OCI-ELZ-${var.environment_prefix}-SRD-CMP-${local.region_key[0]}"
+    #name        = "OCI-ELZ-${var.environment_prefix}-SRD-CMP-${local.region_key[0]}"
+    name        = "OCI-ELZ-${var.environment_prefix}-SRD-CMP"
     description = "Shared environment Resources Compartment"
   }
 
@@ -28,14 +29,27 @@ locals {
   }
 
   logging_compartment = {
-    name        = "OCI-ELZ-${var.environment_prefix}-LOG-${local.region_key[0]}"
+    #name        = "OCI-ELZ-${var.environment_prefix}-LOG-${local.region_key[0]}"
+    name        = "OCI-ELZ-${var.environment_prefix}-LOG"
     description = "Logging Compartment"
   }
 
   backup_compartment = {
-    name        = "OCI-ELZ-${var.environment_prefix}-BAC-TF-${local.region_key[0]}"
+    #name        = "OCI-ELZ-${var.environment_prefix}-BAC-TF-${local.region_key[0]}"
+    name        = "OCI-ELZ-${var.environment_prefix}-BAC-TF"
     description = "Backup Compartment"
   }
+
+  prod_compartment = {
+    name        = "OCI-ELZ-${var.environment_prefix}-PROD"
+    description = "PROD Workload Compartment"
+  }
+
+  nonprod_compartment = {
+    name        = "OCI-ELZ-${var.environment_prefix}-NONPROD"
+    description = "NONPROD Workload Compartment"
+  }
+
 }
 
 module "environment_compartment" {
@@ -97,6 +111,34 @@ module "logging_compartment" {
   compartment_parent_id     = module.environment_compartment.compartment_id
   compartment_name          = local.logging_compartment.name
   compartment_description   = local.logging_compartment.description
+  enable_compartment_delete = var.enable_compartment_delete
+
+  providers = {
+    oci = oci.home_region
+  }
+}
+
+module "prod_compartment" {
+  source = "../../modules/compartment"
+
+  count                     = var.is_baseline_deploy ? 1 : 0
+  compartment_parent_id     = module.environment_compartment.compartment_id
+  compartment_name          = local.prod_compartment.name
+  compartment_description   = local.prod_compartment.description
+  enable_compartment_delete = var.enable_compartment_delete
+
+  providers = {
+    oci = oci.home_region
+  }
+}
+
+module "nonprod_compartment" {
+  source = "../../modules/compartment"
+
+  count                     = var.is_baseline_deploy ? 1 : 0
+  compartment_parent_id     = module.environment_compartment.compartment_id
+  compartment_name          = local.nonprod_compartment.name
+  compartment_description   = local.nonprod_compartment.description
   enable_compartment_delete = var.enable_compartment_delete
 
   providers = {

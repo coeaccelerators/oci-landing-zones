@@ -14,22 +14,22 @@ output "drg_id" {
 }
 
 output "subnets" {
-  value = merge(module.hub.subnets, module.spoke.subnets)
+  value = merge(module.hub.subnets /*, module.spoke.subnets*/)
   description = "Hub & Spoke Subnet."
 }
 
 output "spoke_web_subnet_ocid" {
-  value = module.spoke.spoke_web_subnet_ocid
+  value = var.is_baseline_deploy? "" :  module.spoke.spoke_web_subnet_ocid
   description = "Spoke Web Subnet OCID."
 }
 
 output "spoke_app_subnet_ocid" {
-  value = module.spoke.spoke_app_subnet_ocid
+  value = var.is_baseline_deploy? "" :   module.spoke.spoke_app_subnet_ocid
   description = "Spoke App Subnet OCID."
 }
 
 output "spoke_db_subnet_ocid" {
-  value = module.spoke.spoke_db_subnet_ocid
+  value = var.is_baseline_deploy?  "" :  module.spoke.spoke_db_subnet_ocid
   description = "Spoke DB Subnet OCID."
 }
 

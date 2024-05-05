@@ -6,6 +6,7 @@
 # -----------------------------------------------------------------------------
 # Workload Resources 
 # -----------------------------------------------------------------------------
+
 locals {
   workload = {
     workload_name             = var.workload_name_prefix
@@ -14,6 +15,7 @@ locals {
 }
 
 module "workload" {
+  count                     = var.is_baseline_deploy ? 0 : 1
   source = "../elz-workload"
 
   tenancy_ocid                 = var.tenancy_ocid

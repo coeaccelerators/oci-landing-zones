@@ -8,7 +8,8 @@
 # -----------------------------------------------------------------------------
 locals {
     workload_compartment = {
-        name        = var.workload_compartment_name != "" ? var.workload_compartment_name : "OCI-ELZ-${var.environment_prefix}-${var.workload_prefix}-${local.region_key[0]}"
+        #name        = var.workload_compartment_name != "" ? var.workload_compartment_name : "OCI-ELZ-${var.environment_prefix}-${var.workload_prefix}-${local.region_key[0]}"
+        name        = var.workload_compartment_name != "" ? var.workload_compartment_name : "OCI-ELZ-${var.environment_prefix}-${var.workload_prefix}"
         description = "Workload Compartment"
 
     }
