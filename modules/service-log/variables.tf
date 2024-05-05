@@ -1,7 +1,7 @@
-##########################################################################################################
-# Copyright (c) 2022,2023 Oracle and/or its affiliates, All rights reserved.                             #
-# Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl. #
-##########################################################################################################
+variable "service_log_map" {
+  type        = map(string)
+  description = ""
+}
 
 variable "log_display_name" {
   type        = string
@@ -31,8 +31,4 @@ variable "log_source_service" {
 variable "log_source_type" {
   type        = string
   description = "The log source type."
-}
-variable "log_source_resource" {
-  type        = string
-  description = "The unique identifier of the resource emitting the log."
 }

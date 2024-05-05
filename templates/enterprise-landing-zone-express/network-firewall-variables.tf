@@ -33,12 +33,12 @@ variable "enable_traffic_threat_log_nonprod" {
 variable "nfw_subnet_type_prod" {
   type        = string
   description = "Network Firewall Subnet Type."
-  default     = "public"
+  default     = "private"
 }
 variable "nfw_subnet_type_nonprod" {
   type        = string
   description = "Network Firewall Subnet Type."
-  default     = "public"
+  default     = "private"
 }
 
 variable "nfw_instance_name_prod" {
