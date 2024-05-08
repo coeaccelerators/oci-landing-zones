@@ -10,6 +10,7 @@ variableGroups:
       - backup_region
       - environment_prefix
       - home_compartment_id
+      - environment_compartment_id
       - security_compartment_id
       - network_compartment_id
       - logging_compartment_id
@@ -21,6 +22,7 @@ variableGroups:
     variables:
       - api_fingerprint
       - api_private_key_path
+      - api_private_key
       - region
       - tenancy_ocid
       - current_user_ocid
@@ -28,11 +30,9 @@ variableGroups:
     visible: false
     variables:
       - resource_label
-      - environment_prefix
   - title: Compartment Variables
     visible: false
     variables:
-      - environment_compartment_id
       - home_compartment_name
       - workload_compartment_id
   - title: Monitoring Variables
@@ -301,21 +301,21 @@ variables:
     required: true
     pattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/([0-9]|[1][0-9]|[2][0-9]))$
     title: VCN CIDR Block
-    default: ""
+    default: "10.10.0.0/24"
   public_subnet_cidr_block:
     type: string
     description: "Public subnet CIDR block"
     required: true
     pattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/([0-9]|[1][0-9]|[2][0-9]))$
     title: Public Subnet CIDR Block
-    default: ""
+    default: "10.10.0.0/26"
   private_subnet_cidr_block:
     type: string
     description: "Private subnet CIDR block"
     required: true
     pattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/([0-9]|[1][0-9]|[2][0-9]))$
     title: Private Subnet CIDR Block
-    default: ""
+    default: "10.10.0.64/26"
   private_spoke_subnet_web_cidr_block:
     type: string
     description: "Web subnet CIDR block"

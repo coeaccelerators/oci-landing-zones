@@ -23,13 +23,13 @@ is_baseline_deploy          = true
 
 # Provide Compartment Name and OCID
 
-environment_compartment_id = ""
-home_compartment_name      = ""
-home_compartment_id        = ""
-security_compartment_id    = ""
-network_compartment_id     = ""
-workload_compartment_id    = ""
-logging_compartment_id     = ""
+#environment_compartment_id = ""
+home_compartment_name      = "OCI-ELZEXPRESS-CMP-HOME"
+#home_compartment_id        = ""
+#security_compartment_id    = ""
+#network_compartment_id     = ""
+workload_compartment_id    = "dummy"
+#logging_compartment_id     = ""
 
 
 # Monitoring 
