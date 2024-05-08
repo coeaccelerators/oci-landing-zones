@@ -159,10 +159,10 @@ variables:
     default: ""
   environment_prefix:
     type: string
-    description: "The unique prefix of environment compartment P or NP."
+    description: "The unique prefix of environment compartment"
     title: Environment Prefix
     required: true
-    default: ""
+    default: "CORP"
   #Compartment Related Variables
   environment_compartment_id:
     type: string
