@@ -240,7 +240,7 @@ resource "time_sleep" "first_log_delay" {
 }
 
 module "os_read_log" {
-  source = "../../modules/service-log"
+  source = "../../modules/service-log-new"
 
   log_display_name    = local.os_read_log.log_display_name
   log_type            = local.os_read_log.log_type
@@ -254,7 +254,7 @@ module "os_read_log" {
 }
 
 module "os_write_log" {
-  source = "../../modules/service-log"
+  source = "../../modules/service-log-new"
 
   log_display_name    = local.os_write_log.log_display_name
   log_type            = local.os_write_log.log_type

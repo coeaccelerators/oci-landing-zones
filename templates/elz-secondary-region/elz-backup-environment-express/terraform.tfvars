@@ -4,15 +4,15 @@
 ##########################################################################################################
 
 #Provide Current User OCID
-current_user_ocid    = ""
+#current_user_ocid    = ""
 #Region Name
-region               = ""
+#region               = ""
 #Tenanacy OCID
-tenancy_ocid         = ""
+#tenancy_ocid         = ""
 # API Key Fingerprint
-api_fingerprint      = ""
+#api_fingerprint      = ""
 # API Private Key Path
-api_private_key_path = ""
+#api_private_key_path = ""
 
 
 # Backup Region

@@ -16,8 +16,8 @@ module "security" {
   tenancy_ocid                         = var.tenancy_ocid
   vault_type                           = var.vault_type
   home_compartment_id                  = var.home_compartment_id
-  bastion_client_cidr_block_allow_list = var.bastion_client_cidr_block_allow_list
-  bastion_target_subnet_id             = module.network.spoke_web_subnet_ocid
+  #bastion_client_cidr_block_allow_list = var.bastion_client_cidr_block_allow_list
+  #bastion_target_subnet_id             = module.network.spoke_web_subnet_ocid
   environment_compartment_id           = var.environment_compartment_id
 
   providers = {

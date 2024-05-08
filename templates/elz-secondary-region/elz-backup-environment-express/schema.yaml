@@ -8,6 +8,9 @@ variableGroups:
     visible: true
     variables:
       - backup_region
+      - region
+      - tenancy_ocid
+      - current_user_ocid
       - environment_prefix
       - home_compartment_id
       - environment_compartment_id
@@ -17,15 +20,13 @@ variableGroups:
       - vcn_cidr_block
       - public_subnet_cidr_block
       - private_subnet_cidr_block
+      - enable_network_firewall
   - title: Provider Variables
     visible: false
     variables:
       - api_fingerprint
       - api_private_key_path
       - api_private_key
-      - region
-      - tenancy_ocid
-      - current_user_ocid
   - title: Backup Region Variables
     visible: false
     variables:
@@ -59,7 +60,6 @@ variableGroups:
       - spoke_vcn_cidr
       - enable_nat_gateway_spoke
       - enable_service_gateway_spoke
-      - enable_network_firewall
       - enable_traffic_threat_log
       - nfw_subnet_type
       - nfw_instance_name

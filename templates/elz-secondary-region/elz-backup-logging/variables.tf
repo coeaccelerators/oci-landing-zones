@@ -60,3 +60,9 @@ variable "home_compartment_name" {
   type        = string
   description = "The name of the Landing Zone home compartment."
 }
+
+variable "is_service_connector_limit" {
+  type        = bool
+  description = "Restrict Number of Service Connector Deployment"
+  default     = true
+}

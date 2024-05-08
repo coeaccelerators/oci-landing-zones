@@ -97,7 +97,7 @@ module "vss" {
     oci = oci.backup_region
   }
 }
-
+/*
 module "bastion" {
   source                               = "../../../modules/bastion"
   target_subnet_id                     = var.bastion_target_subnet_id
@@ -109,3 +109,4 @@ module "bastion" {
     oci = oci.backup_region
   }
 }
+*/

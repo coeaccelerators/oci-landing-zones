@@ -205,7 +205,7 @@ module "service_event_log_bucket_backup" {
   }
 }
 module "audit_log_service_connector_backup" {
-  #count                 = var.is_service_connector_limit   ? 0 : 1
+  count                 = var.is_service_connector_limit   ? 0 : 1
   source                = "../../../modules/service-connector"
   tenancy_ocid          = var.tenancy_ocid
   compartment_id        = var.security_compartment_id
@@ -223,7 +223,7 @@ module "audit_log_service_connector_backup" {
 }
 
 module "default_log_service_connector_backup" {
-  #count                 = var.is_service_connector_limit   ? 0 : 1
+  count                 = var.is_service_connector_limit   ? 0 : 1
   source                = "../../../modules/service-connector"
   tenancy_ocid          = var.tenancy_ocid
   compartment_id        = var.security_compartment_id
