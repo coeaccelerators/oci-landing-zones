@@ -6,7 +6,7 @@
 variable "create_master_encryption_key" {
   type        = bool
   description = "Option create master encryption key"
-  default     = false
+  default     = true
 }
 
 variable "enable_replication" {
