@@ -8,7 +8,7 @@
 # -----------------------------------------------------------------------------
 locals {
   prod_environment = {
-    environment_prefix     = var.prod_environment_prefix
+    environment_prefix     = "CORP"
     enable_tf_state_backup = false
     enable_logging         = true
   }

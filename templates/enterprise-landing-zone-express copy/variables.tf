@@ -19,12 +19,6 @@ variable "resource_label" {
   description = "A prefix used to avoid naming conflicts if multiple Landing Zones are deployed."
 }
 
-variable "prod_environment_prefix" {
-  type        = string
-  default     = "CORP"
-  description = "The prefix used for the new OELZ ENVIRONMENT."
-}
-
 variable "is_baseline_deploy" {
   type        = bool
   default     = true
