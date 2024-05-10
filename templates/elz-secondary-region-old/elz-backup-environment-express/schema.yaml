@@ -12,7 +12,11 @@ variableGroups:
       - tenancy_ocid
       - current_user_ocid
       - environment_prefix
-      - lzexpress_baseline_orm_stack_id
+      - home_compartment_id
+      - environment_compartment_id
+      - security_compartment_id
+      - network_compartment_id
+      - logging_compartment_id
       - vcn_cidr_block
       - public_subnet_cidr_block
       - private_subnet_cidr_block
@@ -115,11 +119,6 @@ variableGroups:
       - routing
       - tunnel_b_display_name
       - add_ssh_to_security_list
-      - home_compartment_id
-      - environment_compartment_id
-      - security_compartment_id
-      - network_compartment_id
-      - logging_compartment_id
 variables:
   #Provider Variables
   api_fingerprint:
@@ -134,7 +133,7 @@ variables:
     title: Api Private Key Path
   region:
     type: string
-    description: "The HOME Region of OCI Landing Zone. Must be already deployed."
+    description: "the OCI region LZ is deployed to."
     title: Region
     required: true
   tenancy_ocid:
@@ -181,12 +180,6 @@ variables:
     type: string
     description: "Home Compartment OCID Value"
     title: Home Compartment OCID
-    required: true
-    default: ""
-  lzexpress_baseline_orm_stack_id:
-    type: string
-    description: "The OCID of OELZ EXPRSS Baseline OCI Resource Manager (ORM) Stack"
-    title: OELZ EXPRSS Baseline ORM Stack OCID
     required: true
     default: ""
   security_compartment_id:

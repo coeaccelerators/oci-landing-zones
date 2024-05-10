@@ -4,36 +4,32 @@ schemaVersion: 1.0.0
 version: "1.0.0"
 locale: en
 variableGroups:
-  - title: Variables required for Landing Zone (OLZ Express) provisioning in secondary (or backup) region
-    visible: true
-    variables:
-      - backup_region
-      - region
-      - tenancy_ocid
-      - current_user_ocid
-      - environment_prefix
-      - lzexpress_baseline_orm_stack_id
-      - vcn_cidr_block
-      - public_subnet_cidr_block
-      - private_subnet_cidr_block
-      - enable_network_firewall
   - title: Provider Variables
     visible: false
     variables:
       - api_fingerprint
       - api_private_key_path
-      - api_private_key
+      - region
+      - tenancy_ocid
+      - current_user_ocid
   - title: Backup Region Variables
-    visible: false
+    visible: true
     variables:
+      - backup_region
       - resource_label
+      - environment_prefix
   - title: Compartment Variables
-    visible: false
+    visible: true
     variables:
+      - environment_compartment_id
       - home_compartment_name
+      - home_compartment_id
+      - security_compartment_id
+      - network_compartment_id
       - workload_compartment_id
+      - logging_compartment_id
   - title: Monitoring Variables
-    visible: false
+    visible: true
     variables:
       - network_topic_endpoints
       - secops_topic_endpoints
@@ -45,23 +41,27 @@ variableGroups:
       - enable_network_monitoring_alarms
       - enable_workload_monitoring_alarms
   - title: Network Variables
-    visible: false
+    visible: true
     variables:
       - enable_internet_gateway_hub
       - enable_nat_gateway_hub
       - enable_service_gateway_hub
+      - vcn_cidr_block
+      - public_subnet_cidr_block
+      - private_subnet_cidr_block
       - private_spoke_subnet_web_cidr_block
       - private_spoke_subnet_app_cidr_block
       - private_spoke_subnet_db_cidr_block
       - spoke_vcn_cidr
       - enable_nat_gateway_spoke
       - enable_service_gateway_spoke
+      - enable_network_firewall
       - enable_traffic_threat_log
       - nfw_subnet_type
       - nfw_instance_name
       - nfw_instance_policy
   - title: Network Extension Variables
-    visible: false
+    visible: true
     variables:
       - enable_vpn_or_fastconnect
       - enable_vpn_on_environment
@@ -72,7 +72,7 @@ variableGroups:
       - remote_peering_connection_peer_id
       - region_key
   - title: Security Variables
-    visible: false
+    visible: true
     variables:
       - bastion_client_cidr_block_allow_list
   - title: Invisible Variables
@@ -115,11 +115,6 @@ variableGroups:
       - routing
       - tunnel_b_display_name
       - add_ssh_to_security_list
-      - home_compartment_id
-      - environment_compartment_id
-      - security_compartment_id
-      - network_compartment_id
-      - logging_compartment_id
 variables:
   #Provider Variables
   api_fingerprint:
@@ -134,7 +129,7 @@ variables:
     title: Api Private Key Path
   region:
     type: string
-    description: "The HOME Region of OCI Landing Zone. Must be already deployed."
+    description: "the OCI region LZ is deployed to."
     title: Region
     required: true
   tenancy_ocid:
@@ -160,10 +155,10 @@ variables:
     default: ""
   environment_prefix:
     type: string
-    description: "The unique prefix of environment compartment"
+    description: "The unique prefix of environment compartment P or NP."
     title: Environment Prefix
     required: true
-    default: "CORP"
+    default: ""
   #Compartment Related Variables
   environment_compartment_id:
     type: string
@@ -181,12 +176,6 @@ variables:
     type: string
     description: "Home Compartment OCID Value"
     title: Home Compartment OCID
-    required: true
-    default: ""
-  lzexpress_baseline_orm_stack_id:
-    type: string
-    description: "The OCID of OELZ EXPRSS Baseline OCI Resource Manager (ORM) Stack"
-    title: OELZ EXPRSS Baseline ORM Stack OCID
     required: true
     default: ""
   security_compartment_id:
@@ -308,21 +297,21 @@ variables:
     required: true
     pattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/([0-9]|[1][0-9]|[2][0-9]))$
     title: VCN CIDR Block
-    default: "10.10.0.0/24"
+    default: ""
   public_subnet_cidr_block:
     type: string
     description: "Public subnet CIDR block"
     required: true
     pattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/([0-9]|[1][0-9]|[2][0-9]))$
     title: Public Subnet CIDR Block
-    default: "10.10.0.0/26"
+    default: ""
   private_subnet_cidr_block:
     type: string
     description: "Private subnet CIDR block"
     required: true
     pattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/([0-9]|[1][0-9]|[2][0-9]))$
     title: Private Subnet CIDR Block
-    default: "10.10.0.64/26"
+    default: ""
   private_spoke_subnet_web_cidr_block:
     type: string
     description: "Web subnet CIDR block"

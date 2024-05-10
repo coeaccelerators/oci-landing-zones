@@ -17,7 +17,7 @@
 
 # Backup Region
 # backup_region                   = ""
-resource_label                  = "LZEXP"
+resource_label                  = "RLEXP"
 # environment_prefix              = ""
 is_baseline_deploy          = true
 

@@ -4,32 +4,31 @@
 ##########################################################################################################
 
 #Provide Current User OCID
-#current_user_ocid    = ""
+current_user_ocid    = 
 #Region Name
-#region               = ""
+region               = 
 #Tenanacy OCID
-#tenancy_ocid         = ""
+tenancy_ocid         = 
 # API Key Fingerprint
-#api_fingerprint      = ""
+api_fingerprint      = 
 # API Private Key Path
-#api_private_key_path = ""
+api_private_key_path = 
 
 
 # Backup Region
-# backup_region                   = ""
-resource_label                  = "LZEXP"
-# environment_prefix              = ""
-is_baseline_deploy          = true
+backup_region                   = ""
+resource_label                  = ""
+environment_prefix              = ""
 
 # Provide Compartment Name and OCID
 
-#environment_compartment_id = ""
-home_compartment_name      = "OCI-ELZEXPRESS-CMP-HOME"
-#home_compartment_id        = ""
-#security_compartment_id    = ""
-#network_compartment_id     = ""
-workload_compartment_id    = "dummy"
-#logging_compartment_id     = ""
+environment_compartment_id = ""
+home_compartment_name      = ""
+home_compartment_id        = ""
+security_compartment_id    = ""
+network_compartment_id     = ""
+workload_compartment_id    = ""
+logging_compartment_id     = ""
 
 
 # Monitoring 
@@ -50,25 +49,25 @@ enable_workload_monitoring_alarms  = false
 enable_internet_gateway_hub             = "true"
 enable_nat_gateway_hub                  = "true"
 enable_service_gateway_hub              = "true"
-#vcn_cidr_block                          = ""
-#public_subnet_cidr_block                = ""
-#private_subnet_cidr_block               = ""
-private_spoke_subnet_web_cidr_block     = "10.20.1.0/24"
-private_spoke_subnet_app_cidr_block     = "10.20.2.0/24"
-private_spoke_subnet_db_cidr_block      = "10.20.3.0/24"
-spoke_vcn_cidr                          = "10.20.0.0/16"
+vcn_cidr_block                          = ""
+public_subnet_cidr_block                = ""
+private_subnet_cidr_block               = ""
+private_spoke_subnet_web_cidr_block     = ""
+private_spoke_subnet_app_cidr_block     = ""
+private_spoke_subnet_db_cidr_block      = ""
+spoke_vcn_cidr                          = ""
 enable_nat_gateway_spoke                = true
 enable_service_gateway_spoke            = true
 
 enable_network_firewall         = false
 enable_traffic_threat_log       = false
-nfw_subnet_type                 = "private"
+nfw_subnet_type                 = "public"
 nfw_instance_name               = "nfw_name"
 nfw_instance_policy             = "nfw_policy_name"
 
 # Network Extension
 enable_vpn_or_fastconnect      = "NONE"
-enable_vpn_on_environment      = false
+enable_vpn_on_environment      = true
 cpe_ip_address                 = "10.0.0.0"
 cpe_display_name               = "OCI-ELZ-CPE-P-HUB-001"
 cpe_vendor                     = 4

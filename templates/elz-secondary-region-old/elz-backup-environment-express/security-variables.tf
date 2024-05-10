@@ -3,14 +3,6 @@
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl. #
 ##########################################################################################################
 
-locals {
-
-  home_compartment_id = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.environment.compartment_id
-  environment_compartment_id = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.environment.id
-  security_compartment_id = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.security.id
-
-}
-
 variable "create_master_encryption_key" {
   type        = bool
   description = "Option create master encryption key"
@@ -37,7 +29,6 @@ variable "resource_label" {
 variable "security_compartment_id" {
   type        = string
   description = "The OCID of security compartment"
-  default = local.security_compartment_id
 }
 
 variable "vault_type" {
@@ -49,22 +40,15 @@ variable "vault_type" {
 variable "home_compartment_id" {
   type        = string
   description = "the OCID of the compartment where the environment will be created. In general, this should be the Landing zone parent compartment."
-  default = local.home_compartment_id
 }
 
 variable "environment_compartment_id" {
   type        = string
   description = "the OCID of the environment compartment"
-  default = local.environment_compartment_id
 }
 
 variable "bastion_client_cidr_block_allow_list" {
   type        = list(string)
   description = "A list of address ranges in CIDR notation that you want to allow to connect to sessions hosted by this bastion."
   default     = ["0.0.0.0/0"]
-}
-
-variable "lzexpress_baseline_orm_stack_id" {
-  type        = string
-  description = "the OCID of the lzexpress basline ORM stack"
 }
