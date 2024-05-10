@@ -4,12 +4,12 @@ module "monitoring" {
   backup_region                     = var.backup_region
   environment_prefix = var.environment_prefix
   resource_label     = var.resource_label
-  home_compartment_id  = var.home_compartment_id
+  home_compartment_id  = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.environment.compartment_id
   is_baseline_deploy           = var.is_baseline_deploy
 
-  environment_compartment_id = var.environment_compartment_id
-  security_compartment_id    = var.security_compartment_id
-  network_compartment_id     = var.network_compartment_id
+  environment_compartment_id = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.environment.id
+  security_compartment_id    = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.security.id
+  network_compartment_id     = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.network.id
   workload_compartment_id    = var.workload_compartment_id
 
   is_create_alarms         = var.is_create_alarms

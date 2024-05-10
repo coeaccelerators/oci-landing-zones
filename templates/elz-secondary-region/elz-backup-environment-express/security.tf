@@ -12,13 +12,13 @@ module "security" {
   environment_prefix                   = var.environment_prefix
   replica_region                       = var.replica_region
   resource_label                       = var.resource_label
-  security_compartment_id              = var.security_compartment_id
+  security_compartment_id              = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.security.id
   tenancy_ocid                         = var.tenancy_ocid
   vault_type                           = var.vault_type
-  home_compartment_id                  = var.home_compartment_id
+  home_compartment_id                  = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.environment.compartment_id
   #bastion_client_cidr_block_allow_list = var.bastion_client_cidr_block_allow_list
   #bastion_target_subnet_id             = module.network.spoke_web_subnet_ocid
-  environment_compartment_id           = var.environment_compartment_id
+  environment_compartment_id           = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.environment.id
 
   providers = {
     oci               = oci

@@ -10,7 +10,7 @@ module "network-extension-backup" {
   backup_region                     = var.backup_region
   environment_prefix                = var.environment_prefix
 
-  network_compartment_id            = var.network_compartment_id
+  network_compartment_id            = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.network.id
   cpe_ip_address                    = var.cpe_ip_address
   enable_vpn_or_fastconnect         = var.enable_vpn_or_fastconnect
   ipsec_connection_static_routes    = var.ipsec_connection_static_routes
@@ -45,7 +45,7 @@ module "network-extension-backup" {
   remote_peering_connection_peer_region_name = var.remote_peering_connection_peer_region_name
   drg_route_table_rpc_id            = var.enable_vpn_or_fastconnect == "FASTCONNECT" && var.enable_fastconnect_on_environment ? module.network.drg_route_tables.RT-RPC.id : null
   drg_route_table_vc_id             = var.enable_vpn_or_fastconnect == "FASTCONNECT" && var.enable_fastconnect_on_environment ? module.network.drg_route_tables.RT-Onprem.id : null
-  home_compartment_id               = var.home_compartment_id
+  home_compartment_id               = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.environment.compartment_id
   is_baseline_deploy                = var.is_baseline_deploy
 
   providers = {

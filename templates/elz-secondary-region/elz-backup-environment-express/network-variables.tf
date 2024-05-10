@@ -3,10 +3,6 @@
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl. #
 ##########################################################################################################
 
-locals {
-  network_compartment_id = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.network.id
-}
-
 variable "environment_prefix" {
   type        = string
   description = "the 1 character string representing the environment eg. P (prod), N (non-prod), D, T, U"
@@ -56,7 +52,7 @@ variable "is_baseline_deploy" {
 variable "network_compartment_id" {
   type        = string
   description = "Network Compartment OCID"
-  default = local.network_compartment_id
+  
 }
 
 variable "enable_internet_gateway_hub" {

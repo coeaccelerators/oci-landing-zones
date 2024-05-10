@@ -17,7 +17,7 @@ module "network" {
   igw_hub_check                           = var.igw_hub_check
   nat_gw_hub_check                        = var.nat_gw_hub_check
   service_gw_hub_check                    = var.service_gw_hub_check
-  network_compartment_id                  = var.network_compartment_id
+  network_compartment_id                  = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.network.id
   vcn_cidr_block                          = var.vcn_cidr_block
   public_subnet_cidr_block                = var.public_subnet_cidr_block
   private_subnet_cidr_block               = var.private_subnet_cidr_block
@@ -31,7 +31,7 @@ module "network" {
   enable_fastconnect_on_environment       = var.enable_fastconnect_on_environment
   customer_onprem_ip_cidr                 = var.customer_onprem_ip_cidr
   additional_workload_subnets_cidr_blocks = var.additional_workload_subnets_cidr_blocks
-  home_compartment_id                     = var.home_compartment_id
+  home_compartment_id                     = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.environment.compartment_id
   is_baseline_deploy                      = var.is_baseline_deploy
 
   enable_network_firewall                 = var.enable_network_firewall
