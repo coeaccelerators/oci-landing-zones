@@ -16,11 +16,6 @@ variable "retention_policy_duration_time_unit" {
   default     = "DAYS"
 }
 
-variable "logging_compartment_id" {
-  type        = string
-  description = "the ocid of logging compartment"
-  
-}
 variable "home_compartment_name" {
   type        = string
   description = "The name of the Landing Zone home compartment."

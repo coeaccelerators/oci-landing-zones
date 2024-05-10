@@ -48,12 +48,6 @@ variable "is_baseline_deploy" {
   default     = true
 }
 
-#
-variable "network_compartment_id" {
-  type        = string
-  description = "Network Compartment OCID"
-  
-}
 
 variable "enable_internet_gateway_hub" {
   type        = string

@@ -26,25 +26,10 @@ variable "resource_label" {
   description = "Prefix used to avoid naming conflict"
 }
 
-variable "security_compartment_id" {
-  type        = string
-  description = "The OCID of security compartment"
-}
-
 variable "vault_type" {
   type        = string
   description = "The type of vault to create. "
   default     = "DEFAULT"
-}
-
-variable "home_compartment_id" {
-  type        = string
-  description = "the OCID of the compartment where the environment will be created. In general, this should be the Landing zone parent compartment."
-}
-
-variable "environment_compartment_id" {
-  type        = string
-  description = "the OCID of the environment compartment"
 }
 
 variable "bastion_client_cidr_block_allow_list" {

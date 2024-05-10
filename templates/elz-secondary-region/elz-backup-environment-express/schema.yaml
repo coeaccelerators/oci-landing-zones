@@ -113,11 +113,6 @@ variableGroups:
       - routing
       - tunnel_b_display_name
       - add_ssh_to_security_list
-      - home_compartment_id
-      - environment_compartment_id
-      - security_compartment_id
-      - network_compartment_id
-      - logging_compartment_id
       - tenancy_ocid
       - current_user_ocid
 variables:
