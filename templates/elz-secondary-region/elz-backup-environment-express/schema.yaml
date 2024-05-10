@@ -9,8 +9,6 @@ variableGroups:
     variables:
       - backup_region
       - region
-      - tenancy_ocid
-      - current_user_ocid
       - environment_prefix
       - lzexpress_baseline_orm_stack_id
       - vcn_cidr_block
@@ -120,6 +118,8 @@ variableGroups:
       - security_compartment_id
       - network_compartment_id
       - logging_compartment_id
+      - tenancy_ocid
+      - current_user_ocid
 variables:
   #Provider Variables
   api_fingerprint:
