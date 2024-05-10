@@ -160,22 +160,10 @@ variables:
     required: true
     default: "CORP"
   #Compartment Related Variables
-  environment_compartment_id:
-    type: string
-    description: "Environment Compartment OCID Value"
-    title: Environment Compartment OCID
-    required: true
-    default: ""
   home_compartment_name:
     type: string
     description: "Home Compartment Name"
     title: Home Compartment Name
-    required: true
-    default: ""
-  home_compartment_id:
-    type: string
-    description: "Home Compartment OCID Value"
-    title: Home Compartment OCID
     required: true
     default: ""
   lzexpress_baseline_orm_stack_id:
@@ -184,28 +172,10 @@ variables:
     title: OLZ EXPRESS Baseline ORM Stack OCID
     required: true
     default: ""
-  security_compartment_id:
-    type: string
-    description: "Security Compartment OCID Value"
-    title: Security Compartment OCID
-    required: true
-    default: ""
-  network_compartment_id:
-    type: string
-    description: "Network Compartment OCID Value"
-    title: Network Compartment OCID
-    required: true
-    default: ""
   workload_compartment_id:
     type: string
     description: "Workload Compartment OCID Value"
     title: Workload Compartment OCID
-    required: true
-    default: ""
-  logging_compartment_id:
-    type: string
-    description: "Logging Compartment OCID Value"
-    title: Logging Compartment OCID
     required: true
     default: ""
   #Monitoring Variables
