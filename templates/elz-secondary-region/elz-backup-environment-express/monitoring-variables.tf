@@ -65,6 +65,7 @@ variable "workload_topic_endpoints" {
 variable "is_create_alarms" {
   type        = bool
   description = "Enable Alarms Creation in all Compartment"
+  default = false
 }
 variable "enable_security_monitoring_alarms" {
   type        = bool

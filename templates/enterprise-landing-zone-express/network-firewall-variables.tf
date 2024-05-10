@@ -4,9 +4,9 @@
 ##########################################################################################################
 
 variable "enable_network_firewall_prod" {
-  type        = string
+  type        = bool
   description = "Enable Network Firewall in Prod Enviornment."
-  default     = "false"
+  default     = false
 }
 variable "enable_network_firewall_nonprod" {
   type        = string

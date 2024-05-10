@@ -132,4 +132,5 @@ variable "enable_workload_monitoring_alarms" {
 variable "is_create_alarms" {
   type        = bool
   description = "Enable Alarms Creation in all Compartment"
+  default = false
 }
