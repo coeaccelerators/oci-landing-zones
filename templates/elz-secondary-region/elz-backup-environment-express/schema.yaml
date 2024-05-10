@@ -185,8 +185,8 @@ variables:
     default: ""
   lzexpress_baseline_orm_stack_id:
     type: string
-    description: "The OCID of OELZ EXPRSS Baseline OCI Resource Manager (ORM) Stack"
-    title: OELZ EXPRSS Baseline ORM Stack OCID
+    description: "The OCID of OLZ EXPRESS Baseline OCI Resource Manager (ORM) Stack"
+    title: OLZ EXPRESS Baseline ORM Stack OCID
     required: true
     default: ""
   security_compartment_id:
