@@ -106,7 +106,7 @@ variable "secops_topic_endpoints" {
 variable "is_create_alarms" {
   type        = bool
   description = "Enable Alarms Creation in all Compartment"
-  default     = true
+  default     = false
 }
 
 variable "default_log_group_id" {
@@ -233,6 +233,7 @@ variable "prod_database_admin_group_name" {
 variable "enable_bastion" {
   type        = bool
   description = "Option to enable bastion service"
+  default     = false
 }
 
 variable "bastion_client_cidr_block_allow_list" {
@@ -339,7 +340,7 @@ variable "enable_internet_gateway_spoke" {
 variable "workload_private_spoke_subnet_SUB001_dns_label" {
   description = "A DNS label for the VCN Subnet, used in conjunction with the VNIC's hostname and subnet's DNS label to form a fully qualified domain name (FQDN) for each VNIC within this subnet"
   type        = string
-  default     = "webdnslabel"
+  default     = "subonedns"
   validation {
     condition     = length(var.workload_private_spoke_subnet_SUB001_dns_label) < 16
     error_message = "DNS Label : Max 15 alphanumeric characters allowed."
@@ -349,7 +350,7 @@ variable "workload_private_spoke_subnet_SUB001_dns_label" {
 variable "workload_private_spoke_subnet_SUB002_dns_label" {
   description = "A DNS label for the VCN Subnet, used in conjunction with the VNIC's hostname and subnet's DNS label to form a fully qualified domain name (FQDN) for each VNIC within this subnet"
   type        = string
-  default     = "appdnslabel"
+  default     = "subtwodns"
   validation {
     condition     = length(var.workload_private_spoke_subnet_SUB002_dns_label) < 16
     error_message = "DNS Label : Max 15 alphanumeric characters allowed."
@@ -359,7 +360,7 @@ variable "workload_private_spoke_subnet_SUB002_dns_label" {
 variable "workload_private_spoke_subnet_SUB003_dns_label" {
   description = "A DNS label for the VCN Subnet, used in conjunction with the VNIC's hostname and subnet's DNS label to form a fully qualified domain name (FQDN) for each VNIC within this subnet"
   type        = string
-  default     = "dbdnslabel"
+  default     = "subthreedns"
   validation {
     condition     = length(var.workload_private_spoke_subnet_SUB003_dns_label) < 16
     error_message = "DNS Label : Max 15 alphanumeric characters allowed."
@@ -474,10 +475,16 @@ variable "db_port" {
 variable "is_baseline_deploy" {
   type        = bool
   description = "TagNameSpace Optimization: Enable this flag to disable dependent module TagNameSpace Tag Creation."
-  default     = false
+  default     = true
 }
 
 variable "lzexpress_baseline_orm_stack_id" {
   type        = string
   description = "the OCID of the lzexpress basline ORM stack"
+}
+
+variable "is_prod_workload" {
+  type        = bool
+  description = "If the workload to be deployed into Production environment?"
+  default     = false
 }

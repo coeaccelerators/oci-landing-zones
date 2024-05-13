@@ -1,9 +1,9 @@
 # Provider 
-current_user_ocid                            = ""
-region                                       = ""
-tenancy_ocid                                 = ""
-api_fingerprint                              = ""
-api_private_key_path                         = ""
+# current_user_ocid                            = ""
+# region                                       = ""
+# tenancy_ocid                                 = ""
+# api_fingerprint                              = ""
+# api_private_key_path                         = ""
 
 #####################################################
 # Workload Expansion Compartment Variable
@@ -13,8 +13,8 @@ resource_label             = "OLZEXP"
 # environment_compartment_id = ""
 # workload_parent_compartment_id      = ""
 # workload_compartment_name               = ""
-# workload_name   = "LMSPROD"
-# workload_prefix = "LMS-P"
+# workload_name   = ""
+# workload_prefix = ""
 
 enable_compartment_delete = true
 
@@ -53,31 +53,30 @@ enable_compartment_delete = true
 #enable_service_gateway_spoke                 = true
 #drg_id                                       = ""
 #hub_vcn_id                                   = ""
-#hub_public_subnet_cidr_block                 = "172.17.49.0/25"
-#hub_private_subnet_cidr_block                = "172.17.48.0/25"
+#hub_public_subnet_cidr_block                 = ""
+#hub_private_subnet_cidr_block                = ""
 workload_private_spoke_subnet_SUB001_dns_label  = "sub001"
 workload_private_spoke_subnet_SUB002_dns_label  = "sub002"
-workload_private_spoke_subnet_SUB003_dns_label   = "sub003"
+workload_private_spoke_subnet_SUB003_dns_label  = "sub003"
 
 
 #nat_gateway_display_name = ""
 #service_gateway_display_name = ""
 # route_table_display_name                    = ""
 # security_list_display_name                  = ""
-workload_private_spoke_subnet_SUB001_display_name = ""
-workload_private_spoke_subnet_SUB002_display_name = "" 
-workload_private_spoke_subnet_SUB003_display_name = ""
+# workload_private_spoke_subnet_SUB001_display_name = ""
+# workload_private_spoke_subnet_SUB002_display_name = "" 
+# workload_private_spoke_subnet_SUB003_display_name = ""
 
 #####################################################
 # Workload Expansion Monitoring Variables
 #####################################################
-default_log_group_id              = "ocid1.loggroup.oc1.ap-mumbai-1.amaaaaaaogmufxaaijyndn5vccdkehmax6jwtgvkenrbckrcfau7thnfwujq"
+# default_log_group_id              = ""
 workload_topic_endpoints          = []
 enable_workload_monitoring_alarms = false
 
-# hub_vcn_cidr_block = "172.17.48.0/23"
-# db_port = "3306"
-#enable_fan_events = ""
+# hub_vcn_cidr_block = ""
+# db_port = ""
 
 customer_onprem_ip_cidr = []
 ipsec_connection_static_routes = [""]
