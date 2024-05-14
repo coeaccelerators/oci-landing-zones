@@ -1,11 +1,11 @@
 
 locals {
   
-  environment_prefix = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.environment_prefix
+  #environment_prefix = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.environment_prefix
 
-  w_prefix = var.is_prod_workload ? "P" : "N"
+  #w_prefix = var.is_prod_workload ? "P" : "N"
 
-  workload_prefix = join ("-", [var.workload_name,  local.w_prefix])
+  #workload_prefix = join ("-", [var.workload_name,  local.w_prefix])
 
   default_log_group_id = var.default_log_group_id != "" ? var.default_log_group_id : data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.default_group_id
   
@@ -26,7 +26,7 @@ locals {
 }
 
 module "vcn_flow_log" {
-  source = "../../modules/service-log"
+  source = "../../modules/service-log-old"
 
   service_log_map     = local.subnets_map
   log_display_name    = local.vcn_flow_log.log_display_name

@@ -1,9 +1,9 @@
 locals {
   
-  environment_prefix = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.environment_prefix
+  # environment_prefix = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.environment_prefix
   
-  w_prefix = var.is_prod_workload ? "P" : "N"
-  workload_prefix = join ("-", [var.workload_name,  local.w_prefix])
+  # w_prefix = var.is_prod_workload ? "P" : "N"
+  # workload_prefix = join ("-", [var.workload_name,  local.w_prefix])
 
   osms_dynamic_group_workload = {
     dynamic_group_name        = "${var.resource_label}-OCI-ELZ-DG-${local.environment_prefix}-${var.workload_name}"

@@ -3,8 +3,8 @@
 ######################################################################
 locals {
 
-  w_prefix = var.is_prod_workload ? "P" : "N"
-  workload_prefix = join ("-", [var.workload_name,  local.w_prefix])
+  # w_prefix = var.is_prod_workload ? "P" : "N"
+  # workload_prefix = join ("-", [var.workload_name,  local.w_prefix])
 
   vcn_dns_label   = lower(var.workload_name)
 
@@ -190,7 +190,7 @@ module "workload_spoke_vcn" {
 ######################################################################
 
 module "workload_spoke_SUB001_security_list" {
-  source = "../../modules/security-list"
+  source = "../../modules/security-list-old"
 
   compartment_id             = module.workload_compartment.compartment_id
   vcn_id                     = module.workload_spoke_vcn.vcn_id
@@ -201,7 +201,7 @@ module "workload_spoke_SUB001_security_list" {
 }
 
 module "workload_spoke_SUB002_security_list" {
-  source = "../../modules/security-list"
+  source = "../../modules/security-list-old"
 
   compartment_id             = module.workload_compartment.compartment_id
   vcn_id                     = module.workload_spoke_vcn.vcn_id
@@ -213,7 +213,7 @@ module "workload_spoke_SUB002_security_list" {
 }
 
 module "workload_spoke_SUB003_security_list" {
-  source = "../../modules/security-list"
+  source = "../../modules/security-list-old"
 
   compartment_id             = module.workload_compartment.compartment_id
   vcn_id                     = module.workload_spoke_vcn.vcn_id
