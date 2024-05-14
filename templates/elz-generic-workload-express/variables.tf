@@ -14,6 +14,7 @@ variable "region" {
 variable "environment_prefix" {
   type        = string
   description = "the 1 character string representing the environment eg. P (prod), N (non-prod), D, T, U"
+  default = "CORP"
 }
 
 variable "resource_label" {
@@ -33,21 +34,25 @@ variable "enable_compartment_delete" {
 variable "environment_compartment_id" {
   type        = string
   description = "the OCID of the compartment where the environment will be created. In general, this should be the Landing zone parent compartment."
+  default = "dummy"
 }
 
 variable "workload_parent_compartment_id" {
   type        = string
   description = "the OCID of the parent compartment where the workload will be created."
+  default = "dummy"
 }
 
 variable "security_compartment_id" {
   type        = string
   description = "the OCID of the compartment where the environment will be created. In general, this should be the Landing zone parent compartment."
+  default = "dummy"
 }
 
 variable "network_compartment_id" {
   type        = string
   description = "the OCID of the compartment where the environment will be created. In general, this should be the Landing zone parent compartment."
+  default = "dummy"
 }
 
 variable "workload_name" {
@@ -112,6 +117,7 @@ variable "is_create_alarms" {
 variable "default_log_group_id" {
   type        = string
   description = "Default Log Group ID"
+  default = "dummy"
 }
 
 # -----------------------------------------------------------------------------
@@ -178,6 +184,7 @@ variable "identity_domain_name" {
 variable "identity_domain_url" {
   type        = string
   description = "identity domain url"
+  default = "dummy"
 }
 
 variable "workload_developer_group_name" {
@@ -265,6 +272,7 @@ variable "datasafe_reports_group_name" {
 variable "hub_vcn_id" {
   description = "OCID of Hub VCN."
   type        = string
+  default ="dummy"
 }
 
 variable "workload_private_spoke_subnet_SUB001_cidr_block" {
@@ -297,6 +305,7 @@ variable "workload_private_spoke_subnet_SUB003_cidr_block" {
 variable "workload_spoke_vcn_cidr" {
   description = "IPv4 CIDR blocks the VCN will use."
   type        = list(string)
+  default = ("172.16.0.0/16")
 }
 
 variable "enable_nat_gateway_spoke" {
@@ -433,6 +442,7 @@ variable "security_list_display_name" {
 
 variable "drg_id" {
   type = string
+  default = "drg.dummy"
   validation {
     condition     = can(regex("^drg$", split(".", var.drg_id)[1]))
     error_message = "Only Compartment OCID is allowed."
