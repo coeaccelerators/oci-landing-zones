@@ -305,7 +305,7 @@ variable "workload_private_spoke_subnet_SUB003_cidr_block" {
 variable "workload_spoke_vcn_cidr" {
   description = "IPv4 CIDR blocks the VCN will use."
   type        = list(string)
-  default = ["172.16.0.0/16"]
+  default = [""]
 }
 
 variable "enable_nat_gateway_spoke" {
@@ -442,7 +442,7 @@ variable "security_list_display_name" {
 
 variable "drg_id" {
   type = string
-  default = "drg.dummy"
+  default = ""
   validation {
     condition     = can(regex("^drg$", split(".", var.drg_id)[1]))
     error_message = "Only Compartment OCID is allowed."
