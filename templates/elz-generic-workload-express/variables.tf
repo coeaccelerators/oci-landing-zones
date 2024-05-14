@@ -305,7 +305,7 @@ variable "workload_private_spoke_subnet_SUB003_cidr_block" {
 variable "workload_spoke_vcn_cidr" {
   description = "IPv4 CIDR blocks the VCN will use."
   type        = list(string)
-  default = ("172.16.0.0/16")
+  default = ["172.16.0.0/16"]
 }
 
 variable "enable_nat_gateway_spoke" {
