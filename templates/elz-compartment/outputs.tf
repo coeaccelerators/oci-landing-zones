@@ -12,6 +12,8 @@ locals {
     },
     var.enable_logging == true ? { "logging" : module.logging_compartment[0].compartment } : {},
     var.enable_tf_state_backup == true ? { "backup" : module.backup_compartment[0].compartment } : {},
+    var.is_baseline_deploy == true ? { "prod" : module.prod_compartment[0].compartment } : {}  ,
+    var.is_baseline_deploy == true ? { "nonprod" : module.nonprod_compartment[0].compartment } : {}  ,
   )
 }
 

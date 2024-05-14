@@ -37,8 +37,8 @@ enable_compartment_delete = true
 #####################################################
 # Workload Expansion Security Group Variable
 #####################################################
-# enable_bastion                       = false
-# bastion_client_cidr_block_allow_list = ["0.0.0.0/0"]
+enable_bastion                       = false
+bastion_client_cidr_block_allow_list = ["0.0.0.0/0"]
 
 #####################################################
 # Workload Expansion Network Variables 
@@ -49,8 +49,8 @@ enable_compartment_delete = true
 #workload_private_spoke_subnet_SUB001_cidr_block = "172.21.30.0/24"
 #workload_private_spoke_subnet_SUB002_cidr_block = "172.21.20.0/24"
 #workload_private_spoke_subnet_SUB003_cidr_block  = "172.21.0.0/20"
-#enable_nat_gateway_spoke                     = true
-#enable_service_gateway_spoke                 = true
+enable_nat_gateway_spoke                     = true
+enable_service_gateway_spoke                 = true
 #drg_id                                       = ""
 #hub_vcn_id                                   = ""
 #hub_public_subnet_cidr_block                 = ""

@@ -1,7 +1,16 @@
 
 locals {
+  
+  environment_prefix = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.environment_prefix
+
+  w_prefix = var.is_prod_workload ? "P" : "N"
+
+  workload_prefix = join ("-", [var.workload_name,  local.w_prefix])
+
+  default_log_group_id = var.default_log_group_id != "" ? var.default_log_group_id : data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.default_group_id
+  
   vcn_flow_log = {
-    log_display_name    = "${var.resource_label}-OCI-ELZ-VCN-FLOW-LOG-${var.environment_prefix}-${var.workload_name}"
+    log_display_name    = "${var.resource_label}-OCI-ELZ-VCN-FLOW-LOG-${local.environment_prefix}-${var.workload_name}"
     log_type            = "SERVICE"
     log_source_category = "all"
     log_source_service  = "flowlogs"
@@ -9,9 +18,9 @@ locals {
   }
 
   subnets_map = {
-    SPK1 : module.workload_spoke_SUB001_subnet.subnets["OCI-ELZ-${var.workload_prefix}-EXP-SPK-SUB-${local.region_key[0]}-SUB001"]
-    SPK2 : module.workload_spoke_SUB002_subnet.subnets["OCI-ELZ-${var.workload_prefix}-EXP-SPK-SUB-${local.region_key[0]}-SUB002"]
-    SPK3 : module.workload_spoke_SUB003_subnet.subnets["OCI-ELZ-${var.workload_prefix}-EXP-SPK-SUB-${local.region_key[0]}-SUB003"]
+    SPK1 : module.workload_spoke_SUB001_subnet.subnets["OCI-ELZ-${local.workload_prefix}-EXP-SPK-SUB-${local.region_key[0]}-SUB001"]
+    SPK2 : module.workload_spoke_SUB002_subnet.subnets["OCI-ELZ-${local.workload_prefix}-EXP-SPK-SUB-${local.region_key[0]}-SUB002"]
+    SPK3 : module.workload_spoke_SUB003_subnet.subnets["OCI-ELZ-${local.workload_prefix}-EXP-SPK-SUB-${local.region_key[0]}-SUB003"]
   }
 
 }
@@ -22,7 +31,7 @@ module "vcn_flow_log" {
   service_log_map     = local.subnets_map
   log_display_name    = local.vcn_flow_log.log_display_name
   log_type            = local.vcn_flow_log.log_type
-  log_group_id        = var.default_log_group_id
+  log_group_id        = local.default_log_group_id
   log_source_category = local.vcn_flow_log.log_source_category
   log_source_service  = local.vcn_flow_log.log_source_service
   log_source_type     = local.vcn_flow_log.log_source_type

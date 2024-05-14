@@ -3,13 +3,16 @@
 ###########################################################################
 
 locals {
+
+  environment_prefix = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.environment_prefix
+
   workload_critical_topic = {
-    topic_name            = "${var.environment_prefix}-${var.workload_name}-Critical"
+    topic_name            = "${local.environment_prefix}-${var.workload_name}-Critical"
     topic_description     = "OCI Landing Zone Critical Workload Topic"
     subscription_protocol = "EMAIL"
   }
   workload_warning_topic = {
-    topic_name            = "${var.environment_prefix}-${var.workload_name}-Warning"
+    topic_name            = "${local.environment_prefix}-${var.workload_name}-Warning"
     topic_description     = "OCI Landing Zone Warning Workload Topic"
     subscription_protocol = "EMAIL"
   }

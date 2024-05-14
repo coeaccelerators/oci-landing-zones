@@ -1,6 +1,12 @@
 locals {
+  
+  environment_prefix = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.environment_prefix
+  
+  w_prefix = var.is_prod_workload ? "P" : "N"
+  workload_prefix = join ("-", [var.workload_name,  local.w_prefix])
+
   osms_dynamic_group_workload = {
-    dynamic_group_name        = "${var.resource_label}-OCI-ELZ-DG-${var.environment_prefix}-${var.workload_name}"
+    dynamic_group_name        = "${var.resource_label}-OCI-ELZ-DG-${local.environment_prefix}-${var.workload_name}"
     dynamic_group_description = "OCI ELZ Dynamic Group - ${var.workload_name}"
 
     general_matching_rule = <<EOT
@@ -11,7 +17,7 @@ locals {
   }
 
   bastion = {
-    name = "${var.resource_label}-OCI-ELZ-BAS-${var.environment_prefix}-${var.workload_name}"
+    name = "${var.resource_label}-OCI-ELZ-BAS-${local.environment_prefix}-${var.workload_name}"
   }
 
 }
@@ -29,8 +35,9 @@ module "osms_dynamic_group" {
 module "bastion" {
   source                               = "../../modules/bastion"
   count                                = var.enable_bastion ? 1 : 0
-  target_subnet_id                     = module.workload_spoke_SUB001_subnet.subnets["OCI-ELZ-${var.workload_prefix}-EXP-SPK-SUB-${local.region_key[0]}-SUB001"]
+  target_subnet_id                     = module.workload_spoke_SUB001_subnet.subnets["OCI-ELZ-${local.workload_prefix}-EXP-SPK-SUB-${local.region_key[0]}-SUB001"]
   bastion_client_cidr_block_allow_list = var.bastion_client_cidr_block_allow_list
   bastion_name                         = local.bastion.name
-  compartment_id                       = var.security_compartment_id
+  # compartment_id                       = var.security_compartment_id
+  compartment_id                       = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.security.id
 }

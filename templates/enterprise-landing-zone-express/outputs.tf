@@ -13,6 +13,11 @@ output "vcn" {
   description = "Production Environment VCN Information."
 }
 
+output "hub_vcn_cidr" {
+  value = var.prod_hub_vcn_cidr_block
+  description = "HUB VCN CIDR Information."
+}
+
 output "dynamic_group_detail" {
   value = module.osms_dynamic_group
   description = "OSMS Dynamic Group OCID."
@@ -38,6 +43,7 @@ output "prod_environment" {
     workload_compartment_id     = module.prod_environment.workload_compartment_id
     workload_subnet_cidr_blocks = module.prod_environment.workload_subnet_cidr_blocks
     access_governance_service_instance = module.prod_environment.access_governance_service_instance
+    default_group_id            = module.prod_environment.default_group_id
   }
   description = "Production Environment Information."
 }

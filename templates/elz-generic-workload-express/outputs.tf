@@ -1,7 +1,10 @@
+locals {
+  environment_prefix = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.environment_prefix
+}
 
 output "workload" {
   value = {
-    environment_prefix        = var.environment_prefix
+    environment_prefix        = local.environment_prefix
     workload_compartment_name = local.workload_compartment.name
     workload_compartment_id   = module.workload_compartment.compartment_id
     spoke_vcn                 = module.workload_spoke_vcn.vcn_id

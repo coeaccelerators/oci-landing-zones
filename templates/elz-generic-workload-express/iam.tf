@@ -2,39 +2,59 @@
 # Compartment Resources 
 # -----------------------------------------------------------------------------
 locals {
+
+  environment_prefix = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.environment_prefix
+
+  w_prefix = var.is_prod_workload ? "P" : "N"
+
+  workload_prefix = join ("-", [var.workload_name,  local.w_prefix])
+
+  workload_parent_compartment_id = var.is_prod_workload ? data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.prod.id : data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.nonprod.id
+
   workload_compartment = {
-    name        = var.workload_compartment_name != "" ? var.workload_compartment_name : "OCI-ELZ-${var.environment_prefix}-${var.workload_name}-${local.region_key[0]}"
+    name        = var.workload_compartment_name != "" ? var.workload_compartment_name : "OCI-ELZ-${local.environment_prefix}-${var.workload_name}-${local.region_key[0]}"
+    id          = var.workload_parent_compartment_id != "" ? var.workload_parent_compartment_id : local.workload_parent_compartment_id
     description = "Workload Compartment"
   }
 
   group_names = var.enable_datasafe ? {
-    workload_admin_group_name : var.workload_admin_group_name != "" ? var.workload_admin_group_name : "OCI-ELZ-UGP-${var.environment_prefix}-${var.workload_name}-WRK-ADMIN",
-    application_admin_group_name : var.application_admin_group_name != "" ? var.application_admin_group_name : "OCI-ELZ-UGP-${var.environment_prefix}-${var.workload_name}-APP-ADMIN",
-    database_admin_group_name : var.database_admin_group_name != "" ? var.database_admin_group_name : "OCI-ELZ-UGP-${var.environment_prefix}-${var.workload_name}-DB-ADMIN",
-    workload_developer_group_name : var.workload_developer_group_name != "" ? var.workload_developer_group_name : "OCI-ELZ-UGP-${var.environment_prefix}-${var.workload_name}-WRK-DEV",
-    datasafe_admin_group_name : var.datasafe_admin_group_name != "" ? var.datasafe_admin_group_name : "OCI-ELZ-UGP-${var.environment_prefix}-${var.workload_name}-DTSAFE-ADMIN",
-    datasafe_reports_group_name : var.datasafe_reports_group_name != "" ? var.datasafe_reports_group_name : "OCI-ELZ-UGP-${var.environment_prefix}-${var.workload_name}-DTSAFE-REPORTS",
+    workload_admin_group_name : var.workload_admin_group_name != "" ? var.workload_admin_group_name : "OCI-ELZ-UGP-${local.environment_prefix}-${var.workload_name}-WRK-ADMIN",
+    application_admin_group_name : var.application_admin_group_name != "" ? var.application_admin_group_name : "OCI-ELZ-UGP-${local.environment_prefix}-${var.workload_name}-APP-ADMIN",
+    database_admin_group_name : var.database_admin_group_name != "" ? var.database_admin_group_name : "OCI-ELZ-UGP-${local.environment_prefix}-${var.workload_name}-DB-ADMIN",
+    workload_developer_group_name : var.workload_developer_group_name != "" ? var.workload_developer_group_name : "OCI-ELZ-UGP-${local.environment_prefix}-${var.workload_name}-WRK-DEV",
+    datasafe_admin_group_name : var.datasafe_admin_group_name != "" ? var.datasafe_admin_group_name : "OCI-ELZ-UGP-${local.environment_prefix}-${var.workload_name}-DTSAFE-ADMIN",
+    datasafe_reports_group_name : var.datasafe_reports_group_name != "" ? var.datasafe_reports_group_name : "OCI-ELZ-UGP-${local.environment_prefix}-${var.workload_name}-DTSAFE-REPORTS",
     } : {
-    workload_admin_group_name : var.workload_admin_group_name != "" ? var.workload_admin_group_name : "OCI-ELZ-UGP-${var.environment_prefix}-${var.workload_name}-WRK-ADMIN",
-    application_admin_group_name : var.application_admin_group_name != "" ? var.application_admin_group_name : "OCI-ELZ-UGP-${var.environment_prefix}-${var.workload_name}-APP-ADMIN",
-    database_admin_group_name : var.database_admin_group_name != "" ? var.database_admin_group_name : "OCI-ELZ-UGP-${var.environment_prefix}-${var.workload_name}-DB-ADMIN",
-    workload_developer_group_name : var.workload_developer_group_name != "" ? var.workload_developer_group_name : "OCI-ELZ-UGP-${var.environment_prefix}-${var.workload_name}-WRK-DEV",
+    workload_admin_group_name : var.workload_admin_group_name != "" ? var.workload_admin_group_name : "OCI-ELZ-UGP-${local.environment_prefix}-${var.workload_name}-WRK-ADMIN",
+    application_admin_group_name : var.application_admin_group_name != "" ? var.application_admin_group_name : "OCI-ELZ-UGP-${local.environment_prefix}-${var.workload_name}-APP-ADMIN",
+    database_admin_group_name : var.database_admin_group_name != "" ? var.database_admin_group_name : "OCI-ELZ-UGP-${local.environment_prefix}-${var.workload_name}-DB-ADMIN",
+    workload_developer_group_name : var.workload_developer_group_name != "" ? var.workload_developer_group_name : "OCI-ELZ-UGP-${local.environment_prefix}-${var.workload_name}-WRK-DEV",
   }
 
   base_group_names = {
-    network_admin_group_name : var.network_admin_group_name != "" ? var.network_admin_group_name : "OCI-ELZ-UGP-${var.environment_prefix}-NET-ADMIN",
-    # security_admin_group_name : var.security_admin_group_name != "" ? var.security_admin_group_name : "OCI-ELZ-UGP-${var.environment_prefix}-SEC-ADMIN",
+    network_admin_group_name : var.network_admin_group_name != "" ? var.network_admin_group_name : "OCI-ELZ-UGP-${local.environment_prefix}-NET-ADMIN",
+    # security_admin_group_name : var.security_admin_group_name != "" ? var.security_admin_group_name : "OCI-ELZ-UGP-${local.environment_prefix}-SEC-ADMIN",
   }
 
-  identity_domain_name = var.identity_domain_name != "" ? var.identity_domain_name : "OCI-ELZ-${var.environment_prefix}-IDT"
+  # identity_domain_name = var.identity_domain_name != "" ? var.identity_domain_name : "OCI-ELZ-${local.environment_prefix}-IDT"
+  identity_domain_name = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.identity_domain.display_name
+
+  identity_domain_url = var.identity_domain_url != "" ? var.identity_domain_url : data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.identity_domain.url
 
   parent_compartment_names = {
-    security_compartment_name : var.security_compartment_name != "" ? var.security_compartment_name : "OCI-ELZ-${var.environment_prefix}-SRD-SEC"
-    environment_compartment_name : var.environment_compartment_name != "" ? var.environment_compartment_name : "OCI-ELZ-${var.environment_prefix}-CMP"
+    #security_compartment_name : var.security_compartment_name != "" ? var.security_compartment_name : "OCI-ELZ-${local.environment_prefix}-SRD-SEC"
+    security_compartment_name = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.security.name
+    # environment_compartment_name : var.environment_compartment_name != "" ? var.environment_compartment_name : "OCI-ELZ-${local.environment_prefix}-CMP"
+    environment_compartment_name = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.environment.name
+  }
+
+  parent_compartment_id = {
+    security_compartment_id = var.security_compartment_id != "" ? var.security_compartment_id : data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.security.id
+    environment_compartment_id = var.environment_compartment_id != "" ? var.environment_compartment_id :  data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.environment.id
   }
 
   workload_expansion_policy = {
-    name        = "OCI-ELZ-WRK-EXP-${var.workload_prefix}-POLICY"
+    name        = "OCI-ELZ-WRK-EXP-${local.workload_prefix}-POLICY"
     description = "OCI Workload Expansion Policy"
     statements = concat([
       "Allow group ${local.identity_domain_name}/${local.group_names["workload_admin_group_name"]} to manage virtual-network-family in compartment ${module.workload_compartment.compartment_name}",
@@ -79,7 +99,7 @@ locals {
   }
 
   workload_expansion_developer_policy = {
-    name        = "OCI-ELZ-WRK-EXP-${var.workload_prefix}-DEV-POLICY"
+    name        = "OCI-ELZ-WRK-EXP-${local.workload_prefix}-DEV-POLICY"
     description = "OCI Workload Expansion Developer Policy"
     statements = [
       "Allow group ${local.identity_domain_name}/${local.group_names["workload_developer_group_name"]} to manage load-balancers in compartment ${module.workload_compartment.compartment_name}",
@@ -95,7 +115,7 @@ locals {
   }
   
   workload_expansion_policy_security = {
-    name        = "OCI-ELZ-WRK-EXP-${var.workload_prefix}-SEC-POLICY"
+    name        = "OCI-ELZ-WRK-EXP-${local.workload_prefix}-SEC-POLICY"
     description = "OCI Workload Expansion Security Policy"
 
     statements = [
@@ -108,7 +128,7 @@ locals {
   }
 
   datasafe_admin_policy = {
-    name        = "OCI-ELZ-EXAWRK-EXP-${var.workload_prefix}-DTSAFE-ADMIN-POLICY"
+    name        = "OCI-ELZ-EXAWRK-EXP-${local.workload_prefix}-DTSAFE-ADMIN-POLICY"
     description = "OCI Exadata Workload Expansion Data Safe Admin Policy"
 
     statements = var.enable_datasafe ? [
@@ -120,7 +140,8 @@ locals {
 module "workload_compartment" {
   source = "../../modules/compartment"
 
-  compartment_parent_id     = var.workload_parent_compartment_id
+  #compartment_parent_id     = var.workload_parent_compartment_id
+  compartment_parent_id     = local.workload_compartment.id
   compartment_name          = local.workload_compartment.name
   compartment_description   = local.workload_compartment.description
   enable_compartment_delete = var.enable_compartment_delete
@@ -138,34 +159,34 @@ module "workload_compartment" {
 
 module "workload_admin_group" {
   source             = "../../modules/non-default-domain-group"
-  idcs_endpoint      = var.identity_domain_url
+  idcs_endpoint      = local.identity_domain_url
   group_display_name = local.group_names.workload_admin_group_name
 }
 module "application_admin_group" {
   source             = "../../modules/non-default-domain-group"
-  idcs_endpoint      = var.identity_domain_url
+  idcs_endpoint      = local.identity_domain_url
   group_display_name = local.group_names.application_admin_group_name
 }
 module "database_admin_group" {
   source             = "../../modules/non-default-domain-group"
-  idcs_endpoint      = var.identity_domain_url
+  idcs_endpoint      = local.identity_domain_url
   group_display_name = local.group_names.database_admin_group_name
 }
 module "workload_developer_group" {
   source             = "../../modules/non-default-domain-group"
-  idcs_endpoint      = var.identity_domain_url
+  idcs_endpoint      = local.identity_domain_url
   group_display_name = local.group_names.workload_developer_group_name
 }
 module "datasafe_admin_group" {
   count              = var.enable_datasafe ? 1 : 0
   source             = "../../modules/non-default-domain-group"
-  idcs_endpoint      = var.identity_domain_url
+  idcs_endpoint      = local.identity_domain_url
   group_display_name = local.group_names.datasafe_admin_group_name
 }
 module "datasafe_reports_group" {
   count              = var.enable_datasafe ? 1 : 0
   source             = "../../modules/non-default-domain-group"
-  idcs_endpoint      = var.identity_domain_url
+  idcs_endpoint      = local.identity_domain_url
   group_display_name = local.group_names.datasafe_reports_group_name
 }
 
@@ -179,7 +200,7 @@ module "workload_expansion_policy" {
 
 module "workload_expansion_sec_policy" {
   source           = "../../modules/policies"
-  compartment_ocid = var.security_compartment_id
+  compartment_ocid = local.parent_compartment_id.security_compartment_id
   policy_name      = local.workload_expansion_policy_security.name
   description      = local.workload_expansion_policy_security.description
   statements       = local.workload_expansion_policy_security.statements
@@ -188,7 +209,7 @@ module "workload_expansion_sec_policy" {
 module "datasafe_admin_policy" {
   count            = var.enable_datasafe ? 1 : 0
   source           = "../../modules/policies"
-  compartment_ocid = var.environment_compartment_id
+  compartment_ocid = local.parent_compartment_id.environment_compartment_id
   policy_name      = local.datasafe_admin_policy.name
   description      = local.datasafe_admin_policy.description
   statements       = local.datasafe_admin_policy.statements
