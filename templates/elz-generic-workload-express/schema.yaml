@@ -152,7 +152,7 @@ variables:
     type: boolean
     description: "Check this box to deploy in Production environment. Leave uncheck for Non-production environment"
     default: false
-    title: If the Workload Expansion to be deployed to Production or Non-production environment
+    title: If the Workload Expansion to be deployed to Production environment
     required: true
   lzexpress_baseline_orm_stack_id:
     type: string
