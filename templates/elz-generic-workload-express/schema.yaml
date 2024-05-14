@@ -130,7 +130,7 @@ variables:
     title: Api Private Key Path
   region:
     type: string
-    description: "the OCI region LZ is deployed to."
+    description: "The OCI region where the Workload Expansion to be deployed."
     title: Region
     required: true
   tenancy_ocid:
@@ -148,6 +148,18 @@ variables:
     default: true
     title: Enable Workload Expansion
     required: true
+  is_prod_workload:
+    type: boolean
+    description: "Check this box to deploy in Production environment. Leave uncheck for Non-production environment"
+    default: false
+    title: If the Workload Expansion to be deployed to Production or Non-production environment
+    required: true
+  lzexpress_baseline_orm_stack_id:
+    type: string
+    description: "The OCID of OLZ EXPRESS Baseline OCI Resource Manager (ORM) Stack"
+    title: OLZ EXPRESS Baseline ORM Stack OCID
+    required: true
+    default: ""
   workload_compartment_name:
     type: string
     description: "The name of workload compartment is going to create."
@@ -195,9 +207,9 @@ variables:
     type: array
     items:
       type: string
-    description: "Workload Expansion Spoke VCN CIDR Block"
+    description: "Workload Spoke VCN CIDR Block"
     required: true
-    title: Workload Expansion Spoke VCN CIDR Block
+    title: Workload Spoke VCN CIDR Block
   vcn_display_name:
     type: string
     description: "Provide Spoke VCN Display Name"
@@ -210,22 +222,22 @@ variables:
     title: VCN DNS Label in Workload Expansion Spoke
   workload_private_spoke_subnet_SUB001_cidr_block:
     type: string
-    description: "Workload Expansion Spoke : Subnet One CIDR Block"
+    description: "Workload Spoke VCN : Subnet One CIDR Block"
     required: true
     pattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/([0-9]|[1][0-9]|[2][0-9]))$
-    title: Workload Expansion Spoke Subnet One CIDR Block
+    title: Workload Spoke VCN - Subnet One CIDR Block
   workload_private_spoke_subnet_SUB002_cidr_block:
     type: string
-    description: "Workload Expansion Spoke : Subnet Two CIDR Block"
+    description: "Workload Spoke VCN : Subnet Two CIDR Block"
     required: true
     pattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/([0-9]|[1][0-9]|[2][0-9]))$
-    title: Workload Expansion Spoke Subnet Two CIDR Block
+    title: Workload Spoke VCN - Subnet Two CIDR Block
   workload_private_spoke_subnet_SUB003_cidr_block:
     type: string
-    description: "Workload Expansion Spoke : Subnet Three CIDR Block"
+    description: "Workload Spoke VCN : Subnet Three CIDR Block"
     required: true
     pattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/([0-9]|[1][0-9]|[2][0-9]))$
-    title: Workload Expansion Spoke Subnet Three CIDR Block
+    title: Workload Spoke VCN - Subnet Three CIDR Block
   enable_nat_gateway_spoke:
     type: boolean
     description: "Option to enable nat gateway in Workload Expansion spoke"
@@ -339,8 +351,8 @@ variables:
     type: string
     required: true
     default: "WRK1"
-    description: Prefix Name of Workload Expansion Topics to avoid name conflicts
-    title: Prefix Name of Workload Expansion Topics
+    description: Name of the Workload to be deployed
+    title: Name of the Workload to be deployed
   baseline_spoke_subnets_cidr_blocks:
     type: array
     items:
