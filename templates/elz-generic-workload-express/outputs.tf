@@ -1,7 +1,3 @@
-locals {
-  environment_prefix = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.environment_prefix
-}
-
 output "workload" {
   value = {
     environment_prefix        = local.environment_prefix
