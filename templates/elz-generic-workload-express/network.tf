@@ -3,12 +3,11 @@
 ######################################################################
 locals {
 
-  # w_prefix = var.is_prod_workload ? "P" : "N"
-  # workload_prefix = join ("-", [var.workload_name,  local.w_prefix])
-
   vcn_dns_label   = lower(var.workload_name)
 
   drg_id = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.drg_id
+
+  drg_attachment_display_name = "Spoke-VCN-DRG-${local.workload_prefix}-ATTACHMENT"
 
   workload_nat_gw_spoke_check     = var.enable_nat_gateway_spoke == true ? var.nat_gw_spoke_check : []
   #workload_service_gw_spoke_check = var.service_gw_spoke_check
@@ -312,8 +311,9 @@ module "workload_spoke_route_table_SUB003" {
 #          Attach Workload Spoke VCN to DRG                          #
 ######################################################################
 module "workload_spoke_vcn_drg_attachment" {
-  source                        = "../../modules/drg-attachment"
+  source                        = "../../modules/drg-attachment-new"
   drg_id                        = local.drg_id
+  drg_attachment_display_name   = local.drg_attachment_display_name
   vcn_id                        = module.workload_spoke_vcn.vcn_id
   drg_attachment_type           = "VCN"
   drg_attachment_vcn_route_type = "VCN_CIDRS"
