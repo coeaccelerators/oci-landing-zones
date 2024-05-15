@@ -20,13 +20,13 @@ terraform {
 # Provider blocks for home region and alternate region(s)
 # -----------------------------------------------------------------------------
 provider "oci" {
-  alias               = "backup_region"
-  tenancy_ocid        = var.tenancy_ocid
-  user_ocid           = var.current_user_ocid
-  fingerprint         = var.api_fingerprint
-  private_key         = var.api_private_key
-  private_key_path    = var.api_private_key_path
-  region              = var.backup_region
+  alias            = "backup_region"
+  tenancy_ocid     = var.tenancy_ocid
+  user_ocid        = var.current_user_ocid
+  fingerprint      = var.api_fingerprint
+  private_key      = var.api_private_key
+  private_key_path = var.api_private_key_path
+  region           = var.backup_region
 }
 provider "oci" {
   tenancy_ocid     = var.tenancy_ocid

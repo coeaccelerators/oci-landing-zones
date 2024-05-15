@@ -23,7 +23,7 @@ data "oci_identity_region_subscriptions" "regions" {
 #              Get the Private IPs using Trust Subnet                #
 ######################################################################
 data "oci_core_private_ips" "firewall_subnet_private_ip" {
-  subnet_id  = var.nfw_subnet_type == "public" ? oci_core_subnet.hub_public_subnet_backup.id : oci_core_subnet.hub_private_subnet_backup.id
+  subnet_id = var.nfw_subnet_type == "public" ? oci_core_subnet.hub_public_subnet_backup.id : oci_core_subnet.hub_private_subnet_backup.id
   depends_on = [
     oci_network_firewall_network_firewall.network_firewall_backup
   ]

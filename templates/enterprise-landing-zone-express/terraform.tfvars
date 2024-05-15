@@ -9,7 +9,7 @@
 # tenancy_ocid         = ""
 # api_fingerprint      = ""
 # api_private_key_path = ""
-backup_region        = "dummy"
+backup_region                   = "dummy"
 enable_landing_zone_replication = false
 
 # iam
@@ -63,8 +63,8 @@ nonprod_enable_service_gateway_spoke = "true"
 # prod_hub_vcn_cidr_block            = ""
 # prod_hub_public_subnet_cidr_block  = ""
 # prod_hub_private_subnet_cidr_block = ""
-prod_hub_public_subnet_dns_label   = "public"
-prod_hub_private_subnet_dns_label  = "private"
+prod_hub_public_subnet_dns_label  = "public"
+prod_hub_private_subnet_dns_label = "private"
 
 prod_spoke_vcn_cidr              = "10.2.0.0/16"
 prod_spoke_subnet_web_cidr_block = "10.2.1.0/24"
@@ -128,17 +128,17 @@ nfw_instance_policy_prod        = "nfw_policy_name"
 enable_network_firewall_nonprod = "false"
 
 ####################################### Access Governance ###################################################
-prod_enable_access_governance    = false
-admin_domain_name                = "Default"
-admin_domain_compartment_ocid    = ""
+prod_enable_access_governance = false
+admin_domain_name             = "Default"
+admin_domain_compartment_ocid = ""
 
 # ACCESS GOVERNANCE SERVICE INSTANCE DETAILS
-prod_ag_license_type               = "Access Governance for Oracle Cloud Infrastructure"
+prod_ag_license_type = "Access Governance for Oracle Cloud Infrastructure"
 #prod_service_instance_display_name = "prod-access-governance-instance"
-prod_service_instance_description  = "Prod OAG service instance"
+prod_service_instance_description = "Prod OAG service instance"
 
 # ACCESS GOVERNANCE USER COMMON DETAILS
-prod_use_existing_agcs_user    = false
+prod_use_existing_agcs_user = false
 
 # ACCESS GOVERNANCE EXISTING_USER
 #prod_agcs_user_private_key_path          = ""
@@ -156,6 +156,6 @@ prod_oci_system_description = "Prod OCI System"
 
 # Adding default values for the EXPRESS provisioning
 
-is_baseline_deploy = true
-domain_license_type = "free"
+is_baseline_deploy         = true
+domain_license_type        = "free"
 is_service_connector_limit = true

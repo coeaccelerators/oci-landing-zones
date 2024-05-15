@@ -9,7 +9,7 @@ variable "api_private_key_path" {
   description = "Private Key Path of Administrator."
 }
 
-  variable "current_user_ocid" {
+variable "current_user_ocid" {
   default     = ""
   description = "OCID of the Administrator."
 }
@@ -25,7 +25,7 @@ variable "tenancy_ocid" {
 }
 
 variable "region" {
-  description     = "Region of the Administrator"
+  description = "Region of the Administrator"
   validation {
     condition     = length(trim(var.region, "")) > 0
     error_message = "Validation failed for region: value is required."
@@ -98,7 +98,7 @@ variable "agcs_user_region_oci_system" {
 }
 
 variable "service_instance_display_name" {
-  description     = "Access Governance Instance Display Name."
+  description = "Access Governance Instance Display Name."
   validation {
     condition     = can(regex("^[a-zA-Z0-9-_]+$", var.service_instance_display_name))
     error_message = "Must be unique, start with a letter and contain only alphanumeric characters without any space. Hyphen (-) and underscore ( _ ) are allowed only."
@@ -110,7 +110,7 @@ variable "service_instance_description" {
 }
 
 variable "ag_license_type" {
-  description     = "Access Governance Instance License Type."
+  description = "Access Governance Instance License Type."
   validation {
     condition     = can(regex("^(Access Governance Premium|Access Governance for Oracle Workloads|Access Governance for Oracle Cloud Infrastructure)$", var.ag_license_type))
     error_message = "Please select any value among Access Governance Premium, Access Governance for Oracle Workloads, Access Governance for Oracle Cloud Infrastructure."
@@ -163,8 +163,8 @@ variable "agcs_user_given_name" {
 }
 
 variable "agcs_user_email" {
-  default         = "something@example.com"
-  description     = "Email address for the user."
+  default     = "something@example.com"
+  description = "Email address for the user."
   validation {
     condition     = can(regex("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$", var.agcs_user_email))
     error_message = "Must be unique, start with a letter and contain only alphanumeric characters without any space. Hyphen (-) and underscore ( _ ) are allowed only."

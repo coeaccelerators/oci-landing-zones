@@ -6,19 +6,19 @@
 module "security" {
   source = "../elz-backup-security"
 
-  backup_region                        = var.backup_region
-  create_master_encryption_key         = var.create_master_encryption_key
-  enable_replication                   = var.enable_replication
-  environment_prefix                   = var.environment_prefix
-  replica_region                       = var.replica_region
-  resource_label                       = var.resource_label
-  security_compartment_id              = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.security.id
-  tenancy_ocid                         = var.tenancy_ocid
-  vault_type                           = var.vault_type
-  home_compartment_id                  = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.environment.compartment_id
+  backup_region                = var.backup_region
+  create_master_encryption_key = var.create_master_encryption_key
+  enable_replication           = var.enable_replication
+  environment_prefix           = var.environment_prefix
+  replica_region               = var.replica_region
+  resource_label               = var.resource_label
+  security_compartment_id      = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.security.id
+  tenancy_ocid                 = var.tenancy_ocid
+  vault_type                   = var.vault_type
+  home_compartment_id          = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.environment.compartment_id
   #bastion_client_cidr_block_allow_list = var.bastion_client_cidr_block_allow_list
   #bastion_target_subnet_id             = module.network.spoke_web_subnet_ocid
-  environment_compartment_id           = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.environment.id
+  environment_compartment_id = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.environment.id
 
   providers = {
     oci               = oci

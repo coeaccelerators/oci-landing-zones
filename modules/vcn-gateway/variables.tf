@@ -4,27 +4,27 @@
 ##########################################################################################################
 
 variable "create_nat_gateway" {
-  type        = bool
+  type = bool
 }
 variable "create_service_gateway" {
-  type        = bool
+  type = bool
 }
 variable "nat_network_compartment_id" {
-  type        = string
+  type = string
 }
 variable "nat_vcn_id" {
-  type        = string
+  type = string
 }
 variable "nat_gateway_display_name" {
-  type        = string
+  type = string
 }
 variable "sgw_network_compartment_id" {
-  type        = string
+  type = string
 }
 variable "sgw_vcn_id" {
-  type        = string
+  type = string
 }
 variable "service_gateway_display_name" {
-  type        = string
+  type = string
 }
 

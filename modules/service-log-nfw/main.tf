@@ -14,7 +14,7 @@ terraform {
 resource "oci_logging_log" "service_log_nfw" {
   display_name = var.log_display_name
   log_group_id = var.log_group_id
-  log_type = var.log_type
+  log_type     = var.log_type
 
   configuration {
     source {

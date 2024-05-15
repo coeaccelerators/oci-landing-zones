@@ -1,19 +1,19 @@
 variable "compartment_replication_delay" {
-  type         = string
-  description  =  "delay to allow compartments to replicate"
-  default      = "90s"
+  type        = string
+  description = "delay to allow compartments to replicate"
+  default     = "90s"
 }
 
 variable "compartment_ocid" {
   type        = string
   description = "the ocid of the compartment test resources will live in. Defaults to tenancy root."
-  default = ""
+  default     = ""
 }
 
 variable "environment_prefix" {
-  type = string
+  type        = string
   description = "1 char env prefix"
-  default = "P"
+  default     = "P"
 }
 
 variable "resource_label" {

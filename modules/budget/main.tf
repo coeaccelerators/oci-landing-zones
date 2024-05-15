@@ -20,7 +20,7 @@ resource "oci_budget_budget" "oci_budget" {
   description  = var.budget_description
   display_name = var.budget_display_name
   target_type  = var.budget_target_type
-  targets      = [ var.budget_target ]
+  targets      = [var.budget_target]
 }
 
 resource "oci_budget_alert_rule" "oci_budget_rule" {
@@ -30,6 +30,6 @@ resource "oci_budget_alert_rule" "oci_budget_rule" {
   type           = var.budget_alert_rule_type
 
   display_name = var.budget_alert_rule_display_name
-  message       = var.budget_alert_rule_message
-  recipients    = var.budget_alert_rule_recipients
+  message      = var.budget_alert_rule_message
+  recipients   = var.budget_alert_rule_recipients
 }

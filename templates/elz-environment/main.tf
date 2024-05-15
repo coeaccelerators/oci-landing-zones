@@ -90,21 +90,21 @@ module "budget" {
 }
 
 module "security" {
-  source                               = "../elz-security"
-  enable_cloud_guard                   = var.enable_cloud_guard
-  resource_label                       = var.resource_label
-  home_compartment_id                  = var.home_compartment_id
-  tenancy_ocid                         = var.tenancy_ocid
-  environment_prefix                   = var.environment_prefix
-  home_compartment_name                = var.home_compartment_name
-  region                               = var.region
-  environment_compartment_id           = module.compartment.compartments.environment.id
-  security_compartment_id              = module.compartment.compartments.security.id
-  vault_type                           = var.vault_type
-  replica_region                       = var.vault_replica_region
-  enable_replication                   = var.enable_vault_replication
-  create_master_encryption_key         = var.create_master_encryption_key
-  is_baseline_deploy                   = var.is_baseline_deploy
+  source                       = "../elz-security"
+  enable_cloud_guard           = var.enable_cloud_guard
+  resource_label               = var.resource_label
+  home_compartment_id          = var.home_compartment_id
+  tenancy_ocid                 = var.tenancy_ocid
+  environment_prefix           = var.environment_prefix
+  home_compartment_name        = var.home_compartment_name
+  region                       = var.region
+  environment_compartment_id   = module.compartment.compartments.environment.id
+  security_compartment_id      = module.compartment.compartments.security.id
+  vault_type                   = var.vault_type
+  replica_region               = var.vault_replica_region
+  enable_replication           = var.enable_vault_replication
+  create_master_encryption_key = var.create_master_encryption_key
+  is_baseline_deploy           = var.is_baseline_deploy
 
   providers = {
     oci             = oci
@@ -125,8 +125,8 @@ module "network" {
   environment_prefix     = var.environment_prefix
   region                 = var.region
   network_compartment_id = module.compartment.compartments.network.id
-  home_compartment_id      = var.home_compartment_id
-  is_baseline_deploy           = var.is_baseline_deploy
+  home_compartment_id    = var.home_compartment_id
+  is_baseline_deploy     = var.is_baseline_deploy
 
   enable_internet_gateway_hub  = var.enable_internet_gateway_hub
   enable_nat_gateway_hub       = var.enable_nat_gateway_hub
@@ -160,13 +160,13 @@ module "network" {
   enable_fastconnect_on_environment   = var.enable_fastconnect_on_environment
   customer_onprem_ip_cidr             = var.customer_onprem_ip_cidr
 
-  log_group_id                      = module.logging.log_group_id
-  enable_network_firewall           = var.enable_network_firewall
-  enable_traffic_threat_log         = var.enable_traffic_threat_log
-  nfw_subnet_type                   = var.nfw_subnet_type
-  nfw_instance_name                 = var.nfw_instance_name
-  nfw_instance_policy               = var.nfw_instance_policy
-  nfw_use_existing_network          = var.nfw_use_existing_network
+  log_group_id              = module.logging.log_group_id
+  enable_network_firewall   = var.enable_network_firewall
+  enable_traffic_threat_log = var.enable_traffic_threat_log
+  nfw_subnet_type           = var.nfw_subnet_type
+  nfw_instance_name         = var.nfw_instance_name
+  nfw_instance_policy       = var.nfw_instance_policy
+  nfw_use_existing_network  = var.nfw_use_existing_network
 
   additional_workload_subnets_cidr_blocks = var.additional_workload_subnets_cidr_blocks
 
@@ -203,12 +203,12 @@ module "tagging" {
 module "monitoring" {
   source = "../elz-monitoring"
 
-  tenancy_ocid       = var.tenancy_ocid
-  region             = var.region
-  environment_prefix = var.environment_prefix
-  resource_label     = var.resource_label
-  home_compartment_id  = var.home_compartment_id
-  is_baseline_deploy           = var.is_baseline_deploy
+  tenancy_ocid        = var.tenancy_ocid
+  region              = var.region
+  environment_prefix  = var.environment_prefix
+  resource_label      = var.resource_label
+  home_compartment_id = var.home_compartment_id
+  is_baseline_deploy  = var.is_baseline_deploy
 
   environment_compartment_id = module.compartment.compartments.environment.id
   security_compartment_id    = module.compartment.compartments.security.id

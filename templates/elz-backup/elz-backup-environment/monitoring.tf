@@ -1,11 +1,11 @@
 module "monitoring" {
-  source             = "../elz-backup-monitoring"
-  tenancy_ocid       = var.tenancy_ocid
-  backup_region                     = var.backup_region
-  environment_prefix = var.environment_prefix
-  resource_label     = var.resource_label
-  home_compartment_id  = var.home_compartment_id
-  is_baseline_deploy           = var.is_baseline_deploy
+  source              = "../elz-backup-monitoring"
+  tenancy_ocid        = var.tenancy_ocid
+  backup_region       = var.backup_region
+  environment_prefix  = var.environment_prefix
+  resource_label      = var.resource_label
+  home_compartment_id = var.home_compartment_id
+  is_baseline_deploy  = var.is_baseline_deploy
 
   environment_compartment_id = var.environment_compartment_id
   security_compartment_id    = var.security_compartment_id

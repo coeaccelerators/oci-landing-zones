@@ -59,7 +59,7 @@ module "environment_compartment" {
   compartment_name          = local.environment_compartment.name
   compartment_description   = local.environment_compartment.description
   enable_compartment_delete = var.enable_compartment_delete
-  
+
   providers = {
     oci = oci.home_region
   }

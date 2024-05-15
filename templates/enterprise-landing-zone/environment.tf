@@ -195,8 +195,8 @@ locals {
 }
 
 module "nonprod_environment" {
-  count  =  var.is_nonprod_env_deploy   ? 1 : 0
-  source =  "../elz-environment"
+  count  = var.is_nonprod_env_deploy ? 1 : 0
+  source = "../elz-environment"
 
   tenancy_ocid   = var.tenancy_ocid
   region         = var.region

@@ -8,7 +8,7 @@
 #####################################################
 # Workload Expansion Compartment Variable
 #####################################################
-resource_label             = "OLZEXP"
+resource_label = "OLZEXP"
 # environment_prefix         = ""
 # environment_compartment_id = ""
 # workload_parent_compartment_id      = ""
@@ -49,15 +49,15 @@ bastion_client_cidr_block_allow_list = ["0.0.0.0/0"]
 #workload_private_spoke_subnet_SUB001_cidr_block = "172.21.30.0/24"
 #workload_private_spoke_subnet_SUB002_cidr_block = "172.21.20.0/24"
 #workload_private_spoke_subnet_SUB003_cidr_block  = "172.21.0.0/20"
-enable_nat_gateway_spoke                     = true
-enable_service_gateway_spoke                 = true
+enable_nat_gateway_spoke     = true
+enable_service_gateway_spoke = true
 #drg_id                                       = ""
 #hub_vcn_id                                   = ""
 #hub_public_subnet_cidr_block                 = ""
 #hub_private_subnet_cidr_block                = ""
-workload_private_spoke_subnet_SUB001_dns_label  = "sub001"
-workload_private_spoke_subnet_SUB002_dns_label  = "sub002"
-workload_private_spoke_subnet_SUB003_dns_label  = "sub003"
+workload_private_spoke_subnet_SUB001_dns_label = "sub001"
+workload_private_spoke_subnet_SUB002_dns_label = "sub002"
+workload_private_spoke_subnet_SUB003_dns_label = "sub003"
 
 
 #nat_gateway_display_name = ""
@@ -78,9 +78,9 @@ enable_workload_monitoring_alarms = false
 # hub_vcn_cidr_block = ""
 # db_port = ""
 
-customer_onprem_ip_cidr = []
+customer_onprem_ip_cidr        = []
 ipsec_connection_static_routes = [""]
-nat_gw_spoke_check = [""]
-service_gw_spoke_check = [""]
-is_baseline_deploy = true
-is_create_alarms   = false
+nat_gw_spoke_check             = [""]
+service_gw_spoke_check         = [""]
+is_baseline_deploy             = true
+is_create_alarms               = false

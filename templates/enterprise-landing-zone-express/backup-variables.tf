@@ -635,13 +635,13 @@ variable "backup_nonprod_ipsec_display_name" {
 variable "backup_prod_ipsec_connection_static_routes" {
   type        = list(string)
   description = ""
-  default     = [ null ]
+  default     = [null]
 }
 
 variable "backup_nonprod_ipsec_connection_static_routes" {
   type        = list(string)
   description = ""
-  default     = [ null ]
+  default     = [null]
 }
 
 variable "backup_prod_cpe_vendor" {
@@ -837,5 +837,5 @@ variable "backup_nonprod_enable_fastconnect" {
 
 variable "backup_customer_onprem_ip_cidr" {
   type    = list(string)
-  default = [ null ]
+  default = [null]
 }

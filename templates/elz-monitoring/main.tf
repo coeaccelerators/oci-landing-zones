@@ -193,7 +193,7 @@ locals {
 }
 
 module "network_critical_topic" {
-  count                 = var.is_create_alarms   ? 1 : 0
+  count = var.is_create_alarms ? 1 : 0
 
   source                = "../../modules/notification-topic"
   compartment_id        = var.network_compartment_id
@@ -204,7 +204,7 @@ module "network_critical_topic" {
 }
 
 module "network_warning_topic" {
-  count                 = var.is_create_alarms   ? 1 : 0
+  count = var.is_create_alarms ? 1 : 0
 
   source                = "../../modules/notification-topic"
   compartment_id        = var.network_compartment_id
@@ -216,7 +216,7 @@ module "network_warning_topic" {
 }
 
 module "security_critical_topic" {
-  count                 = var.is_create_alarms   ? 1 : 0
+  count = var.is_create_alarms ? 1 : 0
 
   source                = "../../modules/notification-topic"
   compartment_id        = var.security_compartment_id
@@ -228,7 +228,7 @@ module "security_critical_topic" {
 }
 
 module "security_warning_topic" {
-  count                 = var.is_create_alarms   ? 1 : 0
+  count = var.is_create_alarms ? 1 : 0
 
   source                = "../../modules/notification-topic"
   compartment_id        = var.security_compartment_id
@@ -240,7 +240,7 @@ module "security_warning_topic" {
 }
 
 module "budget_warning_topic" {
-  count                 = var.is_create_alarms   ? 1 : 0
+  count = var.is_create_alarms ? 1 : 0
 
   source                = "../../modules/notification-topic"
   compartment_id        = var.environment_compartment_id
@@ -252,7 +252,7 @@ module "budget_warning_topic" {
 }
 
 module "iam_warning_topic" {
-  count                 = var.is_create_alarms   ? 1 : 0
+  count = var.is_create_alarms ? 1 : 0
 
   source                = "../../modules/notification-topic"
   compartment_id        = var.environment_compartment_id
@@ -264,10 +264,10 @@ module "iam_warning_topic" {
 }
 
 module "announcement_subscription" {
-  count                     = var.is_create_alarms   ? 1 : 0
+  count = var.is_create_alarms ? 1 : 0
 
   source                    = "../../modules/announcement-subscription"
-  compartment_id            = var.security_compartment_id 
+  compartment_id            = var.security_compartment_id
   notification_topic_id     = var.is_create_alarms == true ? module.security_critical_topic[0].topic_id : " "
   subscription_display_name = local.announcement_subscription.subscription_display_name
   filter_groups             = local.announcement_subscription.filter_groups
@@ -299,7 +299,7 @@ resource "time_sleep" "log_delay" {
 }
 
 module "logging_analytics_default" {
-  count                                   = var.is_create_alarms   ? 1 : 0
+  count                                   = var.is_create_alarms ? 1 : 0
   source                                  = "../../modules/log-analytics"
   tenancy_ocid                            = var.tenancy_ocid
   compartment_id                          = var.security_compartment_id
@@ -315,7 +315,7 @@ module "logging_analytics_default" {
 }
 
 module "logging_analytics_audit" {
-  count                                   = var.is_create_alarms   ? 1 : 0
+  count                                   = var.is_create_alarms ? 1 : 0
   source                                  = "../../modules/log-analytics"
   tenancy_ocid                            = var.tenancy_ocid
   compartment_id                          = var.security_compartment_id
@@ -658,8 +658,8 @@ locals {
 #}
 
 module "security_alarms_warning" {
-  count                 = var.is_create_alarms   ? 1 : 0
-  source                = "../../modules/alarms"
+  count  = var.is_create_alarms ? 1 : 0
+  source = "../../modules/alarms"
 
   compartment_id                   = var.security_compartment_id
   notification_topic_id            = var.is_create_alarms == true ? module.security_warning_topic[0].topic_id : " "
@@ -672,8 +672,8 @@ module "security_alarms_warning" {
 }
 
 module "security_alarms_critical" {
-  count                 = var.is_create_alarms   ? 1 : 0
-  source                = "../../modules/alarms"
+  count  = var.is_create_alarms ? 1 : 0
+  source = "../../modules/alarms"
 
   compartment_id                   = var.security_compartment_id
   notification_topic_id            = var.is_create_alarms == true ? module.security_critical_topic[0].topic_id : " "
@@ -686,8 +686,8 @@ module "security_alarms_critical" {
 }
 
 module "network_alarms_warning" {
-  count                 = var.is_create_alarms   ? 1 : 0
-  source                = "../../modules/alarms"
+  count  = var.is_create_alarms ? 1 : 0
+  source = "../../modules/alarms"
 
   compartment_id                   = var.network_compartment_id
   notification_topic_id            = var.is_create_alarms == true ? module.network_warning_topic[0].topic_id : " "
@@ -699,8 +699,8 @@ module "network_alarms_warning" {
 }
 
 module "network_alarms_critical" {
-  count                 = var.is_create_alarms   ? 1 : 0
-  source                = "../../modules/alarms"
+  count  = var.is_create_alarms ? 1 : 0
+  source = "../../modules/alarms"
 
   compartment_id                   = var.network_compartment_id
   notification_topic_id            = var.is_create_alarms == true ? module.network_critical_topic[0].topic_id : " "
@@ -712,8 +712,8 @@ module "network_alarms_critical" {
 }
 
 module "alarm_policy" {
-  count                 = var.is_create_alarms   ? 1 : 0
-  source                = "../../modules/policies"
+  count  = var.is_create_alarms ? 1 : 0
+  source = "../../modules/policies"
 
   compartment_ocid = var.environment_compartment_id
   policy_name      = local.alarm_policy.name

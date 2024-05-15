@@ -23,7 +23,7 @@ locals {
   nfw_public_forwarding_true    = local.check_nfw_public_subnet_flag && !var.nfw_use_existing_network ? true : false
 
   #nfw_ip_ocid_value       = var.enable_network_firewall ? data.oci_core_private_ips.firewall_subnet_private_ip.private_ips[*].id : " "
-  nfw_ip_ocid_value       = [try(data.oci_core_private_ips.firewall_subnet_private_ip.private_ips[0].id,null), "" ] [var.enable_network_firewall ? 0 : 1]
+  nfw_ip_ocid_value = [try(data.oci_core_private_ips.firewall_subnet_private_ip.private_ips[0].id, null), ""][var.enable_network_firewall ? 0 : 1]
 
   hub_public_route_rules_options = {
     route_rules_default = {
@@ -75,8 +75,8 @@ locals {
 
   hub_public_route_rules = {
     route_table_display_name = "OCI-ELZ-RTPUB-${var.environment_prefix}-HUB001"
-    route_rules              = merge(local.hub_public_route_rules_options.route_rules_default, local.hub_public_route_rules_options.route_rules_igw,
-    local.hub_public_route_rules_options.route_rules_vpn,
+    route_rules = merge(local.hub_public_route_rules_options.route_rules_default, local.hub_public_route_rules_options.route_rules_igw,
+      local.hub_public_route_rules_options.route_rules_vpn,
     local.hub_public_route_rules_options.route_rules_fastconnect, local.hub_public_route_rules_options.route_rules_workload)
   }
 
@@ -130,13 +130,13 @@ locals {
 
   hub_public_route_rules_nfw = {
     route_table_display_name = "OCI-ELZ-RTPUB-${var.environment_prefix}-HUB001"
-    route_rules              = merge(local.hub_public_route_rules_options_nfw.route_rules_default, local.hub_public_route_rules_options_nfw.route_rules_igw,
-    local.hub_public_route_rules_options_nfw.route_rules_vpn,
-    local.hub_public_route_rules_options_nfw.route_rules_fastconnect,
+    route_rules = merge(local.hub_public_route_rules_options_nfw.route_rules_default, local.hub_public_route_rules_options_nfw.route_rules_igw,
+      local.hub_public_route_rules_options_nfw.route_rules_vpn,
+      local.hub_public_route_rules_options_nfw.route_rules_fastconnect,
     local.hub_public_route_rules_options_nfw.route_rules_workload)
   }
-  
-  hub_public_route_check_test_nfw         = var.enable_network_firewall && var.nfw_subnet_type == "private" ? local.hub_public_route_rules_nfw : local.hub_public_route_rules
+
+  hub_public_route_check_test_nfw = var.enable_network_firewall && var.nfw_subnet_type == "private" ? local.hub_public_route_rules_nfw : local.hub_public_route_rules
 
   list_info = {
     hub_display_name = "OCI-ELZ-${var.environment_prefix}-Hub-Security-List"
@@ -199,9 +199,9 @@ locals {
 
   hub_private_route_rules = {
     route_table_display_name = "OCI-ELZ-RTPRV-${var.environment_prefix}-HUB002"
-    route_rules              = merge(local.hub_private_route_rules_options.route_rules_default, local.hub_private_route_rules_options.route_rules_nat, 
-    local.hub_private_route_rules_options.route_rules_srvc_gw, 
-    local.hub_private_route_rules_options.route_rules_vpn, 
+    route_rules = merge(local.hub_private_route_rules_options.route_rules_default, local.hub_private_route_rules_options.route_rules_nat,
+      local.hub_private_route_rules_options.route_rules_srvc_gw,
+      local.hub_private_route_rules_options.route_rules_vpn,
     local.hub_private_route_rules_options.route_rules_fastconnect, local.hub_private_route_rules_options.route_rules_workload)
   }
 
@@ -341,7 +341,7 @@ data "oci_core_subnets" "subnets" {
   compartment_id = var.network_compartment_id
 }
 output "nfw_ip_ocid_value" {
-      value = local.nfw_ip_ocid_value
+  value = local.nfw_ip_ocid_value
 }
 ######################################################################
 #                      Create  Hub VCN                               #
@@ -364,9 +364,9 @@ resource "oci_core_default_security_list" "hub_default_security_list_locked_down
 }
 
 resource "oci_core_security_list" "security_list_hub" {
-  compartment_id  = var.network_compartment_id
-  vcn_id          = oci_core_vcn.vcn_hub_network.id
-  display_name    = local.list_info.hub_display_name
+  compartment_id = var.network_compartment_id
+  vcn_id         = oci_core_vcn.vcn_hub_network.id
+  display_name   = local.list_info.hub_display_name
 
   egress_security_rules {
     destination      = local.security_list_egress.destination
@@ -411,7 +411,7 @@ resource "oci_core_subnet" "hub_private_subnet" {
   prohibit_public_ip_on_vnic = true
   vcn_id                     = oci_core_vcn.vcn_hub_network.id
   #route_table_id             = oci_core_route_table.hub_private_route_table.id
-  security_list_ids          = toset([oci_core_security_list.security_list_hub.id])
+  security_list_ids = toset([oci_core_security_list.security_list_hub.id])
 }
 
 ######################################################################
@@ -437,7 +437,7 @@ resource "oci_core_route_table" "hub_private_route_table" {
 #       Associate Hub Private Route Table to Private Subnet          #
 ######################################################################
 
-resource "oci_core_route_table_attachment" "private_route_table_attachment" {  
+resource "oci_core_route_table_attachment" "private_route_table_attachment" {
   subnet_id      = oci_core_subnet.hub_private_subnet.id
   route_table_id = oci_core_route_table.hub_private_route_table.id
 }
@@ -454,7 +454,7 @@ resource "oci_core_subnet" "hub_public_subnet" {
   prohibit_public_ip_on_vnic = false
   vcn_id                     = oci_core_vcn.vcn_hub_network.id
   #route_table_id             = oci_core_route_table.hub_public_route_table.id
-  security_list_ids          = toset([oci_core_security_list.security_list_hub.id])
+  security_list_ids = toset([oci_core_security_list.security_list_hub.id])
 }
 
 ######################################################################
@@ -480,7 +480,7 @@ resource "oci_core_route_table" "hub_public_route_table" {
 #         Associate Hub Public Route Table to Public Subnet          #
 ######################################################################
 
-resource "oci_core_route_table_attachment" "public_route_table_attachment" {  
+resource "oci_core_route_table_attachment" "public_route_table_attachment" {
   subnet_id      = oci_core_subnet.hub_public_subnet.id
   route_table_id = oci_core_route_table.hub_public_route_table.id
 }
@@ -505,8 +505,8 @@ module "hub_internet_gateway" {
 module "nat-gateway-hub" {
   source = "../../modules/nat-gateway"
 
-  count                    = var.enable_nat_gateway_hub == "true" ? 1 : 0
-  
+  count = var.enable_nat_gateway_hub == "true" ? 1 : 0
+
   network_compartment_id   = var.network_compartment_id
   vcn_id                   = oci_core_vcn.vcn_hub_network.id
   nat_gateway_display_name = var.nat_gateway_display_name
@@ -518,8 +518,8 @@ module "nat-gateway-hub" {
 module "service-gateway-hub" {
   source = "../../modules/service-gateway"
 
-  count                        = var.enable_service_gateway_hub == "true" ? 1 : 0
-  
+  count = var.enable_service_gateway_hub == "true" ? 1 : 0
+
   network_compartment_id       = var.network_compartment_id
   vcn_id                       = oci_core_vcn.vcn_hub_network.id
   service_gateway_display_name = var.srv_gateway_display_name
@@ -663,8 +663,8 @@ locals {
   }
   #public_subnet_id  = oci_core_subnet.hub_public_subnet[var.hub_public_subnet_display_name].id
   #private_subnet_id = oci_core_subnet.hub_private_subnet[var.hub_private_subnet_display_name].id
-  public_subnet_id   = oci_core_subnet.hub_public_subnet.id
-  private_subnet_id  = oci_core_subnet.hub_private_subnet.id
+  public_subnet_id  = oci_core_subnet.hub_public_subnet.id
+  private_subnet_id = oci_core_subnet.hub_private_subnet.id
   #nfw_subnet_id      = var.nfw_subnet_type == "public" ? local.public_subnet_id : local.private_subnet_id
 }
 
@@ -724,11 +724,11 @@ module "firewall_traffic_log" {
   source = "../../modules/service-log-nfw"
 
   #service_log_map      = local.network_firewall_traffic
-  log_display_name     = local.firewall_traffic_log.log_display_name
-  log_type             = local.firewall_traffic_log.log_type
-  log_group_id         = var.log_group_id
-  log_source_category  = local.firewall_traffic_log.log_source_category
-  log_source_resource  = oci_network_firewall_network_firewall.network_firewall[0].id
-  log_source_service   = local.firewall_traffic_log.log_source_service
-  log_source_type      = local.firewall_traffic_log.log_source_type
+  log_display_name    = local.firewall_traffic_log.log_display_name
+  log_type            = local.firewall_traffic_log.log_type
+  log_group_id        = var.log_group_id
+  log_source_category = local.firewall_traffic_log.log_source_category
+  log_source_resource = oci_network_firewall_network_firewall.network_firewall[0].id
+  log_source_service  = local.firewall_traffic_log.log_source_service
+  log_source_type     = local.firewall_traffic_log.log_source_type
 }

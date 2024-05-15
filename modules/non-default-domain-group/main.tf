@@ -18,7 +18,7 @@ resource "oci_identity_domains_group" "test_group" {
   schemas       = ["urn:ietf:params:scim:schemas:core:2.0:Group"]
 
   lifecycle {
-    ignore_changes = [ idcs_endpoint 
+    ignore_changes = [idcs_endpoint
     ]
   }
 }

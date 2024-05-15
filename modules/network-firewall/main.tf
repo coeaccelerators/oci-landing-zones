@@ -11,7 +11,7 @@ terraform {
   }
 }
 resource "time_sleep" "network_firewall_ip_delay" {
-  depends_on = [oci_network_firewall_network_firewall.network_firewall]
+  depends_on      = [oci_network_firewall_network_firewall.network_firewall]
   create_duration = "90s"
 }
 ######################################################################
@@ -31,14 +31,14 @@ resource "oci_network_firewall_network_firewall" "network_firewall" {
 resource "oci_network_firewall_network_firewall_policy" "network_firewall_policy" {
   display_name   = var.network_firewall_policy_name
   compartment_id = var.network_compartment_ocid
-  
+
   dynamic "ip_address_lists" {
     for_each = var.ip_address_lists
     content {
       ip_address_list_name  = ip_address_lists.key
       ip_address_list_value = ip_address_lists.value
     }
-  }  
+  }
   dynamic "security_rules" {
     for_each = var.security_rules
     content {

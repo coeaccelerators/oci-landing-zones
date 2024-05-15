@@ -50,35 +50,35 @@ locals {
 module "home_compartment" {
   source = "./compartment"
 
-  compartment_parent_id     = var.tenancy_ocid
-  compartment_name          = local.test_compartment_name
-  compartment_description   = "Test Home comaprtment for CG tests"
+  compartment_parent_id         = var.tenancy_ocid
+  compartment_name              = local.test_compartment_name
+  compartment_description       = "Test Home comaprtment for CG tests"
   compartment_replication_delay = var.compartment_replication_delay
 
   providers = {
     oci = oci.home_region
   }
-} 
+}
 
 module "environment_compartment" {
   source = "./compartment"
 
-  compartment_parent_id     = module.home_compartment.compartment_id
-  compartment_name          = "Test_sec_cg_env_compartment"
-  compartment_description   = "Test environment comaprtment for CG tests"
+  compartment_parent_id         = module.home_compartment.compartment_id
+  compartment_name              = "Test_sec_cg_env_compartment"
+  compartment_description       = "Test environment comaprtment for CG tests"
   compartment_replication_delay = var.compartment_replication_delay
 
   providers = {
     oci = oci.home_region
   }
-} 
+}
 
 module "shared_infra_compartment" {
   source = "./compartment"
 
-  compartment_parent_id     = module.environment_compartment.compartment_id
-  compartment_name          = "Test_sec_cg_si_compartment"
-  compartment_description   = "Test Shared Infra comaprtment for CG tests"
+  compartment_parent_id         = module.environment_compartment.compartment_id
+  compartment_name              = "Test_sec_cg_si_compartment"
+  compartment_description       = "Test Shared Infra comaprtment for CG tests"
   compartment_replication_delay = var.compartment_replication_delay
 
   providers = {
@@ -89,9 +89,9 @@ module "shared_infra_compartment" {
 module "security_compartment" {
   source = "./compartment"
 
-  compartment_parent_id     = module.shared_infra_compartment.compartment_id
-  compartment_name          = "Test_sec_cg_sec_compartment"
-  compartment_description   = "Test Security comaprtment for CG tests"
+  compartment_parent_id         = module.shared_infra_compartment.compartment_id
+  compartment_name              = "Test_sec_cg_sec_compartment"
+  compartment_description       = "Test Security comaprtment for CG tests"
   compartment_replication_delay = var.compartment_replication_delay
 
   providers = {

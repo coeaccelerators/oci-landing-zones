@@ -22,5 +22,5 @@ module "logging" {
     oci.backup_region = oci.backup_region
   }
 
-  depends_on = [ module.security ]
+  depends_on = [module.security]
 }

@@ -16,11 +16,11 @@ variable "compartment_description" {
 variable "enable_compartment_delete" {
   type        = bool
   description = "Allows the compartment to delete on terraform destroy."
-  default = false
+  default     = false
 }
 
 variable "compartment_replication_delay" {
-  type         = string
-  description  =  "delay to allow compartments to replicate"
-  default      = "90s"
+  type        = string
+  description = "delay to allow compartments to replicate"
+  default     = "90s"
 }

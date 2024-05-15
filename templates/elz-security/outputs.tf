@@ -8,5 +8,5 @@ output "key_id" {
 }
 
 output "vault_id" {
-  value = var.vault_type != "NONE" ? module.vault[0].management_endpoint : null 
+  value = var.vault_type != "NONE" ? module.vault[0].management_endpoint : null
 }

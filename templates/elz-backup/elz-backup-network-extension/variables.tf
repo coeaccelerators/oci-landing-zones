@@ -163,11 +163,11 @@ variable "remote_peering_connection_peer_region_name" {
 }
 
 variable "drg_route_table_rpc_id" {
-  type    = string
+  type = string
 }
 
 variable "drg_route_table_vc_id" {
-  type    = string
+  type = string
 }
 variable "is_baseline_deploy" {
   type        = bool

@@ -4,9 +4,9 @@
 ##########################################################################################################
 
 locals {
-  nonprod_sec_id     = try(module.nonprod_environment[0].compartment.security.id, "")
-  nonprod_stream_id       = try(module.nonprod_environment[0].stream_id, "")
-  nonprod_logg_id      = try(module.nonprod_environment[0].compartment.logging.id, "")
+  nonprod_sec_id    = try(module.nonprod_environment[0].compartment.security.id, "")
+  nonprod_stream_id = try(module.nonprod_environment[0].stream_id, "")
+  nonprod_logg_id   = try(module.nonprod_environment[0].compartment.logging.id, "")
   service_connector_policy = {
     name        = "${var.resource_label}-OCI-ELZ-SC-Policy"
     description = "OCI ELZ Service Connector Policy"
@@ -208,7 +208,7 @@ module "prod_archive_audit_log_service_connector" {
 }
 
 module "nonprod_archive_audit_log_service_connector" {
-  count                 =  var.is_nonprod_env_deploy   ? 1 : 0
+  count                 = var.is_nonprod_env_deploy ? 1 : 0
   source                = "../../modules/service-connector"
   tenancy_ocid          = var.tenancy_ocid
   compartment_id        = module.nonprod_environment[0].compartment.security.id
@@ -237,7 +237,7 @@ module "prod_archive_default_log_service_connector" {
 }
 
 module "nonprod_archive_default_log_service_connector" {
-  count                 =  var.is_nonprod_env_deploy   ? 1 : 0
+  count                 = var.is_nonprod_env_deploy ? 1 : 0
   source                = "../../modules/service-connector"
   tenancy_ocid          = var.tenancy_ocid
   compartment_id        = module.nonprod_environment[0].compartment.security.id
@@ -267,7 +267,7 @@ module "prod_archive_service_events_service_connector" {
 }
 
 module "nonprod_archive_service_events_service_connector" {
-  count                 =  var.is_nonprod_env_deploy   ? 1 : 0
+  count                 = var.is_nonprod_env_deploy ? 1 : 0
   source                = "../../modules/service-connector"
   tenancy_ocid          = var.tenancy_ocid
   compartment_id        = module.nonprod_environment[0].compartment.security.id
@@ -293,7 +293,7 @@ module "prod_platform_admin_policy" {
 }
 
 module "nonprod_platform_admin_policy" {
-  count            =  var.is_nonprod_env_deploy   ? 1 : 0
+  count            = var.is_nonprod_env_deploy ? 1 : 0
   source           = "../../modules/policies"
   compartment_ocid = module.home_compartment.compartment_id
   policy_name      = local.nonprod_platform_admin_policy.name

@@ -423,5 +423,5 @@ variable "additional_workload_subnets_cidr_blocks" {
   description = "A list of subnets cidr blocks in additional workload stack"
 }
 variable "enable_datasafe" {
-  type    = bool
+  type = bool
 }

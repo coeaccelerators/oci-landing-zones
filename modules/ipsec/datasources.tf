@@ -12,7 +12,7 @@ data "oci_core_cpe_device_shape" "oci-ipsec-cpe-device-shape" {
 
 data "oci_core_ipsec_connections" "oci-ipsec-connections" {
   compartment_id = var.compartment_ocid
-  cpe_id = oci_core_cpe.oci-ipsec-cpe.id
+  cpe_id         = oci_core_cpe.oci-ipsec-cpe.id
 }
 
 data "oci_core_ipsec_connection_tunnels" "oci-ipsec-connection-tunnels" {

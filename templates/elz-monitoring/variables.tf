@@ -37,19 +37,19 @@ variable "is_baseline_deploy" {
 # Common Variables
 # -----------------------------------------------------------------------------
 variable "environment_compartment_id" {
-  type        = string
+  type = string
 }
 
 variable "network_compartment_id" {
-  type        = string
+  type = string
 }
 
 variable "security_compartment_id" {
-  type        = string
+  type = string
 }
 
 variable "workload_compartment_id" {
-  type        = string
+  type = string
   #default     = ""
 }
 

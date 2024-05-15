@@ -3,35 +3,35 @@
 ######################################################################
 locals {
 
-  vcn_dns_label   = lower(var.workload_name)
+  vcn_dns_label = lower(var.workload_name)
 
   drg_id = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.drg_id
 
   drg_attachment_display_name = "Spoke-VCN-DRG-${local.workload_prefix}-ATTACHMENT"
 
-  workload_nat_gw_spoke_check     = var.enable_nat_gateway_spoke == true ? var.nat_gw_spoke_check : []
-  #workload_service_gw_spoke_check = var.service_gw_spoke_check
+  workload_nat_gw_spoke_check = var.enable_nat_gateway_spoke == true ? var.nat_gw_spoke_check : []
+
   workload_service_gw_spoke_check = var.enable_service_gateway_spoke == true ? var.service_gw_spoke_check : []
-  
+
   ipsec_connection_static_routes = var.enable_vpn_or_fastconnect == "VPN" && var.enable_vpn_on_environment ? var.ipsec_connection_static_routes : []
   customer_onprem_ip_cidr        = var.enable_vpn_or_fastconnect == "FASTCONNECT" ? var.customer_onprem_ip_cidr : []
 
   vcn_display_name = var.vcn_display_name != "" ? var.vcn_display_name : "OCI-ELZ-${local.workload_prefix}-EXP-SPK-VCN-${local.region_key[0]}"
 
-  route_table_display_name      = var.route_table_display_name != "" ? var.route_table_display_name : "OCI-ELZ-${local.workload_prefix}-EXP-SPK-RTPRV-${local.region_key[0]}"
-  security_list_display_name    = var.security_list_display_name != "" ? var.security_list_display_name : "OCI-ELZ-${local.workload_prefix}-EXP-SPK-Security-List"
+  route_table_display_name   = var.route_table_display_name != "" ? var.route_table_display_name : "OCI-ELZ-${local.workload_prefix}-EXP-SPK-RTPRV-${local.region_key[0]}"
+  security_list_display_name = var.security_list_display_name != "" ? var.security_list_display_name : "OCI-ELZ-${local.workload_prefix}-EXP-SPK-Security-List"
 
   route_table_display_name_SUB001 = "${local.route_table_display_name}-SUB001"
   route_table_display_name_SUB002 = "${local.route_table_display_name}-SUB002"
   route_table_display_name_SUB003 = "${local.route_table_display_name}-SUB003"
-  
+
   security_list_display_name_SUB001 = "${local.security_list_display_name}-SUB001"
   security_list_display_name_SUB002 = "${local.security_list_display_name}-SUB002"
   security_list_display_name_SUB003 = "${local.security_list_display_name}-SUB003"
 
-  nat_gateway_display_name      = var.nat_gateway_display_name != "" ? var.nat_gateway_display_name : "OCI-ELZ-${local.workload_prefix}-EXP-SPK-NAT-${local.region_key[0]}"
-  service_gateway_display_name  = var.service_gateway_display_name != "" ? var.service_gateway_display_name : "OCI-ELZ-${local.workload_prefix}-EXP-SPK-SGW-${local.region_key[0]}"
-    
+  nat_gateway_display_name     = var.nat_gateway_display_name != "" ? var.nat_gateway_display_name : "OCI-ELZ-${local.workload_prefix}-EXP-SPK-NAT-${local.region_key[0]}"
+  service_gateway_display_name = var.service_gateway_display_name != "" ? var.service_gateway_display_name : "OCI-ELZ-${local.workload_prefix}-EXP-SPK-SGW-${local.region_key[0]}"
+
   spoke_route_rules_options = {
     route_rules_hub_vcn = {
       "hub-public-subnet" = {
@@ -114,7 +114,7 @@ locals {
       cidr_block                 = var.workload_private_spoke_subnet_SUB003_cidr_block
       prohibit_public_ip_on_vnic = true
     }
-    
+
   }
 
   ip_protocols = {
@@ -124,8 +124,8 @@ locals {
     ICMPv6 = "58"
   }
 
- security_list_ingress_ssh = {
-    protocol                 = local.ip_protocols.TCP
+  security_list_ingress_ssh = {
+    protocol = local.ip_protocols.TCP
     #source                   = var.hub_private_subnet_cidr_block
     source                   = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.hub_private_subnet_cidr
     description              = "SSH Traffic from Hub"
@@ -134,7 +134,7 @@ locals {
     tcp_destination_port_max = 22
   }
   security_list_ingress_icmp = {
-    protocol    = local.ip_protocols.ICMP
+    protocol = local.ip_protocols.ICMP
     #source      = var.hub_private_subnet_cidr_block
     source      = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.hub_private_subnet_cidr
     description = "All ICMP Taffic from Hub"
@@ -143,7 +143,7 @@ locals {
     icmp_code   = 4
   }
   security_list_ingress_vcn = {
-    protocol    = local.ip_protocols.ICMP
+    protocol = local.ip_protocols.ICMP
     # source      = var.hub_vcn_cidr_block
     source      = data.terraform_remote_state.external_stack_remote_state.outputs.hub_vcn_cidr
     description = "VCN ICMP Traffic"
@@ -163,7 +163,7 @@ locals {
 data "oci_core_services" "service_gateway" {
   filter {
     name   = "name"
-    values = [ ".*Object.*Storage", "All .* Services In Oracle Services Network"]
+    values = [".*Object.*Storage", "All .* Services In Oracle Services Network"]
     regex  = true
   }
 }
@@ -206,7 +206,7 @@ module "workload_spoke_SUB002_security_list" {
   vcn_id                     = module.workload_spoke_vcn.vcn_id
   security_list_display_name = local.security_list_display_name_SUB002
 
-  egress_rules = [local.security_list_egress_all]
+  egress_rules  = [local.security_list_egress_all]
   ingress_rules = [local.security_list_ingress_ssh, local.security_list_ingress_icmp, local.security_list_ingress_vcn]
 
 }

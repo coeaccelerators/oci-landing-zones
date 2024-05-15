@@ -4,12 +4,12 @@
 ##########################################################################################################
 
 output "drg_id" {
-  value = module.drg_backup.drg_id
+  value       = module.drg_backup.drg_id
   description = "DRG OCID."
 }
 
 output "vcn_id" {
-  value = oci_core_vcn.vcn_hub_network_backup.id
+  value       = oci_core_vcn.vcn_hub_network_backup.id
   description = "Hub VCN OCID."
 }
 
@@ -22,10 +22,10 @@ output "subnets" {
 }
 
 output "oci_network_firewall_ip_address" {
-  value = try(data.oci_core_private_ips.firewall_subnet_private_ip.private_ips[0].id,null)
+  value       = try(data.oci_core_private_ips.firewall_subnet_private_ip.private_ips[0].id, null)
   description = "Network Firewall IP OCID."
 }
 
 output "service_gateway_value" {
-      value = data.oci_core_services.service-gateway
+  value = data.oci_core_services.service-gateway
 }

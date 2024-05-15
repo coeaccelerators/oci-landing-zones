@@ -8,7 +8,7 @@ output "compartment" {
 }
 
 output "subnets" {
-  value = module.network.subnets
+  value       = module.network.subnets
   description = "The subnet OCID"
 }
 
@@ -46,8 +46,8 @@ output "workload_compartment_name" {
 
 output "workload_subnet_cidr_blocks" {
   value = [var.private_spoke_subnet_app_cidr_block,
-           var.private_spoke_subnet_db_cidr_block,
-           var.private_spoke_subnet_web_cidr_block,
+    var.private_spoke_subnet_db_cidr_block,
+    var.private_spoke_subnet_web_cidr_block,
   ]
 }
 

@@ -29,9 +29,9 @@ locals {
   }
 
   key = {
-    name = "${var.resource_label}-OCI-ELZ-KEY-${var.environment_prefix}"
+    name            = "${var.resource_label}-OCI-ELZ-KEY-${var.environment_prefix}"
     shape_algorithm = "AES"
-    shape_length = 32
+    shape_length    = 32
     protection_mode = "SOFTWARE"
   }
 
@@ -51,8 +51,8 @@ locals {
 
 module "cloud_guard" {
   source = "../../modules/cloud-guard"
-  count                                      = var.enable_cloud_guard ? 1 : 0
-  
+  count  = var.enable_cloud_guard ? 1 : 0
+
   tenancy_ocid                               = var.tenancy_ocid
   region                                     = var.region
   status                                     = local.cloud_guard.status
@@ -85,9 +85,9 @@ module "vss" {
 }
 
 module "vault" {
-  source             = "../../modules/vault"
+  source = "../../modules/vault"
   # vault_type = "NONE" is used for testing. 
-  count              = var.vault_type != "NONE" ? 1 : 0 
+  count              = var.vault_type != "NONE" ? 1 : 0
   compartment_id     = var.security_compartment_id
   display_name       = local.vault.name
   vault_type         = var.vault_type
@@ -109,10 +109,10 @@ module "key" {
 }
 
 module "key_policy" {
-  source              = "../../modules/policies"
-  count               = local.create_key ? 1 : 0
-  compartment_ocid    = var.home_compartment_id
-  description         = local.key_policy.description
-  policy_name         = local.key_policy.name
-  statements          = local.key_policy.statements
+  source           = "../../modules/policies"
+  count            = local.create_key ? 1 : 0
+  compartment_ocid = var.home_compartment_id
+  description      = local.key_policy.description
+  policy_name      = local.key_policy.name
+  statements       = local.key_policy.statements
 }

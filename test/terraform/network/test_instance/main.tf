@@ -40,7 +40,7 @@ resource "oci_core_instance" "test_instance" {
 
   source_details {
     source_type = "image"
-    source_id   =  var.image_id
+    source_id   = var.image_id
   }
 
   launch_options {

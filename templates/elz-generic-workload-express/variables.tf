@@ -14,7 +14,7 @@ variable "region" {
 variable "environment_prefix" {
   type        = string
   description = "the 1 character string representing the environment eg. P (prod), N (non-prod), D, T, U"
-  default = "CORP"
+  default     = "CORP"
 }
 
 variable "resource_label" {
@@ -34,25 +34,25 @@ variable "enable_compartment_delete" {
 variable "environment_compartment_id" {
   type        = string
   description = "the OCID of the compartment where the environment will be created. In general, this should be the Landing zone parent compartment."
-  default = ""
+  default     = ""
 }
 
 variable "workload_parent_compartment_id" {
   type        = string
   description = "the OCID of the parent compartment where the workload will be created."
-  default = ""
+  default     = ""
 }
 
 variable "security_compartment_id" {
   type        = string
   description = "the OCID of the compartment where the environment will be created. In general, this should be the Landing zone parent compartment."
-  default = ""
+  default     = ""
 }
 
 variable "network_compartment_id" {
   type        = string
   description = "the OCID of the compartment where the environment will be created. In general, this should be the Landing zone parent compartment."
-  default = ""
+  default     = ""
 }
 
 variable "workload_name" {
@@ -117,7 +117,7 @@ variable "is_create_alarms" {
 variable "default_log_group_id" {
   type        = string
   description = "Default Log Group ID"
-  default = ""
+  default     = ""
 }
 
 # -----------------------------------------------------------------------------
@@ -184,7 +184,7 @@ variable "identity_domain_name" {
 variable "identity_domain_url" {
   type        = string
   description = "identity domain url"
-  default = ""
+  default     = ""
 }
 
 variable "workload_developer_group_name" {
@@ -272,7 +272,7 @@ variable "datasafe_reports_group_name" {
 variable "hub_vcn_id" {
   description = "OCID of Hub VCN."
   type        = string
-  default =""
+  default     = ""
 }
 
 variable "workload_private_spoke_subnet_SUB001_cidr_block" {
@@ -305,7 +305,7 @@ variable "workload_private_spoke_subnet_SUB003_cidr_block" {
 variable "workload_spoke_vcn_cidr" {
   description = "IPv4 CIDR blocks the VCN will use."
   type        = list(string)
-  default = [""]
+  default     = [""]
 }
 
 variable "enable_nat_gateway_spoke" {
@@ -441,7 +441,7 @@ variable "security_list_display_name" {
 }
 
 variable "drg_id" {
-  type = string
+  type    = string
   default = ""
 }
 

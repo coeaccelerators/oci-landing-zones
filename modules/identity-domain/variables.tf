@@ -57,7 +57,7 @@ variable "domain_admin_user_name" {
 
 variable "domain_is_hidden_on_login" {
   type        = bool
-  default     = false 
+  default     = false
   description = "Indicates whether domain is hidden on login screen or not."
 }
 

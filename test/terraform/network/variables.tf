@@ -8,13 +8,13 @@
 variable "compartment_ocid" {
   type        = string
   description = "the ocid of the compartment instances will live in. Defaults to tenancy root."
-  default = ""
+  default     = ""
 }
 
 variable "compartment_replication_delay" {
-  type         = string
-  description  =  "delay to allow compartments to replicate"
-  default      = "90s"
+  type        = string
+  description = "delay to allow compartments to replicate"
+  default     = "90s"
 }
 
 variable "ssh_public_key_list" {
@@ -30,28 +30,28 @@ variable "test_instance_shape" {
 
 # ====== Network Module test parameters. 
 variable "environment_prefix" {
-  type = string
+  type        = string
   description = "1 char env prefix"
-  default = "P"
+  default     = "P"
 }
 
 variable "vcn_cidr_block" {
-  type = string
+  type        = string
   description = "Hub vcn CIDR"
-  default = "10.0.0.0/16"
+  default     = "10.0.0.0/16"
 }
 
 variable "public_subnet_cidr_block" {
-  type = string
+  type        = string
   description = "Hub public subnet CIDR"
-  default = "10.0.0.0/24"
+  default     = "10.0.0.0/24"
 
 }
 
 variable "private_subnet_cidr_block" {
-  type = string
+  type        = string
   description = "Hub private subnet CIDR"
-  default = "10.0.1.0/24"
+  default     = "10.0.1.0/24"
 }
 
 

@@ -37,7 +37,7 @@ locals {
   #     EOT
   #   ]
   # }
-  
+
   workload_alarms = {
     metric_compartment_id_in_subtree = false
     is_enabled                       = var.enable_workload_monitoring_alarms
@@ -45,7 +45,7 @@ locals {
     pending_duration                 = "PT5M"
 
     workload_alarms_critical_map = {
-       compute_instance_status_alarm = {
+      compute_instance_status_alarm = {
         display_name          = "compute_instance_status_alarm"
         metric_compartment_id = module.workload_compartment.compartment_id
         namespace             = "oci_compute_infrastructure_health"
@@ -123,7 +123,7 @@ locals {
         severity              = "CRITICAL"
       }
     }
-    workload_alarms_warning_map  = {
+    workload_alarms_warning_map = {
       objectstorage_UncommittedParts_alarm = {
         display_name          = "objectstorage_UncommittedParts_alarm"
         metric_compartment_id = module.workload_compartment.compartment_id
@@ -171,8 +171,8 @@ locals {
 }
 
 module "workload_critical_topic" {
-  source                = "../../modules/notification-topic"
-  count                 = var.is_create_alarms   ? 1 : 0
+  source = "../../modules/notification-topic"
+  count  = var.is_create_alarms ? 1 : 0
 
   compartment_id        = module.workload_compartment.compartment_id
   topic_name            = local.workload_critical_topic.topic_name
@@ -182,8 +182,8 @@ module "workload_critical_topic" {
 }
 
 module "workload_warning_topic" {
-  source                = "../../modules/notification-topic"
-  count                 = var.is_create_alarms   ? 1 : 0
+  source = "../../modules/notification-topic"
+  count  = var.is_create_alarms ? 1 : 0
 
   compartment_id        = module.workload_compartment.compartment_id
   topic_name            = local.workload_warning_topic.topic_name

@@ -14,8 +14,8 @@ output "stream_id" {
 locals {
   standard_buckets_map = {
     "audit" : module.audit_log_bucket
-    "default": module.default_log_bucket
-    "service_event": module.service_event_log_bucket
+    "default" : module.default_log_bucket
+    "service_event" : module.service_event_log_bucket
   }
 }
 

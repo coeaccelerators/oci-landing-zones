@@ -67,17 +67,17 @@ variable "enable_service_gateway_hub" {
 }
 
 variable "igw_hub_check" {
-  type = list(string)
+  type    = list(string)
   default = [""]
 }
 
 variable "nat_gw_hub_check" {
-  type = list(string)
+  type    = list(string)
   default = [""]
 }
 
 variable "service_gw_hub_check" {
-  type = list(string)
+  type    = list(string)
   default = [""]
 }
 

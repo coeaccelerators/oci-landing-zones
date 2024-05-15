@@ -14,5 +14,5 @@ output "drg_attachment_all_attributes" {
 }
 
 output "drg_route_tables" {
-  value       = { for k, v in oci_core_drg_route_table.route_table: k => v }
+  value = { for k, v in oci_core_drg_route_table.route_table : k => v }
 }

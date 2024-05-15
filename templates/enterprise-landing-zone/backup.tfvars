@@ -25,8 +25,8 @@ prod_budget_amount                   = 10000000
 # Backup Region
 backup_region                   = "us-phoenix-1"
 enable_landing_zone_replication = true
-backup_prod_workload_cidr = "10.6.0.0/16"
-backup_nonprod_workload_cidr = "10.7.0.0/16"
+backup_prod_workload_cidr       = "10.6.0.0/16"
+backup_nonprod_workload_cidr    = "10.7.0.0/16"
 
 # iam
 resource_label             = "Resource_Label"

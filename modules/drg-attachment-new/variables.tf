@@ -23,7 +23,7 @@ variable "drg_attachment_vcn_route_type" {
   description = "DRG Attacment Network VCN Route Type"
 }
 
-variable drg_attachment_display_name {
+variable "drg_attachment_display_name" {
   type        = string
   description = "DRG Attacment Display Name"
 }

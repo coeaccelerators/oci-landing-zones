@@ -23,13 +23,13 @@ variable "budget_reset_period" {
 }
 
 variable "budget_description" {
-  
-  type        = string
+
+  type = string
 }
 
 variable "budget_display_name" {
-  
-  type        = string
+
+  type = string
 }
 
 variable "budget_target_type" {
@@ -64,8 +64,8 @@ variable "budget_alert_rule_type" {
 }
 
 variable "budget_alert_rule_display_name" {
-  
-  type        = string
+
+  type = string
 }
 
 variable "budget_alert_rule_message" {

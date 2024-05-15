@@ -123,8 +123,8 @@ variable "enable_vpn_or_fastconnect" {
   default = "NONE"
 }
 variable "ipsec_connection_static_routes" {
-  type        = list(string)
-  default     = [""]
+  type    = list(string)
+  default = [""]
 }
 
 variable "enable_security_monitoring_alarms" {
@@ -220,7 +220,7 @@ variable "network_admin_group_name" {
   default     = ""
 }
 variable "enable_datasafe" {
-  type    = bool
+  type = bool
 }
 variable "datasafe_reports_group_name" {
   type        = string

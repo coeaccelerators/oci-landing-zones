@@ -126,17 +126,17 @@ nfw_instance_policy_prod        = "nfw_policy_name"
 enable_network_firewall_nonprod = "false"
 
 ####################################### Access Governance ###################################################
-prod_enable_access_governance    = false
-admin_domain_name                = "Default"
-admin_domain_compartment_ocid    = ""
+prod_enable_access_governance = false
+admin_domain_name             = "Default"
+admin_domain_compartment_ocid = ""
 
 # ACCESS GOVERNANCE SERVICE INSTANCE DETAILS
-prod_ag_license_type               = "Access Governance for Oracle Cloud Infrastructure"
+prod_ag_license_type = "Access Governance for Oracle Cloud Infrastructure"
 #prod_service_instance_display_name = "prod-access-governance-instance"
-prod_service_instance_description  = "Prod OAG service instance"
+prod_service_instance_description = "Prod OAG service instance"
 
 # ACCESS GOVERNANCE USER COMMON DETAILS
-prod_use_existing_agcs_user    = false
+prod_use_existing_agcs_user = false
 
 # ACCESS GOVERNANCE EXISTING_USER
 #prod_agcs_user_private_key_path          = ""

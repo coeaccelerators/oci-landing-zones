@@ -3,7 +3,7 @@ output "bastion_ip" {
 }
 
 output "private_test_node_ips" {
-  value = module.test_nodes[*].private_ip  
+  value = module.test_nodes[*].private_ip
 }
 
 # used in subnet names. 
@@ -12,6 +12,6 @@ output "region_key" {
 }
 
 # used in subnet names. 
-output "environmant_prefix"{
+output "environmant_prefix" {
   value = var.environment_prefix
 }

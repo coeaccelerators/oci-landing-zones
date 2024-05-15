@@ -186,7 +186,7 @@ variable "log_group_id" {
   type        = string
   description = "Log Group OCID."
 }
-variable "nfw_subnet_type"{
+variable "nfw_subnet_type" {
   type        = string
   description = "Network Firewall Subnet Type : Public or Private Subnet."
 }

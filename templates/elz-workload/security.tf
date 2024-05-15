@@ -26,7 +26,7 @@ locals {
   }
 
   bastion = {
-    name = "${var.resource_label}-OCI-ELZ-BAS-${var.environment_prefix}"
+    name                     = "${var.resource_label}-OCI-ELZ-BAS-${var.environment_prefix}"
     bastion_target_subnet_id = var.workload_expansion_flag ? module.workload_expansion_spoke[0].spoke_web_subnet_ocid : var.bastion_target_subnet_id
   }
 

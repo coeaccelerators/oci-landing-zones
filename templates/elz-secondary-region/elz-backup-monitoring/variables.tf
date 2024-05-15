@@ -32,19 +32,19 @@ variable "is_baseline_deploy" {
 # Common Variables
 # -----------------------------------------------------------------------------
 variable "environment_compartment_id" {
-  type        = string
+  type = string
 }
 
 variable "network_compartment_id" {
-  type        = string
+  type = string
 }
 
 variable "security_compartment_id" {
-  type        = string
+  type = string
 }
 
 variable "workload_compartment_id" {
-  type        = string
+  type = string
   #default     = ""
 }
 
@@ -132,5 +132,5 @@ variable "enable_workload_monitoring_alarms" {
 variable "is_create_alarms" {
   type        = bool
   description = "Enable Alarms Creation in all Compartment"
-  default = false
+  default     = false
 }

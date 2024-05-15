@@ -12,14 +12,14 @@ locals {
     dns_label = "hublabel"
   }
   vcn-hub-info = {
-    hub_public_subnet_display_name   = "OCI-ELZ-SUB-PUBLIC-${var.environment_prefix}-HUB-${local.region_key[0]}001"
-    hub_public_subnet_description    = "Hub Public Subnet"  
-    hub_private_subnet_display_name  = "OCI-ELZ-SUB-PRIVATE-${var.environment_prefix}-HUB-${local.region_key[0]}002"
-    hub_private_subnet_description   = "Hub Private Subnet"
-    hub_security_list_display_name   = "OCI-ELZ-${var.environment_prefix}-Hub-Security-List"
-    igw_gateway_display_name         = "OCI-ELZ-IGW-${var.environment_prefix}-HUB"
-    nat_gateway_display_name         = "OCI-ELZ-NGW-${var.environment_prefix}-HUB"
-    srv_gateway_display_name         = "OCI-ELZ-SGW-${var.environment_prefix}-HUB"
+    hub_public_subnet_display_name  = "OCI-ELZ-SUB-PUBLIC-${var.environment_prefix}-HUB-${local.region_key[0]}001"
+    hub_public_subnet_description   = "Hub Public Subnet"
+    hub_private_subnet_display_name = "OCI-ELZ-SUB-PRIVATE-${var.environment_prefix}-HUB-${local.region_key[0]}002"
+    hub_private_subnet_description  = "Hub Private Subnet"
+    hub_security_list_display_name  = "OCI-ELZ-${var.environment_prefix}-Hub-Security-List"
+    igw_gateway_display_name        = "OCI-ELZ-IGW-${var.environment_prefix}-HUB"
+    nat_gateway_display_name        = "OCI-ELZ-NGW-${var.environment_prefix}-HUB"
+    srv_gateway_display_name        = "OCI-ELZ-SGW-${var.environment_prefix}-HUB"
   }
 }
 module "hub" {
@@ -49,27 +49,27 @@ module "hub" {
   additional_workload_subnets_cidr_blocks = var.additional_workload_subnets_cidr_blocks
   home_compartment_id                     = var.home_compartment_id
   is_baseline_deploy                      = var.is_baseline_deploy
-  
-  hub_vcn_name                            = local.vcn_hub.name
-  hub_vcn_dns_label                       = local.vcn_hub.dns_label
-  hub_public_subnet_display_name          = local.vcn-hub-info.hub_public_subnet_display_name
-  hub_public_subnet_description           = local.vcn-hub-info.hub_public_subnet_description
-  hub_public_subnet_dns_label             = var.hub_public_subnet_dns_label
-  hub_private_subnet_display_name         = local.vcn-hub-info.hub_private_subnet_display_name
-  hub_private_subnet_description          = local.vcn-hub-info.hub_private_subnet_description
-  hub_private_subnet_dns_label            = var.hub_private_subnet_dns_label
-  igw_gateway_display_name                = local.vcn-hub-info.igw_gateway_display_name
-  nat_gateway_display_name                = local.vcn-hub-info.nat_gateway_display_name
-  srv_gateway_display_name                = local.vcn-hub-info.srv_gateway_display_name
-  hub_security_list_display_name          = local.vcn-hub-info.hub_security_list_display_name
 
-  enable_network_firewall                 = var.enable_network_firewall
-  enable_traffic_threat_log               = var.enable_traffic_threat_log
-  nfw_subnet_type                         = var.nfw_subnet_type
-  nfw_instance_name                       = var.nfw_instance_name
-  nfw_instance_policy                     = var.nfw_instance_policy
-  nfw_use_existing_network                = var.nfw_use_existing_network
-  log_group_id                            = var.log_group_id
+  hub_vcn_name                    = local.vcn_hub.name
+  hub_vcn_dns_label               = local.vcn_hub.dns_label
+  hub_public_subnet_display_name  = local.vcn-hub-info.hub_public_subnet_display_name
+  hub_public_subnet_description   = local.vcn-hub-info.hub_public_subnet_description
+  hub_public_subnet_dns_label     = var.hub_public_subnet_dns_label
+  hub_private_subnet_display_name = local.vcn-hub-info.hub_private_subnet_display_name
+  hub_private_subnet_description  = local.vcn-hub-info.hub_private_subnet_description
+  hub_private_subnet_dns_label    = var.hub_private_subnet_dns_label
+  igw_gateway_display_name        = local.vcn-hub-info.igw_gateway_display_name
+  nat_gateway_display_name        = local.vcn-hub-info.nat_gateway_display_name
+  srv_gateway_display_name        = local.vcn-hub-info.srv_gateway_display_name
+  hub_security_list_display_name  = local.vcn-hub-info.hub_security_list_display_name
+
+  enable_network_firewall   = var.enable_network_firewall
+  enable_traffic_threat_log = var.enable_traffic_threat_log
+  nfw_subnet_type           = var.nfw_subnet_type
+  nfw_instance_name         = var.nfw_instance_name
+  nfw_instance_policy       = var.nfw_instance_policy
+  nfw_use_existing_network  = var.nfw_use_existing_network
+  log_group_id              = var.log_group_id
 
 
   providers = {
@@ -101,8 +101,8 @@ locals {
 }
 
 module "spoke" {
-  count                                          = var.is_baseline_deploy? 0 : 1
-  
+  count = var.is_baseline_deploy ? 0 : 1
+
   source                                         = "../elz-spoke"
   drg_id                                         = module.hub.drg_id
   enable_nat_gateway_spoke                       = var.enable_nat_gateway_spoke

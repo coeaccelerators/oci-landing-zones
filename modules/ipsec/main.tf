@@ -37,10 +37,10 @@ resource "oci_core_ipsec" "oci-ipsec-connection" {
 # Create IPSEC connection management for OCI VCN tunnel a
 # -----------------------------------------------------------------------------
 resource "oci_core_ipsec_connection_tunnel_management" "oci-ipsec-connection-tunnel-management-a" {
-  ipsec_id      = oci_core_ipsec.oci-ipsec-connection.id
-  tunnel_id     = data.oci_core_ipsec_connection_tunnels.oci-ipsec-connection-tunnels.ip_sec_connection_tunnels[0].id
-  routing       = var.routing
-  display_name  = var.tunnel_a_display_name
+  ipsec_id     = oci_core_ipsec.oci-ipsec-connection.id
+  tunnel_id    = data.oci_core_ipsec_connection_tunnels.oci-ipsec-connection-tunnels.ip_sec_connection_tunnels[0].id
+  routing      = var.routing
+  display_name = var.tunnel_a_display_name
 
   #Optional
   bgp_session_info {
@@ -52,17 +52,17 @@ resource "oci_core_ipsec_connection_tunnel_management" "oci-ipsec-connection-tun
   shared_secret = var.shared_secret
   ike_version   = "V1"
 
-  depends_on    = [data.oci_core_ipsec_connections.oci-ipsec-connections]
+  depends_on = [data.oci_core_ipsec_connections.oci-ipsec-connections]
 }
 
 # -----------------------------------------------------------------------------
 # Create IPSEC connection management for OCI VCN tunnel b
 # -----------------------------------------------------------------------------
 resource "oci_core_ipsec_connection_tunnel_management" "oci-ipsec-connection-tunnel-management-b" {
-  ipsec_id  = oci_core_ipsec.oci-ipsec-connection.id
-  tunnel_id = data.oci_core_ipsec_connection_tunnels.oci-ipsec-connection-tunnels.ip_sec_connection_tunnels[1].id
-  routing       = var.routing
-  display_name  = var.tunnel_b_display_name
+  ipsec_id     = oci_core_ipsec.oci-ipsec-connection.id
+  tunnel_id    = data.oci_core_ipsec_connection_tunnels.oci-ipsec-connection-tunnels.ip_sec_connection_tunnels[1].id
+  routing      = var.routing
+  display_name = var.tunnel_b_display_name
 
   #Optional
   bgp_session_info {

@@ -15,9 +15,9 @@ resource "oci_streaming_stream_pool" "stream_pool" {
   compartment_id = var.compartment_id
   name           = var.stream_pool_name
 
-#  custom_encryption_key {
-#    kms_key_id = var.kms_key_id
-#  }
+  #  custom_encryption_key {
+  #    kms_key_id = var.kms_key_id
+  #  }
 }
 
 resource "oci_streaming_stream" "stream" {

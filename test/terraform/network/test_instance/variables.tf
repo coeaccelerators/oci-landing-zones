@@ -19,7 +19,7 @@ variable "image_id" {
   type = string
 }
 
-variable "availability_domain"  {
+variable "availability_domain" {
   type = string
 }
 
@@ -27,7 +27,7 @@ variable "hostname" {
   type = string
 }
 
-variable needs_public_ip {
+variable "needs_public_ip" {
   type = bool
 }
 
@@ -42,7 +42,7 @@ variable "instance_shape" {
 variable "instance_shape_config_ocpus" {
   type        = number
   description = "Number of OCPUs per instance"
-  default     = 1 
+  default     = 1
 }
 
 variable "instance_shape_config_memory_in_gbs" {

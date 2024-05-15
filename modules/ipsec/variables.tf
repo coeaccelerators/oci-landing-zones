@@ -29,11 +29,11 @@ variable "drg_id" {
 }
 
 variable "static_routes" {
-  type        = list(string)
+  type = list(string)
 }
 
 variable "cpe_vendor" {
-  type        = number
+  type = number
 }
 
 variable "routing" {

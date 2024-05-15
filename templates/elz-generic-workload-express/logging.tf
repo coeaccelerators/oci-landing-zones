@@ -1,14 +1,8 @@
 
 locals {
-  
-  #environment_prefix = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.environment_prefix
-
-  #w_prefix = var.is_prod_workload ? "P" : "N"
-
-  #workload_prefix = join ("-", [var.workload_name,  local.w_prefix])
 
   default_log_group_id = var.default_log_group_id != "" ? var.default_log_group_id : data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.default_group_id
-  
+
   vcn_flow_log = {
     log_display_name    = "${var.resource_label}-OCI-ELZ-VCN-FLOW-LOG-${local.environment_prefix}-${var.workload_name}"
     log_type            = "SERVICE"

@@ -6,11 +6,11 @@
 #####################################################
 # Workload Expansion Compartment Variable
 #####################################################
-enable_compartment_delete  				= false
-workload_compartment_name               = "ELZ-Workload1-P"
-workload_expansion_flag                 = true
-environment_prefix                      = "P"
-workload_prefix                         = "TestWE"
+enable_compartment_delete         = false
+workload_compartment_name         = "ELZ-Workload1-P"
+workload_expansion_flag           = true
+environment_prefix                = "P"
+workload_prefix                   = "TestWE"
 is_create_alarms                  = false
 enable_network_monitoring_alarms  = true
 enable_security_monitoring_alarms = true
@@ -18,13 +18,13 @@ enable_workload_monitoring_alarms = true
 #####################################################
 # Workload Expansion Network Variables
 #####################################################
-workload_spoke_vcn_cidr                          = "10.5.0.0/16"
-workload_private_spoke_subnet_web_cidr_block     = "10.5.1.0/24"
-workload_private_spoke_subnet_app_cidr_block     = "10.5.2.0/24"
-workload_private_spoke_subnet_db_cidr_block      = "10.5.3.0/24"
-enable_internet_gateway_spoke                    = false
-enable_nat_gateway_spoke                         = true
-enable_service_gateway_spoke                     = true
+workload_spoke_vcn_cidr                      = "10.5.0.0/16"
+workload_private_spoke_subnet_web_cidr_block = "10.5.1.0/24"
+workload_private_spoke_subnet_app_cidr_block = "10.5.2.0/24"
+workload_private_spoke_subnet_db_cidr_block  = "10.5.3.0/24"
+enable_internet_gateway_spoke                = false
+enable_nat_gateway_spoke                     = true
+enable_service_gateway_spoke                 = true
 
 #####################################################
 # Workload Expansion: IAM Policy  Variable

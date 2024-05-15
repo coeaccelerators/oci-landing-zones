@@ -9,9 +9,9 @@ locals {
   }
 
   key = {
-    name = "${var.resource_label}-OCI-ELZ-KEY-${var.environment_prefix}-BACKUP-${local.region_key[0]}"
+    name            = "${var.resource_label}-OCI-ELZ-KEY-${var.environment_prefix}-BACKUP-${local.region_key[0]}"
     shape_algorithm = "AES"
-    shape_length = 32
+    shape_length    = 32
     protection_mode = "SOFTWARE"
   }
 
@@ -42,7 +42,7 @@ locals {
 }
 
 module "vault" {
-  source             = "../../../modules/vault"
+  source = "../../../modules/vault"
   # vault_type = "NONE" is used for testing.
   count              = var.vault_type != "NONE" ? 1 : 0
   compartment_id     = var.security_compartment_id
@@ -74,12 +74,12 @@ module "key" {
 }
 
 module "key_policy" {
-  source              = "../../../modules/policies"
-  count               = local.create_key ? 1 : 0
-  compartment_ocid    = var.home_compartment_id
-  description         = local.key_policy.description
-  policy_name         = local.key_policy.name
-  statements          = local.key_policy.statements
+  source           = "../../../modules/policies"
+  count            = local.create_key ? 1 : 0
+  compartment_ocid = var.home_compartment_id
+  description      = local.key_policy.description
+  policy_name      = local.key_policy.name
+  statements       = local.key_policy.statements
 }
 
 module "vss" {

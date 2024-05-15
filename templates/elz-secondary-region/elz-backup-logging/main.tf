@@ -84,8 +84,8 @@ locals {
     log_source_type     = "OCISERVICE"
   }
   subnets_map = {
-    HUB1: var.subnets_map["OCI-ELZ-SUB-PUBLIC-${var.environment_prefix}-HUB-${local.region_key[0]}001"]
-    HUB2: var.subnets_map["OCI-ELZ-SUB-PRIVATE-${var.environment_prefix}-HUB-${local.region_key[0]}002"]
+    HUB1 : var.subnets_map["OCI-ELZ-SUB-PUBLIC-${var.environment_prefix}-HUB-${local.region_key[0]}001"]
+    HUB2 : var.subnets_map["OCI-ELZ-SUB-PRIVATE-${var.environment_prefix}-HUB-${local.region_key[0]}002"]
     #SKP1: var.subnets_map["OCI-ELZ-SUB-${var.environment_prefix}-SPK-${local.region_key[0]}001"]
     #SKP2: var.subnets_map["OCI-ELZ-SUB-${var.environment_prefix}-SPK-${local.region_key[0]}002"]
     #SKP3: var.subnets_map["OCI-ELZ-SUB-${var.environment_prefix}-SPK-${local.region_key[0]}003"]
@@ -104,8 +104,8 @@ locals {
 
   buckets_map = {
     DEFAULT : "${var.resource_label}_${var.environment_prefix}_backup_defaultLogs_standard",
-    AUDIT: "${var.resource_label}_${var.environment_prefix}_backup_auditLogs_standard",
-    SERVICE_EVENT: "${var.resource_label}_${var.environment_prefix}_backup_serviceEvents_standard"
+    AUDIT : "${var.resource_label}_${var.environment_prefix}_backup_auditLogs_standard",
+    SERVICE_EVENT : "${var.resource_label}_${var.environment_prefix}_backup_serviceEvents_standard"
   }
   event_log = {
     log_display_name    = "${var.resource_label}-OCI-ELZ-EVENT-LOG-backup-${var.environment_prefix}"
@@ -205,7 +205,7 @@ module "service_event_log_bucket_backup" {
   }
 }
 module "audit_log_service_connector_backup" {
-  count                 = var.is_service_connector_limit   ? 0 : 1
+  count                 = var.is_service_connector_limit ? 0 : 1
   source                = "../../../modules/service-connector"
   tenancy_ocid          = var.tenancy_ocid
   compartment_id        = var.security_compartment_id
@@ -223,7 +223,7 @@ module "audit_log_service_connector_backup" {
 }
 
 module "default_log_service_connector_backup" {
-  count                 = var.is_service_connector_limit   ? 0 : 1
+  count                 = var.is_service_connector_limit ? 0 : 1
   source                = "../../../modules/service-connector"
   tenancy_ocid          = var.tenancy_ocid
   compartment_id        = var.security_compartment_id
@@ -274,7 +274,7 @@ module "os_read_log_backup" {
   log_source_service  = local.os_read_log.log_source_service
   log_source_type     = local.os_read_log.log_source_type
 
-  depends_on = [ module.audit_log_bucket_backup, module.default_log_bucket_backup, module.service_event_log_bucket_backup, module.default_log_group_backup ]
+  depends_on = [module.audit_log_bucket_backup, module.default_log_bucket_backup, module.service_event_log_bucket_backup, module.default_log_group_backup]
   providers = {
     oci = oci.backup_region
   }
@@ -291,7 +291,7 @@ module "os_write_log_backup" {
   log_source_service  = local.os_write_log.log_source_service
   log_source_type     = local.os_write_log.log_source_type
 
-  depends_on = [ module.audit_log_bucket_backup, module.default_log_bucket_backup, module.service_event_log_bucket_backup, module.default_log_group_backup ]
+  depends_on = [module.audit_log_bucket_backup, module.default_log_bucket_backup, module.service_event_log_bucket_backup, module.default_log_group_backup]
   providers = {
     oci = oci.backup_region
   }

@@ -9,6 +9,6 @@ output "security_compartment_id" {
 }
 
 output "key_id" {
-  value  = module.security.key_id
+  value       = module.security.key_id
   description = "OCID of Master Encryption Key."
 }

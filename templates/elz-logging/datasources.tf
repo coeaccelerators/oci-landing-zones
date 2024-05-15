@@ -19,7 +19,7 @@ data "oci_identity_region_subscriptions" "regions" {
 data "oci_events_rules" "security_event_rules" {
   compartment_id = var.security_compartment_id
 
-  depends_on = [ module.default_log_group, module.service_event_stream ]
+  depends_on = [module.default_log_group, module.service_event_stream]
 }
 
 data "oci_objectstorage_namespace" "ns" {

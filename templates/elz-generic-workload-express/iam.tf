@@ -3,12 +3,6 @@
 # -----------------------------------------------------------------------------
 locals {
 
-  environment_prefix = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.environment_prefix
-
-  w_prefix = var.is_prod_workload ? "P" : "N"
-
-  workload_prefix = join ("-", [var.workload_name,  local.w_prefix])
-
   workload_parent_compartment_id = var.is_prod_workload ? data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.prod.id : data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.nonprod.id
 
   workload_compartment = {
@@ -49,8 +43,8 @@ locals {
   }
 
   parent_compartment_id = {
-    security_compartment_id = var.security_compartment_id != "" ? var.security_compartment_id : data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.security.id
-    environment_compartment_id = var.environment_compartment_id != "" ? var.environment_compartment_id :  data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.environment.id
+    security_compartment_id    = var.security_compartment_id != "" ? var.security_compartment_id : data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.security.id
+    environment_compartment_id = var.environment_compartment_id != "" ? var.environment_compartment_id : data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.environment.id
   }
 
   workload_expansion_policy = {
@@ -113,7 +107,7 @@ locals {
       "Allow group ${local.identity_domain_name}/${local.group_names["database_admin_group_name"]} to manage object-family in compartment ${module.workload_compartment.compartment_name}",
     ]
   }
-  
+
   workload_expansion_policy_security = {
     name        = "OCI-ELZ-WRK-EXP-${local.workload_prefix}-SEC-POLICY"
     description = "OCI Workload Expansion Security Policy"

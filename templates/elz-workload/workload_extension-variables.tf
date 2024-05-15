@@ -44,8 +44,8 @@ variable "workload_private_spoke_subnet_db_cidr_block" {
 }
 
 variable "workload_spoke_vcn_cidr" {
-  description  = "IPv4 CIDR blocks the VCN will use."
-  type         = string
+  description = "IPv4 CIDR blocks the VCN will use."
+  type        = string
 }
 
 
@@ -53,8 +53,8 @@ variable "enable_nat_gateway_spoke" {
   type    = bool
   default = false
   validation {
-    condition         = can(regex("^([t][r][u][e]|[f][a][l][s][e])$", var.enable_nat_gateway_spoke))
-    error_message     = "The variable must be either true or false."
+    condition     = can(regex("^([t][r][u][e]|[f][a][l][s][e])$", var.enable_nat_gateway_spoke))
+    error_message = "The variable must be either true or false."
   }
 }
 
@@ -62,19 +62,19 @@ variable "enable_service_gateway_spoke" {
   type    = bool
   default = false
   validation {
-    condition         = can(regex("^([t][r][u][e]|[f][a][l][s][e])$", var.enable_service_gateway_spoke))
-    error_message     = "The variable must be either true or false."
+    condition     = can(regex("^([t][r][u][e]|[f][a][l][s][e])$", var.enable_service_gateway_spoke))
+    error_message = "The variable must be either true or false."
   }
 }
 
 
 variable "vcn_dns_label" {
-    description = "A DNS label for the VCN, used in conjunction with the VNIC's hostname and subnet's DNS label to form a fully qualified domain name (FQDN) for each VNIC within this subnet"
-    type        = string
-    default     = "spokelabel"
-    validation {
-      condition     = length(var.vcn_dns_label) < 16
-      error_message = "DNS Label : Max 15 alphanumeric characters allowed."
+  description = "A DNS label for the VCN, used in conjunction with the VNIC's hostname and subnet's DNS label to form a fully qualified domain name (FQDN) for each VNIC within this subnet"
+  type        = string
+  default     = "spokelabel"
+  validation {
+    condition     = length(var.vcn_dns_label) < 16
+    error_message = "DNS Label : Max 15 alphanumeric characters allowed."
   }
 }
 
@@ -89,33 +89,33 @@ variable "enable_internet_gateway_spoke" {
 
 
 variable "workload_private_spoke_subnet_web_dns_label" {
-    description = "A DNS label for the VCN Subnet, used in conjunction with the VNIC's hostname and subnet's DNS label to form a fully qualified domain name (FQDN) for each VNIC within this subnet"
-    type        = string
-    default     = "webdnslabel"
-    validation {
-      condition     = length(var.workload_private_spoke_subnet_web_dns_label) < 16
-      error_message = "DNS Label : Max 15 alphanumeric characters allowed."
-    }
+  description = "A DNS label for the VCN Subnet, used in conjunction with the VNIC's hostname and subnet's DNS label to form a fully qualified domain name (FQDN) for each VNIC within this subnet"
+  type        = string
+  default     = "webdnslabel"
+  validation {
+    condition     = length(var.workload_private_spoke_subnet_web_dns_label) < 16
+    error_message = "DNS Label : Max 15 alphanumeric characters allowed."
+  }
 }
 
 variable "workload_private_spoke_subnet_app_dns_label" {
-    description = "A DNS label for the VCN Subnet, used in conjunction with the VNIC's hostname and subnet's DNS label to form a fully qualified domain name (FQDN) for each VNIC within this subnet"
-    type        = string
-    default     = "appdnslabel"
-    validation {
-      condition     = length(var.workload_private_spoke_subnet_app_dns_label) < 16
-      error_message = "DNS Label : Max 15 alphanumeric characters allowed."
-    }
+  description = "A DNS label for the VCN Subnet, used in conjunction with the VNIC's hostname and subnet's DNS label to form a fully qualified domain name (FQDN) for each VNIC within this subnet"
+  type        = string
+  default     = "appdnslabel"
+  validation {
+    condition     = length(var.workload_private_spoke_subnet_app_dns_label) < 16
+    error_message = "DNS Label : Max 15 alphanumeric characters allowed."
+  }
 }
 
 variable "workload_private_spoke_subnet_db_dns_label" {
-    description = "A DNS label for the VCN Subnet, used in conjunction with the VNIC's hostname and subnet's DNS label to form a fully qualified domain name (FQDN) for each VNIC within this subnet"
-    type        = string
-    default     = "dbdnslabel"
-    validation {
-      condition     = length(var.workload_private_spoke_subnet_db_dns_label) < 16
-      error_message = "DNS Label : Max 15 alphanumeric characters allowed."
-    }
+  description = "A DNS label for the VCN Subnet, used in conjunction with the VNIC's hostname and subnet's DNS label to form a fully qualified domain name (FQDN) for each VNIC within this subnet"
+  type        = string
+  default     = "dbdnslabel"
+  validation {
+    condition     = length(var.workload_private_spoke_subnet_db_dns_label) < 16
+    error_message = "DNS Label : Max 15 alphanumeric characters allowed."
+  }
 }
 
 variable "nat_gateway_display_name" {
@@ -183,7 +183,7 @@ variable "security_list_display_name" {
 }
 
 variable "drg_id" {
-  type    = string
+  type = string
   validation {
     condition     = can(regex("^drg$", split(".", var.drg_id)[1]))
     error_message = "Only Compartment OCID is allowed."
