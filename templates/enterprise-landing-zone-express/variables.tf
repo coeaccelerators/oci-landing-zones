@@ -42,7 +42,7 @@ variable "is_nonprod_env_deploy" {
 # -----------------------------------------------------------------------------
 variable "home_compartment_name" {
   type        = string
-  default     = "OCI-ELZEXPRESS-CMP-HOME"
+  default     = "OCI-ELZX-CMP-HOME"
   description = "The name of the Landing Zone home compartment."
 }
 

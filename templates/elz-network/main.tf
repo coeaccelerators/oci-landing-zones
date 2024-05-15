@@ -12,9 +12,9 @@ locals {
     dns_label = "hublabel"
   }
   vcn-hub-info = {
-    hub_public_subnet_display_name   = "OCI-ELZ-SUB-${var.environment_prefix}-HUB-${local.region_key[0]}001"
+    hub_public_subnet_display_name   = "OCI-ELZ-SUB-PUBLIC-${var.environment_prefix}-HUB-${local.region_key[0]}001"
     hub_public_subnet_description    = "Hub Public Subnet"  
-    hub_private_subnet_display_name  = "OCI-ELZ-SUB-${var.environment_prefix}-HUB-${local.region_key[0]}002"
+    hub_private_subnet_display_name  = "OCI-ELZ-SUB-PRIVATE-${var.environment_prefix}-HUB-${local.region_key[0]}002"
     hub_private_subnet_description   = "Hub Private Subnet"
     hub_security_list_display_name   = "OCI-ELZ-${var.environment_prefix}-Hub-Security-List"
     igw_gateway_display_name         = "OCI-ELZ-IGW-${var.environment_prefix}-HUB"

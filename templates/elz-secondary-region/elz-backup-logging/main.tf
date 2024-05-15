@@ -84,8 +84,8 @@ locals {
     log_source_type     = "OCISERVICE"
   }
   subnets_map = {
-    HUB1: var.subnets_map["OCI-ELZ-SUB-${var.environment_prefix}-HUB-${local.region_key[0]}001"]
-    HUB2: var.subnets_map["OCI-ELZ-SUB-${var.environment_prefix}-HUB-${local.region_key[0]}002"]
+    HUB1: var.subnets_map["OCI-ELZ-SUB-PUBLIC-${var.environment_prefix}-HUB-${local.region_key[0]}001"]
+    HUB2: var.subnets_map["OCI-ELZ-SUB-PRIVATE-${var.environment_prefix}-HUB-${local.region_key[0]}002"]
     #SKP1: var.subnets_map["OCI-ELZ-SUB-${var.environment_prefix}-SPK-${local.region_key[0]}001"]
     #SKP2: var.subnets_map["OCI-ELZ-SUB-${var.environment_prefix}-SPK-${local.region_key[0]}002"]
     #SKP3: var.subnets_map["OCI-ELZ-SUB-${var.environment_prefix}-SPK-${local.region_key[0]}003"]
