@@ -75,7 +75,7 @@ locals {
 
   hub_public_route_rules = {
     route_table_display_name = "OCI-ELZ-RTPUB-${var.environment_prefix}-HUB001"
-    route_rules = merge(local.hub_public_route_rules_options.route_rules_default, local.hub_public_route_rules_options.route_rules_igw,
+    route_rules = merge(/*local.hub_public_route_rules_options.route_rules_default, */ local.hub_public_route_rules_options.route_rules_igw,
       local.hub_public_route_rules_options.route_rules_vpn,
     local.hub_public_route_rules_options.route_rules_fastconnect, local.hub_public_route_rules_options.route_rules_workload)
   }
@@ -130,7 +130,7 @@ locals {
 
   hub_public_route_rules_nfw = {
     route_table_display_name = "OCI-ELZ-RTPUB-${var.environment_prefix}-HUB001"
-    route_rules = merge(local.hub_public_route_rules_options_nfw.route_rules_default, local.hub_public_route_rules_options_nfw.route_rules_igw,
+    route_rules = merge(/*local.hub_public_route_rules_options_nfw.route_rules_default,*/ local.hub_public_route_rules_options_nfw.route_rules_igw,
       local.hub_public_route_rules_options_nfw.route_rules_vpn,
       local.hub_public_route_rules_options_nfw.route_rules_fastconnect,
     local.hub_public_route_rules_options_nfw.route_rules_workload)
@@ -199,7 +199,7 @@ locals {
 
   hub_private_route_rules = {
     route_table_display_name = "OCI-ELZ-RTPRV-${var.environment_prefix}-HUB002"
-    route_rules = merge(local.hub_private_route_rules_options.route_rules_default, local.hub_private_route_rules_options.route_rules_nat,
+    route_rules = merge(/*local.hub_private_route_rules_options.route_rules_default,*/ local.hub_private_route_rules_options.route_rules_nat,
       local.hub_private_route_rules_options.route_rules_srvc_gw,
       local.hub_private_route_rules_options.route_rules_vpn,
     local.hub_private_route_rules_options.route_rules_fastconnect, local.hub_private_route_rules_options.route_rules_workload)
@@ -263,7 +263,7 @@ locals {
 
   hub_private_route_rules_nfw = {
     route_table_display_name = "OCI-ELZ-RTPRV-${var.environment_prefix}-HUB002"
-    route_rules              = merge(local.hub_private_route_rules_options_nfw.route_rules_default, local.hub_private_route_rules_options_nfw.route_rules_nat, local.hub_private_route_rules_options_nfw.route_rules_srvc_gw, local.hub_private_route_rules_options_nfw.route_rules_vpn, local.hub_private_route_rules_options_nfw.route_rules_fastconnect, local.hub_private_route_rules_options_nfw.route_rules_workload)
+    route_rules              = merge(/*local.hub_private_route_rules_options_nfw.route_rules_default,*/ local.hub_private_route_rules_options_nfw.route_rules_nat, local.hub_private_route_rules_options_nfw.route_rules_srvc_gw, local.hub_private_route_rules_options_nfw.route_rules_vpn, local.hub_private_route_rules_options_nfw.route_rules_fastconnect, local.hub_private_route_rules_options_nfw.route_rules_workload)
   }
 
   hub_private_route_check_test_nfw = var.enable_network_firewall && var.nfw_subnet_type == "public" ? local.hub_private_route_rules_nfw : local.hub_private_route_rules
