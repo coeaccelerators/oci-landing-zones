@@ -17,14 +17,14 @@
 
 # Backup Region
 # backup_region                   = ""
-resource_label = "OLZEXP"
+resource_label = "RL"
 # environment_prefix              = ""
 is_baseline_deploy = true
 
 # Provide Compartment Name and OCID
 
 #environment_compartment_id = ""
-home_compartment_name = "OCI-ELZEXPRESS-CMP-HOME"
+home_compartment_name = "OCI-ELZ-CMP-HOME"
 #home_compartment_id        = ""
 #security_compartment_id    = ""
 #network_compartment_id     = ""

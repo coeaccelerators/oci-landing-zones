@@ -13,7 +13,7 @@ backup_region                   = "dummy"
 enable_landing_zone_replication = false
 
 # iam
-resource_label             = "OLZEXP"
+resource_label             = "RL"
 prod_domain_admin_email    = "an-example-email-address@oracle.com"
 nonprod_domain_admin_email = "an-example-email-address@oracle.com"
 enable_compartment_delete  = true
