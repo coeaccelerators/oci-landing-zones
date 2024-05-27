@@ -8,7 +8,7 @@
 #####################################################
 # Workload Expansion Compartment Variable
 #####################################################
-resource_label = "OLZEXP"
+resource_label = "RL"
 # environment_prefix         = ""
 # environment_compartment_id = ""
 # workload_parent_compartment_id      = ""
