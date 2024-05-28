@@ -20,4 +20,8 @@ locals {
 
   workload_prefix = join("-", [var.workload_name, local.w_prefix])
 
+  hub_private_subnet_cidr_block = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.hub_private_subnet_cidr
+
+  hub_public_subnet_cidr_block = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.hub_public_subnet_cidr
+
 }

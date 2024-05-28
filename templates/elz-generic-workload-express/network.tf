@@ -36,12 +36,14 @@ locals {
     route_rules_hub_vcn = {
       "hub-public-subnet" = {
         network_entity_id = local.drg_id
-        destination       = var.hub_public_subnet_cidr_block
+        #destination       = var.hub_public_subnet_cidr_block
+        destination       = local.hub_public_subnet_cidr_block
         destination_type  = "CIDR_BLOCK"
       }
       "hub-private-subnet" = {
         network_entity_id = local.drg_id
-        destination       = var.hub_private_subnet_cidr_block
+        #destination       = var.hub_private_subnet_cidr_block
+        destination       = local.hub_private_subnet_cidr_block
         destination_type  = "CIDR_BLOCK"
       }
     }
