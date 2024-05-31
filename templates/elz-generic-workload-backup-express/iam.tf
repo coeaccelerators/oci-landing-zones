@@ -6,7 +6,7 @@ locals {
   workload_parent_compartment_id = var.is_prod_workload ? data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.prod.id : data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.nonprod.id
 
   workload_compartment = {
-    name        = var.workload_compartment_name != "" ? var.workload_compartment_name : "OCI-ELZ-${local.environment_prefix}-${var.workload_name}-${local.region_key[0]}"
+    name        = var.workload_compartment_name != "" ? var.workload_compartment_name : "OCI-ELZ-${local.environment_prefix}-${var.workload_name}"
     id          = var.workload_parent_compartment_id != "" ? var.workload_parent_compartment_id : local.workload_parent_compartment_id
     description = "Workload Compartment"
   }
