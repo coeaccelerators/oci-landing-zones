@@ -55,3 +55,7 @@ output "identity_domain_url" {
   value = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.identity_domain.url
 }
 
+output "environment_prefix" {
+  value = local.environment_prefix
+}
+

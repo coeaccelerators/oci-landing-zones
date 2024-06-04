@@ -85,7 +85,7 @@
 | <a name="input_vcn_display_name"></a> [vcn\_display\_name](#input\_vcn\_display\_name) | Workload Expansion Spoke VCN Display Name | `string` | `""` | no |
 | <a name="input_vcn_dns_label"></a> [vcn\_dns\_label](#input\_vcn\_dns\_label) | A DNS label for the VCN, used in conjunction with the VNIC's hostname and subnet's DNS label to form a fully qualified domain name (FQDN) for each VNIC within this subnet | `string` | `"spokelabel"` | no |
 | <a name="input_workload_admin_group_name"></a> [workload\_admin\_group\_name](#input\_workload\_admin\_group\_name) | the name of workload admin group | `string` | `""` | no |
-| <a name="input_workload_compartment_name"></a> [workload\_compartment\_name](#input\_workload\_compartment\_name) | The name of the workload compartment by default OCI-ELZ-<Workload Name>-<Region>. | `string` | `""` | no |
+| <a name="input_workload_compartment_name"></a> [workload\_compartment\_name](#input\_workload\_compartment\_name) | The name of the workload compartment by default <Workload Name>-<Region>. | `string` | `""` | no |
 | <a name="input_workload_expansion_flag"></a> [workload\_expansion\_flag](#input\_workload\_expansion\_flag) | Set to true if you want to use this as independent Workload Expansion Deployment Stack. | `bool` | `false` | no |
 | <a name="input_workload_name"></a> [workload\_name](#input\_workload\_name) | Workload Compartment Name Prefix. | `string` | n/a | yes |
 | <a name="input_workload_prefix"></a> [workload\_prefix](#input\_workload\_prefix) | Atleast 4 Alphanumeric Charater to Describe the Workload : WRK1 | `string` | `"WRK1"` | no |

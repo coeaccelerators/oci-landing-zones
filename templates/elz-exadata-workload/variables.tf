@@ -77,7 +77,7 @@ variable "workload_prefix" {
 
 variable "workload_compartment_name" {
   type        = string
-  description = "The name of the workload compartment by default OCI-ELZ-<Workload Name>-<Region>."
+  description = "The name of the workload compartment by default <Workload Name>-<Region>."
   default     = ""
 }
 

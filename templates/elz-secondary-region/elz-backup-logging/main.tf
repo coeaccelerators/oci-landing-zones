@@ -19,7 +19,7 @@ locals {
     rule_is_enabled        = true
   }
   audit_log_bucket = {
-    name                                = "${var.resource_label}_${var.environment_prefix}_backup_auditLogs_standard"
+    name                                = "${var.environment_prefix}_backup_auditLogs_standard"
     description                         = "Audit Log bucket for backup region"
     retention_rule_display_name         = "audit log bucket retention rule"
     retention_policy_duration_amount    = var.retention_policy_duration_amount
@@ -28,7 +28,7 @@ locals {
   }
 
   default_log_bucket = {
-    name                                = "${var.resource_label}_${var.environment_prefix}_backup_defaultLogs_standard"
+    name                                = "${var.environment_prefix}_backup_defaultLogs_standard"
     description                         = "Default Log bucket for backup region"
     retention_rule_display_name         = "default log bucket retention rule"
     retention_policy_duration_amount    = var.retention_policy_duration_amount
@@ -37,7 +37,7 @@ locals {
   }
 
   service_event_log_bucket = {
-    name                                = "${var.resource_label}_${var.environment_prefix}_backup_serviceEvents_standard"
+    name                                = "${var.environment_prefix}_backup_serviceEvents_standard"
     description                         = "Service Events Log bucket for backup region"
     retention_rule_display_name         = "service events log bucket retention rule"
     retention_policy_duration_amount    = var.retention_policy_duration_amount
@@ -45,7 +45,7 @@ locals {
     bucket_storage_tier                 = "Standard"
   }
   audit_log_service_connector = {
-    display_name  = "${var.resource_label}_schAuditLog_backup_${var.environment_prefix}"
+    display_name  = "schAuditLog_backup_${var.environment_prefix}"
     source_kind   = "logging"
     target_kind   = "objectStorage"
     log_group_id  = "_Audit_Include_Subcompartment"
@@ -53,45 +53,45 @@ locals {
   }
 
   default_log_service_connector = {
-    display_name  = "${var.resource_label}_schDefaultLog_backup_${var.environment_prefix}"
+    display_name  = "schDefaultLog_backup_${var.environment_prefix}"
     source_kind   = "logging"
     target_kind   = "objectStorage"
     target_bucket = local.default_log_bucket.name
   }
 
   service_events_service_connector = {
-    display_name  = "${var.resource_label}_schServiceEvents_backup_${var.environment_prefix}"
+    display_name  = "schServiceEvents_backup_${var.environment_prefix}"
     source_kind   = "streaming"
     target_kind   = "objectStorage"
     target_bucket = local.service_event_log_bucket.name
     cursor_kind   = "TRIM_HORIZON"
   }
   os_read_log = {
-    log_display_name    = "${var.resource_label}-OCI-ELZ-OS-READ-LOG-backup-${var.environment_prefix}"
+    log_display_name    = "OS-READ-LOG-backup-${var.environment_prefix}"
     log_type            = "SERVICE"
-    log_source_resource = "${var.resource_label}_${var.environment_prefix}_backup_serviceEvents_standard"
+    log_source_resource = "${var.environment_prefix}_backup_serviceEvents_standard"
     log_source_category = "read"
     log_source_service  = "objectstorage"
     log_source_type     = "OCISERVICE"
   }
 
   os_write_log = {
-    log_display_name    = "${var.resource_label}-OCI-ELZ-OS-WRITE-LOG-backup-${var.environment_prefix}"
+    log_display_name    = "OS-WRITE-LOG-backup-${var.environment_prefix}"
     log_type            = "SERVICE"
-    log_source_resource = "${var.resource_label}_${var.environment_prefix}_backup_serviceEvents_standard"
+    log_source_resource = "${var.environment_prefix}_backup_serviceEvents_standard"
     log_source_category = "write"
     log_source_service  = "objectstorage"
     log_source_type     = "OCISERVICE"
   }
   subnets_map = {
-    HUB1 : var.subnets_map["OCI-ELZ-SUB-PUBLIC-${var.environment_prefix}-HUB-${local.region_key[0]}001"]
-    HUB2 : var.subnets_map["OCI-ELZ-SUB-PRIVATE-${var.environment_prefix}-HUB-${local.region_key[0]}002"]
-    #SKP1: var.subnets_map["OCI-ELZ-SUB-${var.environment_prefix}-SPK-${local.region_key[0]}001"]
-    #SKP2: var.subnets_map["OCI-ELZ-SUB-${var.environment_prefix}-SPK-${local.region_key[0]}002"]
-    #SKP3: var.subnets_map["OCI-ELZ-SUB-${var.environment_prefix}-SPK-${local.region_key[0]}003"]
+    HUB1 : var.subnets_map["SUB-PUBLIC-${var.environment_prefix}-HUB-${local.region_key[0]}001"]
+    HUB2 : var.subnets_map["SUB-PRIVATE-${var.environment_prefix}-HUB-${local.region_key[0]}002"]
+    #SKP1: var.subnets_map["SUB-${var.environment_prefix}-SPK-${local.region_key[0]}001"]
+    #SKP2: var.subnets_map["SUB-${var.environment_prefix}-SPK-${local.region_key[0]}002"]
+    #SKP3: var.subnets_map["SUB-${var.environment_prefix}-SPK-${local.region_key[0]}003"]
   }
   vcn_flow_log = {
-    log_display_name    = "${var.resource_label}-OCI-ELZ-VCN-FLOW-LOG-backup-${var.environment_prefix}"
+    log_display_name    = "VCN-FLOW-LOG-backup-${var.environment_prefix}"
     log_type            = "SERVICE"
     log_source_category = "all"
     log_source_service  = "flowlogs"
@@ -103,12 +103,12 @@ locals {
   }
 
   buckets_map = {
-    DEFAULT : "${var.resource_label}_${var.environment_prefix}_backup_defaultLogs_standard",
-    AUDIT : "${var.resource_label}_${var.environment_prefix}_backup_auditLogs_standard",
-    SERVICE_EVENT : "${var.resource_label}_${var.environment_prefix}_backup_serviceEvents_standard"
+    DEFAULT : "${var.environment_prefix}_backup_defaultLogs_standard",
+    AUDIT : "${var.environment_prefix}_backup_auditLogs_standard",
+    SERVICE_EVENT : "${var.environment_prefix}_backup_serviceEvents_standard"
   }
   event_log = {
-    log_display_name    = "${var.resource_label}-OCI-ELZ-EVENT-LOG-backup-${var.environment_prefix}"
+    log_display_name    = "EVENT-LOG-backup-${var.environment_prefix}"
     log_type            = "SERVICE"
     log_source_category = "ruleexecutionlog"
     log_source_service  = "cloudevents"
@@ -116,11 +116,11 @@ locals {
   }
 
   #bucket_replication_policy = {
-  #  name        = "${var.resource_label}-OCI-ELZ-LZ-Bucket-Replication-Policy-${var.resource_label}"
+  #  name        = "LZ-Bucket-Replication-Policy"
   #  description = "OELZ Landing Zone Bucket Replication Service Policy"
 
   #  statements = [
-  #    "Allow service objectstorage-${var.region}, objectstorage-${var.backup_region} to manage object-family in compartment ${var.logging_compartment_name}-${local.region_key[0]}-${var.resource_label}"
+  #    "Allow service objectstorage-${var.region}, objectstorage-${var.backup_region} to manage object-family in compartment ${var.logging_compartment_name}-${local.region_key[0]}"
   #  ]
   #}
 }

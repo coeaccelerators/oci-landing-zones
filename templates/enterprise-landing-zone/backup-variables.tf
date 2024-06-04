@@ -40,7 +40,7 @@ variable "backup_nonprod_enable_service_gateway_spoke" {
 }
 #variable "home_compartment_name" {
 #  type        = string
-#  default     = "OCI-ELZ-CMP-HOME"
+#  default     = "CMP-HOME"
 ##  description = "The name of the Landing Zone home compartment."
 #}
 ###############################################################################
@@ -598,13 +598,13 @@ variable "backup_nonprod_enable_vpn" {
 
 variable "backup_prod_cpe_display_name" {
   type        = string
-  description = "Customer Premises Equipment name. Recommendation: OCI-ELZ-CPE-[Environment]-HUB-[Region] 001"
+  description = "Customer Premises Equipment name. Recommendation: CPE-[Environment]-HUB-[Region] 001"
   default     = ""
 }
 
 variable "backup_nonprod_cpe_display_name" {
   type        = string
-  description = "Customer Premises Equipment name. Recommendation: OCI-ELZ-CPE-[Environment]-HUB-[Region] 001"
+  description = "Customer Premises Equipment name. Recommendation: CPE-[Environment]-HUB-[Region] 001"
   default     = ""
 }
 
@@ -622,13 +622,13 @@ variable "backup_nonprod_cpe_ip_address" {
 
 variable "backup_prod_ipsec_display_name" {
   type        = string
-  description = "IPsec display name. Recommendation: OCI-ELZ-IPS-[Environment]-HUB-[Region] 001"
+  description = "IPsec display name. Recommendation: IPS-[Environment]-HUB-[Region] 001"
   default     = ""
 }
 
 variable "backup_nonprod_ipsec_display_name" {
   type        = string
-  description = "IPsec display name. Recommendation: OCI-ELZ-IPS-[Environment]-HUB-[Region] 001"
+  description = "IPsec display name. Recommendation: IPS-[Environment]-HUB-[Region] 001"
   default     = ""
 }
 
@@ -758,7 +758,7 @@ variable "backup_virtual_circuit_bandwidth_shape" {
 
 variable "backup_virtual_circuit_display_name" {
   type        = string
-  description = "The display name of this virtual circuit. Recommendation: OCI-ELZ-FCN-P-HUB-[REGION] 001"
+  description = "The display name of this virtual circuit. Recommendation: FCN-P-HUB-[REGION] 001"
   default     = ""
 }
 

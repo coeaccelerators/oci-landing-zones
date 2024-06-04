@@ -23,7 +23,7 @@ locals {
 
   #   statements = [
   #     <<EOT
-  #       Allow group OCI-ELZ-${var.environment_prefix}-IDT/OCI-ELZ-UGP-${var.environment_prefix}-NET-ADMIN  to read metrics in compartment id ${var.environment_compartment_id} where any {
+  #       Allow group ${var.environment_prefix}-IDT/UGP-${var.environment_prefix}-NET-ADMIN  to read metrics in compartment id ${var.environment_compartment_id} where any {
   #         target.metrics.namespace='oci_vcn',
   #         target.metrics.namespace='oci_vpn',
   #         target.metrics.namespace='oci_fastconnect',

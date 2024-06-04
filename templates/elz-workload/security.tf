@@ -5,7 +5,7 @@
 
 locals {
   osms_dynamic_group_workload = {
-    dynamic_group_name        = "${var.resource_label}-OCI-${var.environment_prefix}-ELZ-${var.workload_name}-DG1"
+    dynamic_group_name        = "OCI-${var.environment_prefix}-ELZ-${var.workload_name}-DG1"
     dynamic_group_description = "OCI ELZ Workload Dynamic Group"
 
     general_matching_rule = <<EOT
@@ -16,7 +16,7 @@ locals {
   }
 
   osms_dg_policy_workload = {
-    name        = "${var.resource_label}-OCI-${var.environment_prefix}-ELZ-${var.workload_name}-OSMS-DG-Policy"
+    name        = "OCI-${var.environment_prefix}-ELZ-${var.workload_name}-OSMS-DG-Policy"
     description = "Workload OCI Landing Zone OS Management Service Dynamic Group Policy"
 
     statements = [
@@ -26,7 +26,7 @@ locals {
   }
 
   bastion = {
-    name                     = "${var.resource_label}-OCI-ELZ-BAS-${var.environment_prefix}"
+    name                     = "BAS-${var.environment_prefix}"
     bastion_target_subnet_id = var.workload_expansion_flag ? module.workload_expansion_spoke[0].spoke_web_subnet_ocid : var.bastion_target_subnet_id
   }
 

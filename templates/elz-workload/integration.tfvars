@@ -32,8 +32,8 @@ enable_service_gateway_spoke                 = true
 workload_admin_group_name    = "TestWE-ADMIN"
 application_admin_group_name = "TestWE-APP"
 database_admin_group_name    = "TestWE-DB"
-security_admin_group_name    = "OCI-ELZ-UGP-P-SEC-ADMIN"
-network_admin_group_name     = "OCI-ELZ-UGP-P-NET-ADMIN"
+security_admin_group_name    = "UGP-P-SEC-ADMIN"
+network_admin_group_name     = "UGP-P-NET-ADMIN"
 
 #####################################################
 

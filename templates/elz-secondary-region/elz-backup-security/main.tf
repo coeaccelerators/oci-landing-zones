@@ -5,11 +5,11 @@
 
 locals {
   vault = {
-    name = "${var.resource_label}-OCI-ELZ-VAL-${var.environment_prefix}-BACKUP-${local.region_key[0]}"
+    name = "VAL-${var.environment_prefix}-BACKUP-${local.region_key[0]}"
   }
 
   key = {
-    name            = "${var.resource_label}-OCI-ELZ-KEY-${var.environment_prefix}-BACKUP-${local.region_key[0]}"
+    name            = "KEY-${var.environment_prefix}-BACKUP-${local.region_key[0]}"
     shape_algorithm = "AES"
     shape_length    = 32
     protection_mode = "SOFTWARE"
@@ -18,7 +18,7 @@ locals {
   create_key = var.vault_type != "NONE" && var.create_master_encryption_key
 
   key_policy = {
-    name        = "${var.resource_label}-OCI-ELZ-KEY-Policy-${var.environment_prefix}-BACKUP-${local.region_key[0]}"
+    name        = "KEY-Policy-${var.environment_prefix}-BACKUP-${local.region_key[0]}"
     description = "OCI Enterprise Landing Zone Key Policy For Backup Region"
 
     statements = local.create_key ? [
@@ -28,8 +28,8 @@ locals {
   }
 
   vss = {
-    host_scan_recipe_display_name              = "${var.resource_label}-OCI-ELZ-VSS-${var.environment_prefix}-BACKUP-${local.region_key[0]}"
-    host_scan_target_display_name              = "${var.resource_label}-OCI-ELZ-VSS-Target-${var.environment_prefix}-BACKUP-${local.region_key[0]}"
+    host_scan_recipe_display_name              = "VSS-${var.environment_prefix}-BACKUP-${local.region_key[0]}"
+    host_scan_target_display_name              = "VSS-Target-${var.environment_prefix}-BACKUP-${local.region_key[0]}"
     host_scan_recipe_agent_settings_scan_level = "STANDARD"
     host_scan_recipe_port_settings_scan_level  = "STANDARD"
     agent_cis_benchmark_settings_scan_level    = "STRICT"
@@ -37,7 +37,7 @@ locals {
   }
 
   bastion = {
-    name = "${var.resource_label}-OCI-ELZ-BAS-${var.environment_prefix}-BACKUP-${local.region_key[0]}"
+    name = "BAS-${var.environment_prefix}-BACKUP-${local.region_key[0]}"
   }
 }
 

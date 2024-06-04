@@ -61,7 +61,7 @@ module "identity" {
 locals {
   budget = {
     budget_description  = "Budget targeting ${var.environment_prefix} enviroment compartment"
-    budget_display_name = "OCI-ELZ-BGT-${var.environment_prefix}"
+    budget_display_name = "BGT-${var.environment_prefix}"
   }
 }
 
@@ -115,7 +115,7 @@ module "security" {
 locals {
   network = {
     vcn_description  = "VCN targeting ${var.environment_prefix} enviroment compartment"
-    vcn_display_name = "OCI-ELZ-VCN-${var.environment_prefix}-HUB-${local.region_key[0]}"
+    vcn_display_name = "VCN-${var.environment_prefix}-HUB-${local.region_key[0]}"
   }
 }
 

@@ -9,7 +9,7 @@ module "network" {
   workload_compartment_id = var.workload_compartment_id
   tenancy_ocid            = var.tenancy_ocid
   backup_region           = var.backup_region
-  environment_prefix      = var.environment_prefix
+  environment_prefix      = local.environment_prefix
 
   enable_internet_gateway_hub         = var.enable_internet_gateway_hub
   enable_nat_gateway_hub              = var.enable_nat_gateway_hub

@@ -6,7 +6,7 @@
 module "logging" {
   source                              = "../elz-backup-logging"
   backup_region                       = var.backup_region
-  environment_prefix                  = var.environment_prefix
+  environment_prefix                  = local.environment_prefix
   tenancy_ocid                        = var.tenancy_ocid
   security_compartment_id             = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.security.id
   master_encryption_key               = module.security.key_id

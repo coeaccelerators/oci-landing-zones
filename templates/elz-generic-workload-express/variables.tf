@@ -63,7 +63,7 @@ variable "workload_name" {
 
 variable "workload_compartment_name" {
   type        = string
-  description = "The name of the workload compartment by default OCI-ELZ-<Workload Name>-<Region>."
+  description = "The name of the workload compartment by default <Workload Name>-<Region>."
   default     = ""
 }
 
@@ -224,17 +224,17 @@ variable "network_admin_group_name" {
 variable "prod_workload_admin_group_name" {
   type        = string
   default     = ""
-  description = "The group name for the OCI Workload Administrators Group. Defaults to OCI-ELZ-UGP-P-WRK-ADMIN if blank or not provided."
+  description = "The group name for the OCI Workload Administrators Group. Defaults to UGP-P-WRK-ADMIN if blank or not provided."
 }
 variable "prod_application_admin_group_name" {
   type        = string
   default     = ""
-  description = "The group name for the OCI Application Administrators Group. Defaults to OCI-ELZ-UGP-P-APP-ADMIN if blank or not provided."
+  description = "The group name for the OCI Application Administrators Group. Defaults to UGP-P-APP-ADMIN if blank or not provided."
 }
 variable "prod_database_admin_group_name" {
   type        = string
   default     = ""
-  description = "The group name for the OCI Database Logging Administrators Group. Defaults to OCI-ELZ-UGP-P-DB-ADMIN if blank or not provided."
+  description = "The group name for the OCI Database Logging Administrators Group. Defaults to UGP-P-DB-ADMIN if blank or not provided."
 }
 
 variable "enable_bastion" {

@@ -3,7 +3,9 @@
 ######################################################################
 locals {
 
-  vcn_dns_label = lower(var.workload_name)
+  dns_prefix = join("", [var.workload_name, local.w_prefix])
+
+  vcn_dns_label = lower(local.dns_prefix)
 
   drg_id = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.drg_id
 
@@ -16,10 +18,10 @@ locals {
   ipsec_connection_static_routes = var.enable_vpn_or_fastconnect == "VPN" && var.enable_vpn_on_environment ? var.ipsec_connection_static_routes : []
   customer_onprem_ip_cidr        = var.enable_vpn_or_fastconnect == "FASTCONNECT" ? var.customer_onprem_ip_cidr : []
 
-  vcn_display_name = var.vcn_display_name != "" ? var.vcn_display_name : "OCI-ELZ-${local.workload_prefix}-EXP-SPK-VCN-${local.region_key[0]}"
+  vcn_display_name = var.vcn_display_name != "" ? var.vcn_display_name : "${local.workload_prefix}-EXP-SPK-VCN-${local.region_key[0]}"
 
-  route_table_display_name   = var.route_table_display_name != "" ? var.route_table_display_name : "OCI-ELZ-${local.workload_prefix}-EXP-SPK-RTPRV-${local.region_key[0]}"
-  security_list_display_name = var.security_list_display_name != "" ? var.security_list_display_name : "OCI-ELZ-${local.workload_prefix}-EXP-SPK-Security-List"
+  route_table_display_name   = var.route_table_display_name != "" ? var.route_table_display_name : "${local.workload_prefix}-EXP-SPK-RTPRV-${local.region_key[0]}"
+  security_list_display_name = var.security_list_display_name != "" ? var.security_list_display_name : "${local.workload_prefix}-EXP-SPK-Security-List"
 
   route_table_display_name_SUB001 = "${local.route_table_display_name}-SUB001"
   route_table_display_name_SUB002 = "${local.route_table_display_name}-SUB002"
@@ -29,8 +31,8 @@ locals {
   security_list_display_name_SUB002 = "${local.security_list_display_name}-SUB002"
   security_list_display_name_SUB003 = "${local.security_list_display_name}-SUB003"
 
-  nat_gateway_display_name     = var.nat_gateway_display_name != "" ? var.nat_gateway_display_name : "OCI-ELZ-${local.workload_prefix}-EXP-SPK-NAT-${local.region_key[0]}"
-  service_gateway_display_name = var.service_gateway_display_name != "" ? var.service_gateway_display_name : "OCI-ELZ-${local.workload_prefix}-EXP-SPK-SGW-${local.region_key[0]}"
+  nat_gateway_display_name     = var.nat_gateway_display_name != "" ? var.nat_gateway_display_name : "${local.workload_prefix}-EXP-SPK-NAT-${local.region_key[0]}"
+  service_gateway_display_name = var.service_gateway_display_name != "" ? var.service_gateway_display_name : "${local.workload_prefix}-EXP-SPK-SGW-${local.region_key[0]}"
 
   spoke_route_rules_options = {
     route_rules_hub_vcn = {
@@ -96,21 +98,21 @@ locals {
 
   workload_expansion_subnet_map = {
     Workload-Spoke-SUB001-Subnet = {
-      name                       = var.workload_private_spoke_subnet_SUB001_display_name != "" ? var.workload_private_spoke_subnet_SUB001_display_name : "OCI-ELZ-${local.workload_prefix}-EXP-SPK-SUB-${local.region_key[0]}-SUB001"
+      name                       = var.workload_private_spoke_subnet_SUB001_display_name != "" ? var.workload_private_spoke_subnet_SUB001_display_name : "${local.workload_prefix}-EXP-SPK-SUB-${local.region_key[0]}-SUB001"
       description                = "SUB001 Subnet"
       dns_label                  = var.workload_private_spoke_subnet_SUB001_dns_label
       cidr_block                 = var.workload_private_spoke_subnet_SUB001_cidr_block
       prohibit_public_ip_on_vnic = true
     }
     Workload-Spoke-SUB002-Subnet = {
-      name                       = var.workload_private_spoke_subnet_SUB002_display_name != "" ? var.workload_private_spoke_subnet_SUB002_display_name : "OCI-ELZ-${local.workload_prefix}-EXP-SPK-SUB-${local.region_key[0]}-SUB002"
+      name                       = var.workload_private_spoke_subnet_SUB002_display_name != "" ? var.workload_private_spoke_subnet_SUB002_display_name : "${local.workload_prefix}-EXP-SPK-SUB-${local.region_key[0]}-SUB002"
       description                = "SUB002 Subnet"
       dns_label                  = var.workload_private_spoke_subnet_SUB002_dns_label
       cidr_block                 = var.workload_private_spoke_subnet_SUB002_cidr_block
       prohibit_public_ip_on_vnic = true
     }
     Workload-Spoke-SUB003-Subnet = {
-      name                       = var.workload_private_spoke_subnet_SUB003_display_name != "" ? var.workload_private_spoke_subnet_SUB003_display_name : "OCI-ELZ-${local.workload_prefix}-EXP-SPK-SUB-${local.region_key[0]}-SUB003"
+      name                       = var.workload_private_spoke_subnet_SUB003_display_name != "" ? var.workload_private_spoke_subnet_SUB003_display_name : "${local.workload_prefix}-EXP-SPK-SUB-${local.region_key[0]}-SUB003"
       description                = "SUB003 Subnet"
       dns_label                  = var.workload_private_spoke_subnet_SUB003_dns_label
       cidr_block                 = var.workload_private_spoke_subnet_SUB003_cidr_block

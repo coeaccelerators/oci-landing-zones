@@ -9,7 +9,6 @@ variableGroups:
     variables:
       - backup_region
       - region
-      - environment_prefix
       - lzexpress_baseline_orm_stack_id
       - vcn_cidr_block
       - public_subnet_cidr_block
@@ -21,6 +20,7 @@ variableGroups:
       - api_fingerprint
       - api_private_key_path
       - api_private_key
+      - environment_prefix
   - title: Backup Region Variables
     visible: false
     variables:

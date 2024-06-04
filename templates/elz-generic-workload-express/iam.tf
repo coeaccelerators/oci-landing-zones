@@ -6,39 +6,39 @@ locals {
   workload_parent_compartment_id = var.is_prod_workload ? data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.prod.id : data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.nonprod.id
 
   workload_compartment = {
-    name        = var.workload_compartment_name != "" ? var.workload_compartment_name : "OCI-ELZ-${local.environment_prefix}-${var.workload_name}"
+    name        = var.workload_compartment_name != "" ? var.workload_compartment_name : "${local.environment_prefix}-${local.workload_prefix}"
     id          = var.workload_parent_compartment_id != "" ? var.workload_parent_compartment_id : local.workload_parent_compartment_id
     description = "Workload Compartment"
   }
 
   group_names = var.enable_datasafe ? {
-    workload_admin_group_name : var.workload_admin_group_name != "" ? var.workload_admin_group_name : "OCI-ELZ-UGP-${local.environment_prefix}-${var.workload_name}-WRK-ADMIN",
-    application_admin_group_name : var.application_admin_group_name != "" ? var.application_admin_group_name : "OCI-ELZ-UGP-${local.environment_prefix}-${var.workload_name}-APP-ADMIN",
-    database_admin_group_name : var.database_admin_group_name != "" ? var.database_admin_group_name : "OCI-ELZ-UGP-${local.environment_prefix}-${var.workload_name}-DB-ADMIN",
-    workload_developer_group_name : var.workload_developer_group_name != "" ? var.workload_developer_group_name : "OCI-ELZ-UGP-${local.environment_prefix}-${var.workload_name}-WRK-DEV",
-    datasafe_admin_group_name : var.datasafe_admin_group_name != "" ? var.datasafe_admin_group_name : "OCI-ELZ-UGP-${local.environment_prefix}-${var.workload_name}-DTSAFE-ADMIN",
-    datasafe_reports_group_name : var.datasafe_reports_group_name != "" ? var.datasafe_reports_group_name : "OCI-ELZ-UGP-${local.environment_prefix}-${var.workload_name}-DTSAFE-REPORTS",
+    workload_admin_group_name : var.workload_admin_group_name != "" ? var.workload_admin_group_name : "${local.environment_prefix}-GRP-${local.workload_prefix}-WRK-ADMIN",
+    application_admin_group_name : var.application_admin_group_name != "" ? var.application_admin_group_name : "${local.environment_prefix}-GRP-${local.workload_prefix}-APP-ADMIN",
+    database_admin_group_name : var.database_admin_group_name != "" ? var.database_admin_group_name : "${local.environment_prefix}-GRP-${local.workload_prefix}-DB-ADMIN",
+    workload_developer_group_name : var.workload_developer_group_name != "" ? var.workload_developer_group_name : "${local.environment_prefix}-GRP-${local.workload_prefix}-WRK-DEV",
+    datasafe_admin_group_name : var.datasafe_admin_group_name != "" ? var.datasafe_admin_group_name : "${local.environment_prefix}-GRP-${local.workload_prefix}-DTSAFE-ADMIN",
+    datasafe_reports_group_name : var.datasafe_reports_group_name != "" ? var.datasafe_reports_group_name : "${local.environment_prefix}-GRP-${local.workload_prefix}-DTSAFE-REPORTS",
     } : {
-    workload_admin_group_name : var.workload_admin_group_name != "" ? var.workload_admin_group_name : "OCI-ELZ-UGP-${local.environment_prefix}-${var.workload_name}-WRK-ADMIN",
-    application_admin_group_name : var.application_admin_group_name != "" ? var.application_admin_group_name : "OCI-ELZ-UGP-${local.environment_prefix}-${var.workload_name}-APP-ADMIN",
-    database_admin_group_name : var.database_admin_group_name != "" ? var.database_admin_group_name : "OCI-ELZ-UGP-${local.environment_prefix}-${var.workload_name}-DB-ADMIN",
-    workload_developer_group_name : var.workload_developer_group_name != "" ? var.workload_developer_group_name : "OCI-ELZ-UGP-${local.environment_prefix}-${var.workload_name}-WRK-DEV",
+    workload_admin_group_name : var.workload_admin_group_name != "" ? var.workload_admin_group_name : "${local.environment_prefix}-GRP-${local.workload_prefix}-WRK-ADMIN",
+    application_admin_group_name : var.application_admin_group_name != "" ? var.application_admin_group_name : "${local.environment_prefix}-GRP-${local.workload_prefix}-APP-ADMIN",
+    database_admin_group_name : var.database_admin_group_name != "" ? var.database_admin_group_name : "${local.environment_prefix}-GRP-${local.workload_prefix}-DB-ADMIN",
+    workload_developer_group_name : var.workload_developer_group_name != "" ? var.workload_developer_group_name : "${local.environment_prefix}-GRP-${local.workload_prefix}-WRK-DEV",
   }
 
   base_group_names = {
-    network_admin_group_name : var.network_admin_group_name != "" ? var.network_admin_group_name : "OCI-ELZ-UGP-${local.environment_prefix}-NET-ADMIN",
-    # security_admin_group_name : var.security_admin_group_name != "" ? var.security_admin_group_name : "OCI-ELZ-UGP-${local.environment_prefix}-SEC-ADMIN",
+    network_admin_group_name : var.network_admin_group_name != "" ? var.network_admin_group_name : "${local.environment_prefix}-GRP-NET-ADMIN",
+    # security_admin_group_name : var.security_admin_group_name != "" ? var.security_admin_group_name : "UGP-${local.environment_prefix}-SEC-ADMIN",
   }
 
-  # identity_domain_name = var.identity_domain_name != "" ? var.identity_domain_name : "OCI-ELZ-${local.environment_prefix}-IDT"
+  # identity_domain_name = var.identity_domain_name != "" ? var.identity_domain_name : "${local.environment_prefix}-IDT"
   identity_domain_name = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.identity_domain.display_name
 
   identity_domain_url = var.identity_domain_url != "" ? var.identity_domain_url : data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.identity_domain.url
 
   parent_compartment_names = {
-    #security_compartment_name : var.security_compartment_name != "" ? var.security_compartment_name : "OCI-ELZ-${local.environment_prefix}-SRD-SEC"
+    #security_compartment_name : var.security_compartment_name != "" ? var.security_compartment_name : "${local.environment_prefix}-SRD-SEC"
     security_compartment_name = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.security.name
-    # environment_compartment_name : var.environment_compartment_name != "" ? var.environment_compartment_name : "OCI-ELZ-${local.environment_prefix}-CMP"
+    # environment_compartment_name : var.environment_compartment_name != "" ? var.environment_compartment_name : "${local.environment_prefix}-CMP"
     environment_compartment_name = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.environment.name
   }
 
@@ -48,7 +48,7 @@ locals {
   }
 
   workload_expansion_policy = {
-    name        = "OCI-ELZ-WRK-EXP-${local.workload_prefix}-POLICY"
+    name        = "WRK-EXP-${local.workload_prefix}-POLICY"
     description = "OCI Workload Expansion Policy"
     statements = concat([
       "Allow group ${local.identity_domain_name}/${local.group_names["workload_admin_group_name"]} to manage virtual-network-family in compartment ${module.workload_compartment.compartment_name}",
@@ -93,7 +93,7 @@ locals {
   }
 
   workload_expansion_developer_policy = {
-    name        = "OCI-ELZ-WRK-EXP-${local.workload_prefix}-DEV-POLICY"
+    name        = "WRK-EXP-${local.workload_prefix}-DEV-POLICY"
     description = "OCI Workload Expansion Developer Policy"
     statements = [
       "Allow group ${local.identity_domain_name}/${local.group_names["workload_developer_group_name"]} to manage load-balancers in compartment ${module.workload_compartment.compartment_name}",
@@ -109,7 +109,7 @@ locals {
   }
 
   workload_expansion_policy_security = {
-    name        = "OCI-ELZ-WRK-EXP-${local.workload_prefix}-SEC-POLICY"
+    name        = "WRK-EXP-${local.workload_prefix}-SEC-POLICY"
     description = "OCI Workload Expansion Security Policy"
 
     statements = [
@@ -122,7 +122,7 @@ locals {
   }
 
   datasafe_admin_policy = {
-    name        = "OCI-ELZ-EXAWRK-EXP-${local.workload_prefix}-DTSAFE-ADMIN-POLICY"
+    name        = "EXAWRK-EXP-${local.workload_prefix}-DTSAFE-ADMIN-POLICY"
     description = "OCI Exadata Workload Expansion Data Safe Admin Policy"
 
     statements = var.enable_datasafe ? [

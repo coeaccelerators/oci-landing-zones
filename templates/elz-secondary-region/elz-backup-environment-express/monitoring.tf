@@ -2,7 +2,7 @@ module "monitoring" {
   source              = "../elz-backup-monitoring"
   tenancy_ocid        = var.tenancy_ocid
   backup_region       = var.backup_region
-  environment_prefix  = var.environment_prefix
+  environment_prefix  = local.environment_prefix
   resource_label      = var.resource_label
   home_compartment_id = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.environment.compartment_id
   is_baseline_deploy  = var.is_baseline_deploy

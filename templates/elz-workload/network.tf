@@ -17,11 +17,11 @@ module "workload_expansion_spoke" {
   #Spoke VCN Variables
   workload_spoke_vcn_cidr = var.workload_spoke_vcn_cidr
   vcn_dns_label           = var.vcn_dns_label
-  vcn_display_name        = var.vcn_display_name != "" ? var.vcn_display_name : "OCI-ELZ-${var.workload_prefix}-EXP-SPK-VCN-${local.region_key[0]}"
+  vcn_display_name        = var.vcn_display_name != "" ? var.vcn_display_name : "${var.workload_prefix}-EXP-SPK-VCN-${local.region_key[0]}"
   #Spoke VCN Subnet Variables
-  workload_private_spoke_subnet_web_display_name = var.workload_private_spoke_subnet_web_display_name != "" ? var.workload_private_spoke_subnet_web_display_name : "OCI-ELZ-${var.workload_prefix}-EXP-SPK-VCN-SUB-${local.region_key[0]}-001"
-  workload_private_spoke_subnet_app_display_name = var.workload_private_spoke_subnet_app_display_name != "" ? var.workload_private_spoke_subnet_app_display_name : "OCI-ELZ-${var.workload_prefix}-EXP-SPK-VCN-SUB-${local.region_key[0]}-002"
-  workload_private_spoke_subnet_db_display_name  = var.workload_private_spoke_subnet_db_display_name != "" ? var.workload_private_spoke_subnet_db_display_name : "OCI-ELZ-${var.workload_prefix}-EXP-SPK-VCN-SUB-${local.region_key[0]}-003"
+  workload_private_spoke_subnet_web_display_name = var.workload_private_spoke_subnet_web_display_name != "" ? var.workload_private_spoke_subnet_web_display_name : "${var.workload_prefix}-EXP-SPK-VCN-SUB-${local.region_key[0]}-001"
+  workload_private_spoke_subnet_app_display_name = var.workload_private_spoke_subnet_app_display_name != "" ? var.workload_private_spoke_subnet_app_display_name : "${var.workload_prefix}-EXP-SPK-VCN-SUB-${local.region_key[0]}-002"
+  workload_private_spoke_subnet_db_display_name  = var.workload_private_spoke_subnet_db_display_name != "" ? var.workload_private_spoke_subnet_db_display_name : "${var.workload_prefix}-EXP-SPK-VCN-SUB-${local.region_key[0]}-003"
   workload_private_spoke_subnet_web_cidr_block   = var.workload_private_spoke_subnet_web_cidr_block
   workload_private_spoke_subnet_app_cidr_block   = var.workload_private_spoke_subnet_app_cidr_block
   workload_private_spoke_subnet_db_cidr_block    = var.workload_private_spoke_subnet_db_cidr_block
@@ -32,10 +32,10 @@ module "workload_expansion_spoke" {
   #VCN Gateway Variables
   enable_nat_gateway_spoke      = var.enable_nat_gateway_spoke
   enable_service_gateway_spoke  = var.enable_service_gateway_spoke
-  nat_gateway_display_name      = var.nat_gateway_display_name != "" ? var.nat_gateway_display_name : "OCI-ELZ-${var.workload_prefix}-EXP-SPK-NAT-${local.region_key[0]}"
-  service_gateway_display_name  = var.service_gateway_display_name != "" ? var.service_gateway_display_name : "OCI-ELZ-${var.workload_prefix}-EXP-SPK-SGW-${local.region_key[0]}"
-  route_table_display_name      = var.route_table_display_name != "" ? var.route_table_display_name : "OCI-ELZ-${var.workload_prefix}-EXP-SPK-RTPRV-${local.region_key[0]}"
-  security_list_display_name    = var.security_list_display_name != "" ? var.security_list_display_name : "OCI-ELZ-${var.workload_prefix}-EXP-SPK-Security-List"
+  nat_gateway_display_name      = var.nat_gateway_display_name != "" ? var.nat_gateway_display_name : "${var.workload_prefix}-EXP-SPK-NAT-${local.region_key[0]}"
+  service_gateway_display_name  = var.service_gateway_display_name != "" ? var.service_gateway_display_name : "${var.workload_prefix}-EXP-SPK-SGW-${local.region_key[0]}"
+  route_table_display_name      = var.route_table_display_name != "" ? var.route_table_display_name : "${var.workload_prefix}-EXP-SPK-RTPRV-${local.region_key[0]}"
+  security_list_display_name    = var.security_list_display_name != "" ? var.security_list_display_name : "${var.workload_prefix}-EXP-SPK-Security-List"
   drg_id                        = var.drg_id
   hub_public_subnet_cidr_block  = var.hub_public_subnet_cidr_block
   hub_private_subnet_cidr_block = var.hub_private_subnet_cidr_block

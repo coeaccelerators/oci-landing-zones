@@ -24,7 +24,7 @@ is_baseline_deploy = true
 # Provide Compartment Name and OCID
 
 #environment_compartment_id = ""
-home_compartment_name = "OCI-ELZ-CMP-HOME"
+home_compartment_name = "CMP-HOME"
 #home_compartment_id        = ""
 #security_compartment_id    = ""
 #network_compartment_id     = ""
@@ -70,7 +70,7 @@ nfw_instance_policy       = "nfw_policy_name"
 enable_vpn_or_fastconnect         = "NONE"
 enable_vpn_on_environment         = false
 cpe_ip_address                    = "10.0.0.0"
-cpe_display_name                  = "OCI-ELZ-CPE-P-HUB-001"
+cpe_display_name                  = "CPE-P-HUB-001"
 cpe_vendor                        = 4
 ipsec_connection_static_routes    = ["10.0.0.0/16", "11.0.0.0/16"]
 remote_peering_connection_peer_id = ""

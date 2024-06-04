@@ -8,45 +8,45 @@
 # -----------------------------------------------------------------------------
 locals {
   environment_compartment = {
-    name        = var.environment_compartment_name != "" ? var.environment_compartment_name : "OCI-ELZ-${var.environment_prefix}-CMP"
+    name        = var.environment_compartment_name != "" ? var.environment_compartment_name : "${var.environment_prefix}"
     description = "Environment Compartment"
   }
 
   shared_infra_compartment = {
-    #name        = "OCI-ELZ-${var.environment_prefix}-SRD-CMP-${local.region_key[0]}"
-    name        = "OCI-ELZ-${var.environment_prefix}-SRD-CMP"
+    #name        = "${var.environment_prefix}-SRD-CMP-${local.region_key[0]}"
+    name        = "${var.environment_prefix}-SHARED"
     description = "Shared environment Resources Compartment"
   }
 
   network_compartment = {
-    name        = "OCI-ELZ-${var.environment_prefix}-SRD-NET"
+    name        = "${var.environment_prefix}-SHARED-NET"
     description = "Network Compartment"
   }
 
   security_compartment = {
-    name        = "OCI-ELZ-${var.environment_prefix}-SRD-SEC"
+    name        = "${var.environment_prefix}-SHARED-SEC"
     description = "Security Compartment"
   }
 
   logging_compartment = {
-    #name        = "OCI-ELZ-${var.environment_prefix}-LOG-${local.region_key[0]}"
-    name        = "OCI-ELZ-${var.environment_prefix}-LOG"
+    #name        = "${var.environment_prefix}-LOG-${local.region_key[0]}"
+    name        = "${var.environment_prefix}-LOG"
     description = "Logging Compartment"
   }
 
   backup_compartment = {
-    #name        = "OCI-ELZ-${var.environment_prefix}-BAC-TF-${local.region_key[0]}"
-    name        = "OCI-ELZ-${var.environment_prefix}-BAC-TF"
+    #name        = "${var.environment_prefix}-BAC-TF-${local.region_key[0]}"
+    name        = "${var.environment_prefix}-BAC-TF"
     description = "Backup Compartment"
   }
 
   prod_compartment = {
-    name        = "OCI-ELZ-${var.environment_prefix}-PROD"
+    name        = "${var.environment_prefix}-PROD"
     description = "PROD Workload Compartment"
   }
 
   nonprod_compartment = {
-    name        = "OCI-ELZ-${var.environment_prefix}-NONPROD"
+    name        = "${var.environment_prefix}-NONPROD"
     description = "NONPROD Workload Compartment"
   }
 

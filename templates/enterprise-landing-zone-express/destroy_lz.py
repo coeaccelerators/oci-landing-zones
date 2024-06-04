@@ -54,28 +54,28 @@ class DestroyLandingZone:
         )
         parent_cmp_id = parent_cmps_response.data[0].id
 
-        env_cmp_name = f"OCI-ELZ-{env_prefix}-CMP"
+        env_cmp_name = f"{env_prefix}-CMP"
         env_cmps_response = self.identity_client.list_compartments(
             compartment_id=parent_cmp_id,
             name=env_cmp_name
         )
         env_cmp_id = env_cmps_response.data[0].id
 
-        log_cmp_name = f"OCI-ELZ-{env_prefix}-LOG-{self.region_key}"
+        log_cmp_name = f"{env_prefix}-LOG-{self.region_key}"
         log_cmps_response = self.identity_client.list_compartments(
             compartment_id=env_cmp_id,
             name=log_cmp_name
         )
         log_cmp_id = log_cmps_response.data[0].id
 
-        shared_cmp_name = f"OCI-ELZ-{env_prefix}-SRD-CMP-{self.region_key}"
+        shared_cmp_name = f"{env_prefix}-SRD-CMP-{self.region_key}"
         shared_cmps_response = self.identity_client.list_compartments(
             compartment_id=env_cmp_id,
             name=shared_cmp_name
         )
         shared_cmp_id = shared_cmps_response.data[0].id
 
-        security_cmp_name = f"OCI-ELZ-{env_prefix}-SRD-SEC"
+        security_cmp_name = f"{env_prefix}-SRD-SEC"
         security_cmps_response = self.identity_client.list_compartments(
             compartment_id=shared_cmp_id,
             name=security_cmp_name
@@ -386,7 +386,7 @@ if __name__ == "__main__":
         description="Destroy Landing Zone Lingering Resources")
 
     parser.add_argument("-c", "--cmp",
-                        default="OCI-ELZ-CMP-HOME",
+                        default="CMP-HOME",
                         help="Name of the parent cmp")
 
     parser.add_argument("-r", "--region_key",

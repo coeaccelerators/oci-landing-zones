@@ -36,7 +36,7 @@ variable "is_nonprod_env_deploy" {
 # -----------------------------------------------------------------------------
 variable "home_compartment_name" {
   type        = string
-  default     = "OCI-ELZ-CMP-HOME"
+  default     = "CMP-HOME"
   description = "The name of the Landing Zone home compartment."
 }
 
@@ -82,47 +82,47 @@ variable "prod_domain_admin_email" {
 variable "prod_network_admin_group_name" {
   type        = string
   default     = ""
-  description = "The group name for the OCI Landing Zone Network Administrators Group. Defaults to OCI-ELZ-UGP-P-NET-ADMIN if blank or not provided."
+  description = "The group name for the OCI Landing Zone Network Administrators Group. Defaults to UGP-P-NET-ADMIN if blank or not provided."
 }
 
 variable "prod_security_admin_group_name" {
   type        = string
   default     = ""
-  description = "The group name for the OCI Landing Zone Security Administrators Group. Defaults to OCI-ELZ-UGP-P-SEC-ADMIN if blank or not provided."
+  description = "The group name for the OCI Landing Zone Security Administrators Group. Defaults to UGP-P-SEC-ADMIN if blank or not provided."
 }
 
 variable "prod_iam_admin_group_name" {
   type        = string
   default     = ""
-  description = "The group name for the OCI Landing Zone IAM Administrators Group. Defaults to OCI-ELZ-UGP-P-IDP-ADMIN if blank or not provided."
+  description = "The group name for the OCI Landing Zone IAM Administrators Group. Defaults to UGP-P-IDP-ADMIN if blank or not provided."
 }
 
 variable "prod_platform_admin_group_name" {
   type        = string
   default     = ""
-  description = "The group name for the OCI Landing Zone Platform Administrators Group. Defaults to OCI-ELZ-UGP-P-PLT-ADMIN if blank or not provided."
+  description = "The group name for the OCI Landing Zone Platform Administrators Group. Defaults to UGP-P-PLT-ADMIN if blank or not provided."
 }
 
 variable "prod_ops_admin_group_name" {
   type        = string
   default     = ""
-  description = "The group name for the OCI Landing Zone Ops Administrators Group. Defaults to OCI-ELZ-UGP-P-OPS-ADMIN if blank or not provided."
+  description = "The group name for the OCI Landing Zone Ops Administrators Group. Defaults to UGP-P-OPS-ADMIN if blank or not provided."
 }
 
 variable "prod_workload_admin_group_name" {
   type        = string
   default     = ""
-  description = "The group name for the OCI Workload Administrators Group. Defaults to OCI-ELZ-UGP-P-WRK-ADMIN if blank or not provided."
+  description = "The group name for the OCI Workload Administrators Group. Defaults to UGP-P-WRK-ADMIN if blank or not provided."
 }
 variable "prod_application_admin_group_name" {
   type        = string
   default     = ""
-  description = "The group name for the OCI Application Administrators Group. Defaults to OCI-ELZ-UGP-P-APP-ADMIN if blank or not provided."
+  description = "The group name for the OCI Application Administrators Group. Defaults to UGP-P-APP-ADMIN if blank or not provided."
 }
 variable "prod_database_admin_group_name" {
   type        = string
   default     = ""
-  description = "The group name for the OCI Database Logging Administrators Group. Defaults to OCI-ELZ-UGP-P-DB-ADMIN if blank or not provided."
+  description = "The group name for the OCI Database Logging Administrators Group. Defaults to UGP-P-DB-ADMIN if blank or not provided."
 }
 
 variable "prod_workload_compartment_names" {
@@ -170,47 +170,47 @@ variable "nonprod_domain_admin_email" {
 variable "nonprod_network_admin_group_name" {
   type        = string
   default     = ""
-  description = "The group name for the OCI Landing Zone Network Administrators Group. Defaults to OCI-ELZ-UGP-N-NET-ADMIN if blank or not provided."
+  description = "The group name for the OCI Landing Zone Network Administrators Group. Defaults to UGP-N-NET-ADMIN if blank or not provided."
 }
 
 variable "nonprod_security_admin_group_name" {
   type        = string
   default     = ""
-  description = "The group name for the OCI Landing Zone Security Administrators Group. Defaults to OCI-ELZ-UGP-N-SEC-ADMIN if blank or not provided."
+  description = "The group name for the OCI Landing Zone Security Administrators Group. Defaults to UGP-N-SEC-ADMIN if blank or not provided."
 }
 
 variable "nonprod_iam_admin_group_name" {
   type        = string
   default     = ""
-  description = "The group name for the OCI Landing Zone IAM Administrators Group. Defaults to OCI-ELZ-UGP-N-IDP-ADMIN if blank or not provided."
+  description = "The group name for the OCI Landing Zone IAM Administrators Group. Defaults to UGP-N-IDP-ADMIN if blank or not provided."
 }
 
 variable "nonprod_platform_admin_group_name" {
   type        = string
   default     = ""
-  description = "The group name for the OCI Landing Zone Platform Administrators Group. Defaults to OCI-ELZ-UGP-N-PLT-ADMIN if blank or not provided."
+  description = "The group name for the OCI Landing Zone Platform Administrators Group. Defaults to UGP-N-PLT-ADMIN if blank or not provided."
 }
 
 variable "nonprod_ops_admin_group_name" {
   type        = string
   default     = ""
-  description = "The group name for the OCI Landing Zone Ops Administrators Group. Defaults to OCI-ELZ-UGP-N-OPS-ADMIN if blank or not provided."
+  description = "The group name for the OCI Landing Zone Ops Administrators Group. Defaults to UGP-N-OPS-ADMIN if blank or not provided."
 }
 
 variable "nonprod_workload_admin_group_name" {
   type        = string
   default     = ""
-  description = "The group name for the OCI Workload Administrators Group. Defaults to OCI-ELZ-UGP-N-WRK-ADMIN if blank or not provided."
+  description = "The group name for the OCI Workload Administrators Group. Defaults to UGP-N-WRK-ADMIN if blank or not provided."
 }
 variable "nonprod_application_admin_group_name" {
   type        = string
   default     = ""
-  description = "The group name for the OCI Application Administrators Group. Defaults to OCI-ELZ-UGP-N-APP-ADMIN if blank or not provided."
+  description = "The group name for the OCI Application Administrators Group. Defaults to UGP-N-APP-ADMIN if blank or not provided."
 }
 variable "nonprod_database_admin_group_name" {
   type        = string
   default     = ""
-  description = "The group name for the OCI Database Logging Administrators Group. Defaults to OCI-ELZ-UGP-N-DB-ADMIN if blank or not provided."
+  description = "The group name for the OCI Database Logging Administrators Group. Defaults to UGP-N-DB-ADMIN if blank or not provided."
 }
 
 variable "nonprod_workload_compartment_names" {

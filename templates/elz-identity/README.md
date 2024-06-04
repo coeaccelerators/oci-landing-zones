@@ -68,7 +68,7 @@
 | <a name="input_tenancy_ocid"></a> [tenancy\_ocid](#input\_tenancy\_ocid) | The OCID of tenancy | `string` | n/a | yes |
 | <a name="input_workload_admin_group_name"></a> [workload\_admin\_group\_name](#input\_workload\_admin\_group\_name) | The group name for the OCI Workload Administrators Group | `string` | `""` | no |
 | <a name="input_workload_compartment_id"></a> [workload\_compartment\_id](#input\_workload\_compartment\_id) | n/a | `string` | n/a | yes |
-| <a name="input_workload_compartment_name"></a> [workload\_compartment\_name](#input\_workload\_compartment\_name) | The name of the workload compartment by default OCI-ELZ-<Workload Name>-<Region>. | `string` | `""` | no |
+| <a name="input_workload_compartment_name"></a> [workload\_compartment\_name](#input\_workload\_compartment\_name) | The name of the workload compartment by default <Workload Name>-<Region>. | `string` | `""` | no |
 | <a name="input_workload_compartment_names"></a> [workload\_compartment\_names](#input\_workload\_compartment\_names) | The names of the workload compartments to update policies for the Admin Groups | `list(string)` | `[]` | no |
 
 ## Outputs

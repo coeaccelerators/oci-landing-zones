@@ -9,7 +9,7 @@ module "security" {
   backup_region                = var.backup_region
   create_master_encryption_key = var.create_master_encryption_key
   enable_replication           = var.enable_replication
-  environment_prefix           = var.environment_prefix
+  environment_prefix           = local.environment_prefix
   replica_region               = var.replica_region
   resource_label               = var.resource_label
   security_compartment_id      = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.security.id

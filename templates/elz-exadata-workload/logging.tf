@@ -5,7 +5,7 @@
 
 locals {
   vcn_flow_log = {
-    log_display_name    = "${var.resource_label}-OCI-ELZ-VCN-FLOW-LOG-${var.environment_prefix}-${var.workload_name}"
+    log_display_name    = "VCN-FLOW-LOG-${var.environment_prefix}-${var.workload_name}"
     log_type            = "SERVICE"
     log_source_category = "all"
     log_source_service  = "flowlogs"
@@ -13,10 +13,10 @@ locals {
   }
 
   subnets_map = {
-    SPK1 : module.exadata_workload_expansion_spoke.subnets["OCI-ELZ-${var.workload_prefix}-EXA-SPK-SUB-${local.region_key[0]}-LB"]
-    SPK2 : module.exadata_workload_expansion_spoke.subnets["OCI-ELZ-${var.workload_prefix}-EXA-SPK-SUB-${local.region_key[0]}-APP"]
-    SPK3 : module.exadata_workload_expansion_spoke.subnets["OCI-ELZ-${var.workload_prefix}-EXA-SPK-SUB-${local.region_key[0]}-CLT"]
-    SPK4 : module.exadata_workload_expansion_spoke.subnets["OCI-ELZ-${var.workload_prefix}-EXA-SPK-SUB-${local.region_key[0]}-BKP"]
+    SPK1 : module.exadata_workload_expansion_spoke.subnets["${var.workload_prefix}-EXA-SPK-SUB-${local.region_key[0]}-LB"]
+    SPK2 : module.exadata_workload_expansion_spoke.subnets["${var.workload_prefix}-EXA-SPK-SUB-${local.region_key[0]}-APP"]
+    SPK3 : module.exadata_workload_expansion_spoke.subnets["${var.workload_prefix}-EXA-SPK-SUB-${local.region_key[0]}-CLT"]
+    SPK4 : module.exadata_workload_expansion_spoke.subnets["${var.workload_prefix}-EXA-SPK-SUB-${local.region_key[0]}-BKP"]
   }
 
 }

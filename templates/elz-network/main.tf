@@ -8,18 +8,18 @@
 ##############################################################################
 locals {
   vcn_hub = {
-    name      = "OCI-ELZ-VCN-${var.environment_prefix}-HUB-${local.region_key[0]}"
+    name      = "VCN-${var.environment_prefix}-HUB-${local.region_key[0]}"
     dns_label = "hublabel"
   }
   vcn-hub-info = {
-    hub_public_subnet_display_name  = "OCI-ELZ-SUB-PUBLIC-${var.environment_prefix}-HUB-${local.region_key[0]}001"
+    hub_public_subnet_display_name  = "SUB-PUBLIC-${var.environment_prefix}-HUB-${local.region_key[0]}001"
     hub_public_subnet_description   = "Hub Public Subnet"
-    hub_private_subnet_display_name = "OCI-ELZ-SUB-PRIVATE-${var.environment_prefix}-HUB-${local.region_key[0]}002"
+    hub_private_subnet_display_name = "SUB-PRIVATE-${var.environment_prefix}-HUB-${local.region_key[0]}002"
     hub_private_subnet_description  = "Hub Private Subnet"
-    hub_security_list_display_name  = "OCI-ELZ-${var.environment_prefix}-Hub-Security-List"
-    igw_gateway_display_name        = "OCI-ELZ-IGW-${var.environment_prefix}-HUB"
-    nat_gateway_display_name        = "OCI-ELZ-NGW-${var.environment_prefix}-HUB"
-    srv_gateway_display_name        = "OCI-ELZ-SGW-${var.environment_prefix}-HUB"
+    hub_security_list_display_name  = "${var.environment_prefix}-Hub-Security-List"
+    igw_gateway_display_name        = "IGW-${var.environment_prefix}-HUB"
+    nat_gateway_display_name        = "NGW-${var.environment_prefix}-HUB"
+    srv_gateway_display_name        = "SGW-${var.environment_prefix}-HUB"
   }
 }
 module "hub" {
@@ -84,17 +84,17 @@ module "hub" {
 
 locals {
   vcn_spoke = {
-    name      = "OCI-ELZ-VCN-${var.environment_prefix}-SPK-${local.region_key[0]}001"
+    name      = "VCN-${var.environment_prefix}-SPK-${local.region_key[0]}001"
     dns_label = "spokelabel"
   }
   vcn-spoke-info = {
-    spoke_security_list_display_name = "OCI-ELZ-${var.environment_prefix}-Spk-Security-List"
-    route_table_display_name         = "OCI-ELZ-RTPRV-${var.environment_prefix}-SPK001"
-    nat_gateway_display_name         = "OCI-ELZ-NGW-${var.environment_prefix}-SPK"
-    service_gateway_display_name     = "OCI-ELZ-SGW-${var.environment_prefix}-SPK"
-    subnet_web_display_name          = "OCI-ELZ-SUB-${var.environment_prefix}-SPK-${local.region_key[0]}001"
-    subnet_app_display_name          = "OCI-ELZ-SUB-${var.environment_prefix}-SPK-${local.region_key[0]}002"
-    subnet_db_display_name           = "OCI-ELZ-SUB-${var.environment_prefix}-SPK-${local.region_key[0]}003"
+    spoke_security_list_display_name = "${var.environment_prefix}-Spk-Security-List"
+    route_table_display_name         = "RTPRV-${var.environment_prefix}-SPK001"
+    nat_gateway_display_name         = "NGW-${var.environment_prefix}-SPK"
+    service_gateway_display_name     = "SGW-${var.environment_prefix}-SPK"
+    subnet_web_display_name          = "SUB-${var.environment_prefix}-SPK-${local.region_key[0]}001"
+    subnet_app_display_name          = "SUB-${var.environment_prefix}-SPK-${local.region_key[0]}002"
+    subnet_db_display_name           = "SUB-${var.environment_prefix}-SPK-${local.region_key[0]}003"
   }
   #nfw_ip_ocid_value                = ["null", "module.hub.oci_network_firewall_ip_address" ] [var.enable_network_firewall ? 0 : 1]
   #nfw_ip_ocid_value                 = try(module.hub.oci_network_firewall_ip_address, null)

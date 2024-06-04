@@ -1,8 +1,8 @@
 locals {
 
   osms_dynamic_group_workload = {
-    dynamic_group_name        = "${var.resource_label}-OCI-ELZ-DG-${local.environment_prefix}-${var.workload_name}"
-    dynamic_group_description = "OCI ELZ Dynamic Group - ${var.workload_name}"
+    dynamic_group_name        = "DG-${local.environment_prefix}-${local.workload_prefix}"
+    dynamic_group_description = "OCI ELZ Dynamic Group - ${local.workload_prefix}"
 
     general_matching_rule = <<EOT
     Any {
@@ -12,7 +12,7 @@ locals {
   }
 
   bastion = {
-    name = "${var.resource_label}-OCI-ELZ-BAS-${local.environment_prefix}-${var.workload_name}"
+    name = "BAS-${local.environment_prefix}-${local.workload_prefix}"
   }
 
 }
@@ -30,7 +30,7 @@ module "osms_dynamic_group" {
 module "bastion" {
   source                               = "../../modules/bastion"
   count                                = var.enable_bastion ? 1 : 0
-  target_subnet_id                     = module.workload_spoke_SUB001_subnet.subnets["OCI-ELZ-${local.workload_prefix}-EXP-SPK-SUB-${local.region_key[0]}-SUB001"]
+  target_subnet_id                     = module.workload_spoke_SUB001_subnet.subnets["${local.workload_prefix}-EXP-SPK-SUB-${local.region_key[0]}-SUB001"]
   bastion_client_cidr_block_allow_list = var.bastion_client_cidr_block_allow_list
   bastion_name                         = local.bastion.name
   # compartment_id                       = var.security_compartment_id

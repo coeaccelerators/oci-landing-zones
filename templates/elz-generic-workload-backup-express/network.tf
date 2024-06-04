@@ -3,7 +3,9 @@
 ######################################################################
 locals {
 
-  vcn_dns_label = lower(var.workload_name)
+  dns_prefix = join("", [var.workload_name, local.w_prefix])
+
+  vcn_dns_label = lower(local.dns_prefix)
 
   # drg_id = local.drg_id
 
@@ -16,10 +18,10 @@ locals {
   ipsec_connection_static_routes = var.enable_vpn_or_fastconnect == "VPN" && var.enable_vpn_on_environment ? var.ipsec_connection_static_routes : []
   customer_onprem_ip_cidr        = var.enable_vpn_or_fastconnect == "FASTCONNECT" ? var.customer_onprem_ip_cidr : []
 
-  vcn_display_name = var.vcn_display_name != "" ? var.vcn_display_name : "OCI-ELZ-${local.workload_prefix}-EXP-SPK-VCN-${local.region_key[0]}"
+  vcn_display_name = var.vcn_display_name != "" ? var.vcn_display_name : "${local.workload_prefix}-EXP-SPK-VCN-${local.region_key[0]}"
 
-  route_table_display_name   = var.route_table_display_name != "" ? var.route_table_display_name : "OCI-ELZ-${local.workload_prefix}-EXP-SPK-RTPRV-${local.region_key[0]}"
-  security_list_display_name = var.security_list_display_name != "" ? var.security_list_display_name : "OCI-ELZ-${local.workload_prefix}-EXP-SPK-Security-List"
+  route_table_display_name   = var.route_table_display_name != "" ? var.route_table_display_name : "${local.workload_prefix}-EXP-SPK-RTPRV-${local.region_key[0]}"
+  security_list_display_name = var.security_list_display_name != "" ? var.security_list_display_name : "${local.workload_prefix}-EXP-SPK-Security-List"
 
   route_table_display_name_SUB001 = "${local.route_table_display_name}-SUB001"
   route_table_display_name_SUB002 = "${local.route_table_display_name}-SUB002"
@@ -29,8 +31,8 @@ locals {
   security_list_display_name_SUB002 = "${local.security_list_display_name}-SUB002"
   security_list_display_name_SUB003 = "${local.security_list_display_name}-SUB003"
 
-  nat_gateway_display_name     = var.nat_gateway_display_name != "" ? var.nat_gateway_display_name : "OCI-ELZ-${local.workload_prefix}-EXP-SPK-NAT-${local.region_key[0]}"
-  service_gateway_display_name = var.service_gateway_display_name != "" ? var.service_gateway_display_name : "OCI-ELZ-${local.workload_prefix}-EXP-SPK-SGW-${local.region_key[0]}"
+  nat_gateway_display_name     = var.nat_gateway_display_name != "" ? var.nat_gateway_display_name : "${local.workload_prefix}-EXP-SPK-NAT-${local.region_key[0]}"
+  service_gateway_display_name = var.service_gateway_display_name != "" ? var.service_gateway_display_name : "${local.workload_prefix}-EXP-SPK-SGW-${local.region_key[0]}"
 
   spoke_route_rules_options = {
     route_rules_hub_vcn = {
@@ -96,21 +98,21 @@ locals {
 
   workload_expansion_subnet_map = {
     Workload-Spoke-SUB001-Subnet = {
-      name                       = var.workload_private_spoke_subnet_SUB001_display_name != "" ? var.workload_private_spoke_subnet_SUB001_display_name : "OCI-ELZ-${local.workload_prefix}-EXP-SPK-SUB-${local.region_key[0]}-SUB001"
+      name                       = var.workload_private_spoke_subnet_SUB001_display_name != "" ? var.workload_private_spoke_subnet_SUB001_display_name : "${local.workload_prefix}-EXP-SPK-SUB-${local.region_key[0]}-SUB001"
       description                = "SUB001 Subnet"
       dns_label                  = var.workload_private_spoke_subnet_SUB001_dns_label
       cidr_block                 = var.workload_private_spoke_subnet_SUB001_cidr_block
       prohibit_public_ip_on_vnic = true
     }
     Workload-Spoke-SUB002-Subnet = {
-      name                       = var.workload_private_spoke_subnet_SUB002_display_name != "" ? var.workload_private_spoke_subnet_SUB002_display_name : "OCI-ELZ-${local.workload_prefix}-EXP-SPK-SUB-${local.region_key[0]}-SUB002"
+      name                       = var.workload_private_spoke_subnet_SUB002_display_name != "" ? var.workload_private_spoke_subnet_SUB002_display_name : "${local.workload_prefix}-EXP-SPK-SUB-${local.region_key[0]}-SUB002"
       description                = "SUB002 Subnet"
       dns_label                  = var.workload_private_spoke_subnet_SUB002_dns_label
       cidr_block                 = var.workload_private_spoke_subnet_SUB002_cidr_block
       prohibit_public_ip_on_vnic = true
     }
     Workload-Spoke-SUB003-Subnet = {
-      name                       = var.workload_private_spoke_subnet_SUB003_display_name != "" ? var.workload_private_spoke_subnet_SUB003_display_name : "OCI-ELZ-${local.workload_prefix}-EXP-SPK-SUB-${local.region_key[0]}-SUB003"
+      name                       = var.workload_private_spoke_subnet_SUB003_display_name != "" ? var.workload_private_spoke_subnet_SUB003_display_name : "${local.workload_prefix}-EXP-SPK-SUB-${local.region_key[0]}-SUB003"
       description                = "SUB003 Subnet"
       dns_label                  = var.workload_private_spoke_subnet_SUB003_dns_label
       cidr_block                 = var.workload_private_spoke_subnet_SUB003_cidr_block
@@ -178,7 +180,7 @@ module "workload_spoke_vcn" {
   source = "../../modules/vcn"
 
   vcn_cidrs           = var.workload_spoke_vcn_cidr
-  compartment_ocid_id = module.workload_compartment.compartment_id
+  compartment_ocid_id = local.workload_compartment_id
   vcn_display_name    = local.vcn_display_name
   vcn_dns_label       = local.vcn_dns_label
   enable_ipv6         = false
@@ -195,7 +197,7 @@ module "workload_spoke_vcn" {
 module "workload_spoke_SUB001_security_list" {
   source = "../../modules/security-list-old"
 
-  compartment_id             = module.workload_compartment.compartment_id
+  compartment_id             = local.workload_compartment_id
   vcn_id                     = module.workload_spoke_vcn.vcn_id
   security_list_display_name = local.security_list_display_name_SUB001
 
@@ -210,7 +212,7 @@ module "workload_spoke_SUB001_security_list" {
 module "workload_spoke_SUB002_security_list" {
   source = "../../modules/security-list-old"
 
-  compartment_id             = module.workload_compartment.compartment_id
+  compartment_id             = local.workload_compartment_id
   vcn_id                     = module.workload_spoke_vcn.vcn_id
   security_list_display_name = local.security_list_display_name_SUB002
 
@@ -226,7 +228,7 @@ module "workload_spoke_SUB002_security_list" {
 module "workload_spoke_SUB003_security_list" {
   source = "../../modules/security-list-old"
 
-  compartment_id             = module.workload_compartment.compartment_id
+  compartment_id             = local.workload_compartment_id
   vcn_id                     = module.workload_spoke_vcn.vcn_id
   security_list_display_name = local.security_list_display_name_SUB003
 
@@ -247,7 +249,7 @@ module "workload_spoke_SUB001_subnet" {
   source = "../../modules/subnet"
 
   subnet_map            = { Workload-Spoke-SUB001-Subnet = local.workload_expansion_subnet_map.Workload-Spoke-SUB001-Subnet }
-  compartment_id        = module.workload_compartment.compartment_id
+  compartment_id        = local.workload_compartment_id
   vcn_id                = module.workload_spoke_vcn.vcn_id
   subnet_route_table_id = module.workload_spoke_route_table_SUB001.route_table_id
   subnet_security_list_id = toset([
@@ -264,7 +266,7 @@ module "workload_spoke_SUB002_subnet" {
   source = "../../modules/subnet"
 
   subnet_map            = { Workload-Spoke-SUB002-Subnet = local.workload_expansion_subnet_map.Workload-Spoke-SUB002-Subnet }
-  compartment_id        = module.workload_compartment.compartment_id
+  compartment_id        = local.workload_compartment_id
   vcn_id                = module.workload_spoke_vcn.vcn_id
   subnet_route_table_id = module.workload_spoke_route_table_SUB002.route_table_id
   subnet_security_list_id = toset([
@@ -281,7 +283,7 @@ module "workload_spoke_SUB003_subnet" {
   source = "../../modules/subnet"
 
   subnet_map            = { Workload-Spoke-SUB003-Subnet = local.workload_expansion_subnet_map.Workload-Spoke-SUB003-Subnet }
-  compartment_id        = module.workload_compartment.compartment_id
+  compartment_id        = local.workload_compartment_id
   vcn_id                = module.workload_spoke_vcn.vcn_id
   subnet_route_table_id = module.workload_spoke_route_table_SUB003.route_table_id
   subnet_security_list_id = toset([
@@ -301,7 +303,7 @@ module "workload-spoke-nat-gateway" {
   source                   = "../../modules/nat-gateway"
   count                    = var.enable_nat_gateway_spoke ? 1 : 0
   nat_gateway_display_name = local.nat_gateway_display_name
-  network_compartment_id   = module.workload_compartment.compartment_id
+  network_compartment_id   = local.workload_compartment_id
   vcn_id                   = module.workload_spoke_vcn.vcn_id
 
   providers = {
@@ -313,7 +315,7 @@ module "workload-spoke-nat-gateway" {
 module "workload-spoke-service-gateway" {
   source                       = "../../modules/service-gateway"
   count                        = var.enable_service_gateway_spoke ? 1 : 0
-  network_compartment_id       = module.workload_compartment.compartment_id
+  network_compartment_id       = local.workload_compartment_id
   service_gateway_display_name = local.service_gateway_display_name
   vcn_id                       = module.workload_spoke_vcn.vcn_id
 
@@ -328,7 +330,7 @@ module "workload-spoke-service-gateway" {
 
 module "workload_spoke_route_table_SUB001" {
   source                   = "../../modules/route-table"
-  compartment_id           = module.workload_compartment.compartment_id
+  compartment_id           = local.workload_compartment_id
   vcn_id                   = module.workload_spoke_vcn.vcn_id
   route_table_display_name = local.route_table_display_name_SUB001
   route_rules              = local.spoke_route_rules.route_rules
@@ -340,7 +342,7 @@ module "workload_spoke_route_table_SUB001" {
 }
 module "workload_spoke_route_table_SUB002" {
   source                   = "../../modules/route-table"
-  compartment_id           = module.workload_compartment.compartment_id
+  compartment_id           = local.workload_compartment_id
   vcn_id                   = module.workload_spoke_vcn.vcn_id
   route_table_display_name = local.route_table_display_name_SUB002
   route_rules              = local.spoke_route_rules.route_rules
@@ -353,7 +355,7 @@ module "workload_spoke_route_table_SUB002" {
 
 module "workload_spoke_route_table_SUB003" {
   source                   = "../../modules/route-table"
-  compartment_id           = module.workload_compartment.compartment_id
+  compartment_id           = local.workload_compartment_id
   vcn_id                   = module.workload_spoke_vcn.vcn_id
   route_table_display_name = local.route_table_display_name_SUB003
   route_rules              = local.spoke_route_rules.route_rules

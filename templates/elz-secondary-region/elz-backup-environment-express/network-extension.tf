@@ -8,7 +8,7 @@ module "network-extension-backup" {
 
   tenancy_ocid       = var.tenancy_ocid
   backup_region      = var.backup_region
-  environment_prefix = var.environment_prefix
+  environment_prefix = local.environment_prefix
 
   network_compartment_id                     = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.compartments.network.id
   cpe_ip_address                             = var.cpe_ip_address

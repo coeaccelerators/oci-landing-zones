@@ -8,7 +8,7 @@ locals {
   nonprod_stream_id = try(module.nonprod_environment[0].stream_id, "")
   nonprod_logg_id   = try(module.nonprod_environment[0].compartment.logging.id, "")
   service_connector_policy = {
-    name        = "${var.resource_label}-OCI-ELZ-SC-Policy"
+    name        = "SC-Policy"
     description = "OCI ELZ Service Connector Policy"
     statements = [
       "Allow any-user to read log-content in compartment id ${module.home_compartment.compartment_id} where all {request.principal.type='serviceconnector'}",
@@ -17,18 +17,18 @@ locals {
       #"Allow any-user to {STREAM_READ, STREAM_CONSUME} in compartment id ${local.nonprod_sec_id} where all {request.principal.type='serviceconnector', target.stream.id='${local.nonprod_stream_id}', request.principal.compartment.id='${local.nonprod_sec_id}'}",
       "Allow any-user to manage objects in compartment id ${module.prod_environment.compartment.logging.id} where all {request.principal.type='serviceconnector', target.bucket.name='*_standard', request.principal.compartment.id='${module.prod_environment.compartment.security.id}'}",
       #"Allow any-user to manage objects in compartment id ${local.nonprod_logg_id} where all {request.principal.type='serviceconnector', target.bucket.name='*_standard', request.principal.compartment.id='${local.nonprod_sec_id}'}",
-      "Allow any-user to manage objects in compartment id ${module.prod_environment.compartment.logging.id} where all {request.principal.type='serviceconnector', any{target.bucket.name='${var.resource_label}_${local.prod_environment.environment_prefix}_auditLogs_standard', target.bucket.name='${var.resource_label}_${local.prod_environment.environment_prefix}_defaultLogs_standard', target.bucket.name='${var.resource_label}_${local.prod_environment.environment_prefix}_serviceEvents_standard'}, request.principal.compartment.id='${module.prod_environment.compartment.security.id}'}",
-      #"Allow any-user to manage objects in compartment id ${local.nonprod_logg_id} where all {request.principal.type='serviceconnector', any{target.bucket.name='${var.resource_label}_${local.nonprod_environment.environment_prefix}_auditLogs_standard', target.bucket.name='${var.resource_label}_${local.nonprod_environment.environment_prefix}_defaultLogs_standard', target.bucket.name='${var.resource_label}_${local.nonprod_environment.environment_prefix}_serviceEvents_standard'}, request.principal.compartment.id='${local.nonprod_sec_id}'}"
+      "Allow any-user to manage objects in compartment id ${module.prod_environment.compartment.logging.id} where all {request.principal.type='serviceconnector', any{target.bucket.name='${local.prod_environment.environment_prefix}_auditLogs_standard', target.bucket.name='${local.prod_environment.environment_prefix}_defaultLogs_standard', target.bucket.name='${local.prod_environment.environment_prefix}_serviceEvents_standard'}, request.principal.compartment.id='${module.prod_environment.compartment.security.id}'}",
+      #"Allow any-user to manage objects in compartment id ${local.nonprod_logg_id} where all {request.principal.type='serviceconnector', any{target.bucket.name='${local.nonprod_environment.environment_prefix}_auditLogs_standard', target.bucket.name='${local.nonprod_environment.environment_prefix}_defaultLogs_standard', target.bucket.name='${local.nonprod_environment.environment_prefix}_serviceEvents_standard'}, request.principal.compartment.id='${local.nonprod_sec_id}'}"
     ]
   }
 
   identity_domain = {
-    domain_display_prod_name     = "${var.resource_label}-OCI-ELZ-${local.prod_environment.environment_prefix}-IDT"
-    domain_display_non_prod_name = "${var.resource_label}-OCI-ELZ-${local.nonprod_environment.environment_prefix}-IDT"
+    domain_display_prod_name     = "${local.prod_environment.environment_prefix}-IDT"
+    domain_display_non_prod_name = "${local.nonprod_environment.environment_prefix}-IDT"
   }
 
   service_connector_archive_policy = {
-    name        = "${var.resource_label}-OCI-ELZ-SC-ARC-Policy"
+    name        = "SC-ARC-Policy"
     description = "OCI ELZ Service Connector Policy For Archive"
     statements = [
       "Allow any-user to read log-content in compartment id ${module.home_compartment.compartment_id} where all {request.principal.type='serviceconnector'}",
@@ -39,7 +39,7 @@ locals {
   }
 
   key_archive_policy = {
-    name        = "${var.resource_label}-OCI-ELZ-KEY-ARC-Policy"
+    name        = "KEY-ARC-Policy"
     description = "OCI Enterprise Landing Zone Key Policy For Archive"
 
     statements = [
@@ -49,7 +49,7 @@ locals {
   }
 
   archive_log_bucket = {
-    name                                = "${var.resource_label}_logs_archive"
+    name                                = "logs_archive"
     description                         = "Archive Log bucket"
     retention_rule_display_name         = "archive log bucket retention rule"
     retention_policy_duration_amount    = var.archive_log_retention_policy_duration_amount
@@ -58,7 +58,7 @@ locals {
   }
 
   prod_archive_audit_log_service_connector = {
-    display_name  = "${var.resource_label}_schAuditLog_archive_${local.prod_environment.environment_prefix}"
+    display_name  = "schAuditLog_archive_${local.prod_environment.environment_prefix}"
     source_kind   = "logging"
     target_kind   = "objectStorage"
     log_group_id  = "_Audit_Include_Subcompartment"
@@ -66,7 +66,7 @@ locals {
   }
 
   nonprod_archive_audit_log_service_connector = {
-    display_name  = "${var.resource_label}_schAuditLog_archive_${local.nonprod_environment.environment_prefix}"
+    display_name  = "schAuditLog_archive_${local.nonprod_environment.environment_prefix}"
     source_kind   = "logging"
     target_kind   = "objectStorage"
     log_group_id  = "_Audit_Include_Subcompartment"
@@ -74,21 +74,21 @@ locals {
   }
 
   prod_archive_default_log_service_connector = {
-    display_name  = "${var.resource_label}_schDefaultLog_archive_${local.prod_environment.environment_prefix}"
+    display_name  = "schDefaultLog_archive_${local.prod_environment.environment_prefix}"
     source_kind   = "logging"
     target_kind   = "objectStorage"
     target_bucket = module.archive_bucket.bucket.name
   }
 
   nonprod_archive_default_log_service_connector = {
-    display_name  = "${var.resource_label}_schDefaultLog_archive_${local.nonprod_environment.environment_prefix}"
+    display_name  = "schDefaultLog_archive_${local.nonprod_environment.environment_prefix}"
     source_kind   = "logging"
     target_kind   = "objectStorage"
     target_bucket = module.archive_bucket.bucket.name
   }
 
   prod_archive_service_events_service_connector = {
-    display_name  = "${var.resource_label}_schServiceEvents_archive_${local.prod_environment.environment_prefix}"
+    display_name  = "schServiceEvents_archive_${local.prod_environment.environment_prefix}"
     source_kind   = "streaming"
     target_kind   = "objectStorage"
     target_bucket = module.archive_bucket.bucket.name
@@ -96,7 +96,7 @@ locals {
   }
 
   nonprod_archive_service_events_service_connector = {
-    display_name  = "${var.resource_label}_schServiceEvents_archive_${local.nonprod_environment.environment_prefix}"
+    display_name  = "schServiceEvents_archive_${local.nonprod_environment.environment_prefix}"
     source_kind   = "streaming"
     target_kind   = "objectStorage"
     target_bucket = module.archive_bucket.bucket.name
@@ -104,19 +104,19 @@ locals {
   }
 
   archive_key = {
-    name            = "${var.resource_label}-OCI-ELZ-ARC-KEY-${local.prod_environment.environment_prefix}"
+    name            = "ARC-KEY-${local.prod_environment.environment_prefix}"
     shape_algorithm = "AES"
     shape_length    = 32
     protection_mode = "SOFTWARE"
   }
 
   group_names = {
-    prod_platform_admin_group_name : var.prod_platform_admin_group_name != "" ? var.prod_platform_admin_group_name : "OCI-ELZ-UGP-${local.prod_environment.environment_prefix}-PLT-ADMIN",
-    nonprod_platform_admin_group_name : var.nonprod_platform_admin_group_name != "" ? var.nonprod_platform_admin_group_name : "OCI-ELZ-UGP-${local.nonprod_environment.environment_prefix}-PLT-ADMIN",
+    prod_platform_admin_group_name : var.prod_platform_admin_group_name != "" ? var.prod_platform_admin_group_name : "UGP-${local.prod_environment.environment_prefix}-PLT-ADMIN",
+    nonprod_platform_admin_group_name : var.nonprod_platform_admin_group_name != "" ? var.nonprod_platform_admin_group_name : "UGP-${local.nonprod_environment.environment_prefix}-PLT-ADMIN",
   }
 
   prod_platform_admin_policy = {
-    name        = "OCI-ELZ-UGP-${local.prod_environment.environment_prefix}-PLT-ADMIN-POLICY-ARCHIVE"
+    name        = "UGP-${local.prod_environment.environment_prefix}-PLT-ADMIN-POLICY-ARCHIVE"
     description = "OCI Landing Zone Platform Admin Group Policy To Manage Archive Bucket"
 
     statements = [
@@ -126,7 +126,7 @@ locals {
   }
 
   nonprod_platform_admin_policy = {
-    name        = "OCI-ELZ-UGP-${local.nonprod_environment.environment_prefix}-PLT-ADMIN-POLICY-ARCHIVE"
+    name        = "UGP-${local.nonprod_environment.environment_prefix}-PLT-ADMIN-POLICY-ARCHIVE"
     description = "OCI Landing Zone Platform Admin Group Policy To Manage Archive Bucket"
 
     statements = [

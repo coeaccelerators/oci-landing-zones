@@ -9,7 +9,7 @@ locals {
   nonprod_workload_cmp_id = try(module.nonprod_environment[0].workload_compartment_id, "")
   nonprod_logging_id      = try(module.nonprod_environment[0].compartment.logging.id, "")
   cloud_guard_policy = {
-    name        = "${var.resource_label}-OCI-ELZ-CG-Policy"
+    name        = "CG-Policy"
     description = "OCI Enterprise Landing Zone Cloud Guard Policy"
 
     statements = [
@@ -38,7 +38,7 @@ locals {
   }
 
   cloud_guard_target_policy = {
-    name        = "${var.resource_label}-OCI-ELZ-CGTarget-Policy"
+    name        = "CGTarget-Policy"
     description = "OCI Enterprise Landing Zone Cloud Guard Target Policy"
 
     statements = [
@@ -52,7 +52,7 @@ locals {
   }
 
   vss_policy = {
-    name        = "${var.resource_label}-OCI-ELZ-VSS-Policy"
+    name        = "VSS-Policy"
     description = "OCI Enterprise Landing Zone VSS Policy"
 
     statements = [
@@ -64,7 +64,7 @@ locals {
   }
 
   vault_policy = {
-    name        = "${var.resource_label}-OCI-ELZ-Vault-Policy"
+    name        = "Vault-Policy"
     description = "OCI Enterprise Landing Zone Vault Policy"
     statements = [
       "Allow service keymanagementservice to manage vaults in compartment ${var.home_compartment_name}"
@@ -72,7 +72,7 @@ locals {
   }
 
   osms_dynamic_group = {
-    dynamic_group_name        = "${var.resource_label}-OCI-ELZ-DG"
+    dynamic_group_name        = "DG"
     dynamic_group_description = "OCI ELZ Dynamic Group"
 
     general_matching_rule = <<EOT
@@ -91,7 +91,7 @@ locals {
   }
 
   osms_dg_policy = {
-    name        = "${var.resource_label}-OCI-ELZ-OSMS-DG-Policy"
+    name        = "OSMS-DG-Policy"
     description = "OCI Landing Zone OS Management Service Dynamic Group Policy"
 
     statements = [
@@ -101,7 +101,7 @@ locals {
   }
 
   osms_policy = {
-    name        = "${var.resource_label}-OCI-ELZ-OSMS-Policy"
+    name        = "OSMS-Policy"
     description = "OCI Landing Zone Landing Zone OS Management Service Policy"
 
     statements = [
@@ -110,7 +110,7 @@ locals {
   }
 
   log_analytics_policy = {
-    name        = "${var.resource_label}-OCI-ELZ-LOG-ANA-Policy"
+    name        = "LOG-ANA-Policy"
     description = "OCI Landing Zone Landing Zone Log Analytic Service Policy"
 
     statements = [

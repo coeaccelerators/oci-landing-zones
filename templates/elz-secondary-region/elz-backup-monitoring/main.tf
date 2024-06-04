@@ -1,12 +1,12 @@
 locals {
   network_critical_topic = {
-    topic_name            = "${var.environment_prefix}-Network-Backup-Critical-${var.resource_label}"
+    topic_name            = "${var.environment_prefix}-Network-Backup-Critical"
     topic_description     = "OCI Landing Zone Backup Critical Network Topic"
     subscription_protocol = "EMAIL"
   }
 
   network_warning_topic = {
-    topic_name            = "${var.environment_prefix}-Network-Backup-Warning-${var.resource_label}"
+    topic_name            = "${var.environment_prefix}-Network-Backup-Warning"
     topic_description     = "OCI Landing Zone Backup Warning Network Topic"
     subscription_protocol = "EMAIL"
     event_rules = {
@@ -66,7 +66,7 @@ locals {
   }
 
   security_critical_topic = {
-    topic_name            = "${var.environment_prefix}-Security-Backup-Critical-${var.resource_label}"
+    topic_name            = "${var.environment_prefix}-Security-Backup-Critical"
     topic_description     = "OCI Landing Zone Backup Critical Security Topic"
     subscription_protocol = "EMAIL"
     event_rules = {
@@ -86,7 +86,7 @@ locals {
   }
 
   security_warning_topic = {
-    topic_name            = "${var.environment_prefix}-Security-Backup-Warning-${var.resource_label}"
+    topic_name            = "${var.environment_prefix}-Security-Backup-Warning"
     topic_description     = "OCI Landing Zone Backup Warning Security Topic"
     subscription_protocol = "EMAIL"
     event_rules = {
@@ -110,7 +110,7 @@ locals {
   }
 
   budget_warning_topic = {
-    topic_name            = "${var.environment_prefix}-Budget-Backup-Warning-${var.resource_label}"
+    topic_name            = "${var.environment_prefix}-Budget-Backup-Warning"
     topic_description     = "OCI Landing Zone Backup Warning Budget Topic"
     subscription_protocol = "EMAIL"
     event_rules = {
@@ -133,7 +133,7 @@ locals {
   }
 
   iam_warning_topic = {
-    topic_name            = "${var.environment_prefix}-IAM-Backup-Warning-${var.resource_label}"
+    topic_name            = "${var.environment_prefix}-IAM-Backup-Warning"
     topic_description     = "OCI Landing Zone Backup Warning IAM Topic"
     subscription_protocol = "EMAIL"
     event_rules = {
@@ -172,7 +172,7 @@ locals {
   }
 
   announcement_subscription = {
-    subscription_display_name = "${var.environment_prefix}-Security-Backup-Critical-Announcement-${var.resource_label}"
+    subscription_display_name = "${var.environment_prefix}-Security-Backup-Critical-Announcement"
     filter_group_name         = "ELZ-Backup-Critical-Filter"
     filter_groups = {
       "compartment_filter" = {
@@ -271,7 +271,7 @@ module "announcement_subscription_backup" {
 locals {
   logging_analytics_default = {
     is_onboarded                            = true
-    log_group_display_name                  = "DefaultLog-Backup-${var.environment_prefix}-${var.resource_label}"
+    log_group_display_name                  = "DefaultLog-Backup-${var.environment_prefix}"
     log_group_description                   = "Logging Analytics Backup Log Group created by Landing Zone for Default_Group"
     service_connector_display_name          = "schDefaultLog_LA"
     service_connector_source_compartment_id = var.security_compartment_id
@@ -280,7 +280,7 @@ locals {
   }
 
   logging_analytics_audit = {
-    log_group_display_name                  = "AuditLog-Backup-${var.environment_prefix}-${var.resource_label}"
+    log_group_display_name                  = "AuditLog-Backup-${var.environment_prefix}"
     log_group_description                   = "Logging Analytics Backup Log Group created by Landing Zone for AuditLog"
     service_connector_display_name          = "schAuditLog_LA"
     service_connector_source_compartment_id = var.security_compartment_id
@@ -328,23 +328,23 @@ module "logging_analytics_audit" {
 
 locals {
   workload_critical_topic = {
-    topic_name            = "${var.environment_prefix}-Workload-Critical-${var.resource_label}"
+    topic_name            = "${var.environment_prefix}-Workload-Critical"
     topic_description     = "OCI Landing Zone Critical Workload Topic"
     subscription_protocol = "EMAIL"
   }
   workload_warning_topic = {
-    topic_name            = "${var.environment_prefix}-Workload-Warning-${var.resource_label}"
+    topic_name            = "${var.environment_prefix}-Workload-Warning"
     topic_description     = "OCI Landing Zone Warning Workload Topic"
     subscription_protocol = "EMAIL"
   }
 
   alarm_policy = {
-    name        = "${var.environment_prefix}-Policy-${var.resource_label}"
+    name        = "${var.environment_prefix}-Policy"
     description = "OCI Alarm Policy"
 
     statements = [
       <<EOT
-        Allow group OCI-ELZ-${var.environment_prefix}-IDT/OCI-ELZ-UGP-${var.environment_prefix}-WRK-ADMIN  to read metrics in compartment id ${var.environment_compartment_id} where any {
+        Allow group ${var.environment_prefix}-IDT/UGP-${var.environment_prefix}-WRK-ADMIN  to read metrics in compartment id ${var.environment_compartment_id} where any {
           target.metrics.namespace='oci_vcn',
           target.metrics.namespace='oci_vpn',
           target.metrics.namespace='oci_fastconnect',

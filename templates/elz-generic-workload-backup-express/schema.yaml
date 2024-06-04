@@ -14,7 +14,7 @@ variableGroups:
       - workload_private_spoke_subnet_SUB001_cidr_block
       - workload_private_spoke_subnet_SUB002_cidr_block
       - workload_private_spoke_subnet_SUB003_cidr_block
-      - lzexpress_baseline_orm_stack_id
+      - lzexpress_primary_workload_orm_stack_id
       - lzexpress_baseline_backup_orm_stack_id
       - is_prod_workload
   - title: Provider Variables
@@ -158,13 +158,13 @@ variables:
   is_prod_workload:
     type: boolean
     description: "Check this box to deploy in Production environment. Leave uncheck for Non-production environment"
-    default: false
+    default: true
     title: If the Workload Expansion to be deployed to Production environment
     required: true
-  lzexpress_baseline_orm_stack_id:
+  lzexpress_primary_workload_orm_stack_id:
     type: string
-    description: "The OCID of OLZ EXPRESS Baseline OCI Resource Manager (ORM) Stack"
-    title: OLZ EXPRESS Baseline ORM Stack OCID
+    description: "The OCID of OLZ EXPRESS Primary Site Workload OCI Resource Manager (ORM) Stack"
+    title: OLZ EXPRESS Primary Site Workload ORM Stack OCID
     required: true
     default: ""
   lzexpress_baseline_backup_orm_stack_id:

@@ -18,6 +18,7 @@ prod_domain_admin_email    = "an-example-email-address@oracle.com"
 nonprod_domain_admin_email = "an-example-email-address@oracle.com"
 enable_compartment_delete  = true
 is_nonprod_env_deploy      = false
+home_compartment_name      = "HOME"
 
 # security
 enable_cloud_guard                           = false
@@ -42,7 +43,7 @@ prod_budget_amount                   = 10000000
 enable_vpn_or_fastconnect           = "NONE"
 prod_enable_vpn                     = false
 prod_cpe_ip_address                 = "10.0.0.0"
-prod_cpe_display_name               = "OCI-ELZ-CPE-P-HUB-001"
+prod_cpe_display_name               = "CPE-P-HUB-001"
 prod_cpe_vendor                     = 4
 prod_ipsec_connection_static_routes = ["10.0.0.0/16", "11.0.0.0/16"]
 nonprod_enable_vpn                  = false

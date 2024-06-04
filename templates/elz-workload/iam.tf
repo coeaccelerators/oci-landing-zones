@@ -8,35 +8,35 @@
 # -----------------------------------------------------------------------------
 locals {
   workload_compartment = {
-    #name        = var.workload_compartment_name != "" ? var.workload_compartment_name : "OCI-ELZ-${var.environment_prefix}-${var.workload_prefix}-${local.region_key[0]}"
-    name        = var.workload_compartment_name != "" ? var.workload_compartment_name : "OCI-ELZ-${var.environment_prefix}-${var.workload_prefix}"
+    #name        = var.workload_compartment_name != "" ? var.workload_compartment_name : "${var.environment_prefix}-${var.workload_prefix}-${local.region_key[0]}"
+    name        = var.workload_compartment_name != "" ? var.workload_compartment_name : "${var.environment_prefix}-${var.workload_prefix}"
     description = "Workload Compartment"
 
   }
   group_names = var.enable_datasafe ? {
-    workload_admin_group_name : var.workload_admin_group_name != "" ? var.workload_admin_group_name : "OCI-ELZ-UGP-${var.environment_prefix}-${var.workload_prefix}-WRK-ADMIN",
-    application_admin_group_name : var.application_admin_group_name != "" ? var.application_admin_group_name : "OCI-ELZ-UGP-${var.environment_prefix}-${var.workload_prefix}-APP-ADMIN",
-    database_admin_group_name : var.database_admin_group_name != "" ? var.database_admin_group_name : "OCI-ELZ-UGP-${var.environment_prefix}-${var.workload_prefix}-DB-ADMIN",
-    datasafe_admin_group_name : var.datasafe_admin_group_name != "" ? var.datasafe_admin_group_name : "OCI-ELZ-UGP-${var.environment_prefix}-${var.workload_prefix}-DTSAFE-ADMIN",
-    datasafe_reports_group_name : var.datasafe_reports_group_name != "" ? var.datasafe_reports_group_name : "OCI-ELZ-UGP-${var.environment_prefix}-${var.workload_prefix}-DTSAFE-REPORTS",
+    workload_admin_group_name : var.workload_admin_group_name != "" ? var.workload_admin_group_name : "UGP-${var.environment_prefix}-${var.workload_prefix}-WRK-ADMIN",
+    application_admin_group_name : var.application_admin_group_name != "" ? var.application_admin_group_name : "UGP-${var.environment_prefix}-${var.workload_prefix}-APP-ADMIN",
+    database_admin_group_name : var.database_admin_group_name != "" ? var.database_admin_group_name : "UGP-${var.environment_prefix}-${var.workload_prefix}-DB-ADMIN",
+    datasafe_admin_group_name : var.datasafe_admin_group_name != "" ? var.datasafe_admin_group_name : "UGP-${var.environment_prefix}-${var.workload_prefix}-DTSAFE-ADMIN",
+    datasafe_reports_group_name : var.datasafe_reports_group_name != "" ? var.datasafe_reports_group_name : "UGP-${var.environment_prefix}-${var.workload_prefix}-DTSAFE-REPORTS",
     } : {
-    workload_admin_group_name : var.workload_admin_group_name != "" ? var.workload_admin_group_name : "OCI-ELZ-UGP-${var.environment_prefix}-${var.workload_prefix}-WRK-ADMIN",
-    application_admin_group_name : var.application_admin_group_name != "" ? var.application_admin_group_name : "OCI-ELZ-UGP-${var.environment_prefix}-${var.workload_prefix}-APP-ADMIN",
-    database_admin_group_name : var.database_admin_group_name != "" ? var.database_admin_group_name : "OCI-ELZ-UGP-${var.environment_prefix}-${var.workload_prefix}-DB-ADMIN",
+    workload_admin_group_name : var.workload_admin_group_name != "" ? var.workload_admin_group_name : "UGP-${var.environment_prefix}-${var.workload_prefix}-WRK-ADMIN",
+    application_admin_group_name : var.application_admin_group_name != "" ? var.application_admin_group_name : "UGP-${var.environment_prefix}-${var.workload_prefix}-APP-ADMIN",
+    database_admin_group_name : var.database_admin_group_name != "" ? var.database_admin_group_name : "UGP-${var.environment_prefix}-${var.workload_prefix}-DB-ADMIN",
   }
 
   base_group_names = {
-    network_admin_group_name : var.network_admin_group_name != "" ? var.network_admin_group_name : "OOCI-ELZ-UGP-${var.environment_prefix}-${var.workload_prefix}-NET-ADMIN",
+    network_admin_group_name : var.network_admin_group_name != "" ? var.network_admin_group_name : "OUGP-${var.environment_prefix}-${var.workload_prefix}-NET-ADMIN",
   }
-  identity_domain_name = var.identity_domain_name != "" ? var.identity_domain_name : "OCI-ELZ-${var.environment_prefix}-${var.workload_prefix}-${local.region_key[0]}"
+  identity_domain_name = var.identity_domain_name != "" ? var.identity_domain_name : "${var.environment_prefix}-${var.workload_prefix}-${local.region_key[0]}"
 
   parent_compartment_names = {
-    security_compartment_name : var.security_compartment_name != "" ? var.security_compartment_name : "OCI-ELZ-${var.environment_prefix}-${var.workload_prefix}-SRD-SEC"
-    environment_compartment_name : var.environment_compartment_name != "" ? var.environment_compartment_name : "OCI-ELZ-${var.environment_prefix}-${var.workload_prefix}-CMP"
+    security_compartment_name : var.security_compartment_name != "" ? var.security_compartment_name : "${var.environment_prefix}-${var.workload_prefix}-SRD-SEC"
+    environment_compartment_name : var.environment_compartment_name != "" ? var.environment_compartment_name : "${var.environment_prefix}-${var.workload_prefix}-CMP"
   }
 
   workload_expansion_policy = {
-    name        = "OCI-ELZ-WRK-EXP-${var.workload_prefix}-POLICY"
+    name        = "WRK-EXP-${var.workload_prefix}-POLICY"
     description = "OCI Workload Expansion Policy"
     statements = concat([
       "Allow group ${var.identity_domain_name}/${local.group_names["workload_admin_group_name"]} to manage virtual-network-family in compartment ${module.workload_compartment.compartment_name}",
@@ -74,7 +74,7 @@ locals {
   }
 
   workload_expansion_policy_security = {
-    name        = "OCI-ELZ-WRK-EXP-${var.workload_prefix}-SEC-POLICY"
+    name        = "WRK-EXP-${var.workload_prefix}-SEC-POLICY"
     description = "OCI Workload Expansion Security Policy"
 
     statements = [
@@ -87,7 +87,7 @@ locals {
   }
 
   datasafe_admin_policy = {
-    name        = "OCI-ELZ-UGP-${var.workload_prefix}-DTSAFE-ADMIN-POLICY"
+    name        = "UGP-${var.workload_prefix}-DTSAFE-ADMIN-POLICY"
     description = "OCI Exadata Workload Expansion Data Safe Admin Policy"
 
     statements = var.enable_datasafe ? [

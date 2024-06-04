@@ -12,3 +12,8 @@ data "terraform_remote_state" "external_stack_remote_state" {
   }
 }
 
+locals {
+
+  environment_prefix = data.terraform_remote_state.external_stack_remote_state.outputs.prod_environment.environment_prefix
+  
+}

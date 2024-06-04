@@ -71,7 +71,7 @@ variable "service_gateway_display_name" {
 
 variable "workload_compartment_name" {
   type        = string
-  description = "The name of the workload compartment by default OCI-ELZ-<Workload Name>-<Region>."
+  description = "The name of the workload compartment by default <Workload Name>-<Region>."
 }
 
 variable "enable_nat_gateway_spoke" {

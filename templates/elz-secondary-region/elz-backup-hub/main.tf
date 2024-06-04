@@ -74,7 +74,7 @@ locals {
   }
 
   hub_public_route_rules = {
-    route_table_display_name = "OCI-ELZ-RTPUB-${var.environment_prefix}-HUB001"
+    route_table_display_name = "RTPUB-${var.environment_prefix}-HUB001"
     route_rules = merge(/*local.hub_public_route_rules_options.route_rules_default, */ local.hub_public_route_rules_options.route_rules_igw,
       local.hub_public_route_rules_options.route_rules_vpn,
     local.hub_public_route_rules_options.route_rules_fastconnect, local.hub_public_route_rules_options.route_rules_workload)
@@ -129,7 +129,7 @@ locals {
   }
 
   hub_public_route_rules_nfw = {
-    route_table_display_name = "OCI-ELZ-RTPUB-${var.environment_prefix}-HUB001"
+    route_table_display_name = "RTPUB-${var.environment_prefix}-HUB001"
     route_rules = merge(/*local.hub_public_route_rules_options_nfw.route_rules_default,*/ local.hub_public_route_rules_options_nfw.route_rules_igw,
       local.hub_public_route_rules_options_nfw.route_rules_vpn,
       local.hub_public_route_rules_options_nfw.route_rules_fastconnect,
@@ -139,7 +139,7 @@ locals {
   hub_public_route_check_test_nfw = var.enable_network_firewall && var.nfw_subnet_type == "private" ? local.hub_public_route_rules_nfw : local.hub_public_route_rules
 
   list_info = {
-    hub_display_name = "OCI-ELZ-${var.environment_prefix}-Hub-Security-List"
+    hub_display_name = "${var.environment_prefix}-Hub-Security-List"
   }
 
   hub_private_route_rules_options = {
@@ -198,7 +198,7 @@ locals {
   }
 
   hub_private_route_rules = {
-    route_table_display_name = "OCI-ELZ-RTPRV-${var.environment_prefix}-HUB002"
+    route_table_display_name = "RTPRV-${var.environment_prefix}-HUB002"
     route_rules = merge(/*local.hub_private_route_rules_options.route_rules_default,*/ local.hub_private_route_rules_options.route_rules_nat,
       local.hub_private_route_rules_options.route_rules_srvc_gw,
       local.hub_private_route_rules_options.route_rules_vpn,
@@ -262,7 +262,7 @@ locals {
   }
 
   hub_private_route_rules_nfw = {
-    route_table_display_name = "OCI-ELZ-RTPRV-${var.environment_prefix}-HUB002"
+    route_table_display_name = "RTPRV-${var.environment_prefix}-HUB002"
     route_rules              = merge(/*local.hub_private_route_rules_options_nfw.route_rules_default,*/ local.hub_private_route_rules_options_nfw.route_rules_nat, local.hub_private_route_rules_options_nfw.route_rules_srvc_gw, local.hub_private_route_rules_options_nfw.route_rules_vpn, local.hub_private_route_rules_options_nfw.route_rules_fastconnect, local.hub_private_route_rules_options_nfw.route_rules_workload)
   }
 
@@ -609,7 +609,7 @@ locals {
 
   }
   drg = {
-    drg_display_name             = "OCI-ELZ-DRG-${var.environment_prefix}-HUB-BACKUP"
+    drg_display_name             = "DRG-${var.environment_prefix}-HUB-BACKUP"
     drg_route_table_display_name = "Hub-Vcn-Drg-Route-Table-${var.environment_prefix}-BACKUP"
     drg_vcn_attachments = {
       "Hub-VCN-Attachment" = {
@@ -644,8 +644,8 @@ module "drg_backup" {
 
 locals {
   network_firewall_info = {
-    network_firewall_name        = var.nfw_instance_name != "" ? var.nfw_instance_name : "OCI-ELZ-NFW-${var.environment_prefix}"
-    network_firewall_policy_name = var.nfw_instance_policy != "" ? var.nfw_instance_policy : "OCI-ELZ-NFW-Policy-${var.environment_prefix}"
+    network_firewall_name        = var.nfw_instance_name != "" ? var.nfw_instance_name : "NFW-${var.environment_prefix}"
+    network_firewall_policy_name = var.nfw_instance_policy != "" ? var.nfw_instance_policy : "NFW-Policy-${var.environment_prefix}"
 
     nfw_policy_action = "REJECT"
 
@@ -663,14 +663,14 @@ locals {
     }
   }
   firewall_threat_log = {
-    log_display_name    = "OCI-ELZ-NFW-THREAT-LOG-${var.environment_prefix}"
+    log_display_name    = "NFW-THREAT-LOG-${var.environment_prefix}"
     log_type            = "SERVICE"
     log_source_category = "threatlog"
     log_source_service  = "ocinetworkfirewall"
     log_source_type     = "OCISERVICE"
   }
   firewall_traffic_log = {
-    log_display_name    = "OCI-ELZ-NFW-TRAFFIC-LOG-${var.environment_prefix}"
+    log_display_name    = "NFW-TRAFFIC-LOG-${var.environment_prefix}"
     log_type            = "SERVICE"
     log_source_category = "trafficlog"
     log_source_service  = "ocinetworkfirewall"

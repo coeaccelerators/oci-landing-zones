@@ -8,20 +8,20 @@
 ##############################################################################
 locals {
   vcn_hub = {
-    name      = "OCI-ELZ-VCN-${var.environment_prefix}-HUB-BACKUP"
+    name      = "VCN-${var.environment_prefix}-HUB-BACKUP-${local.region_key[0]}"
     dns_label = "hubbcklabel"
   }
   vcn-hub-info = {
-    hub_public_subnet_display_name  = "OCI-ELZ-SUB-PUBLIC-${var.environment_prefix}-HUB-${local.region_key[0]}001"
+    hub_public_subnet_display_name  = "SUB-PUBLIC-${var.environment_prefix}-HUB-${local.region_key[0]}001"
     hub_public_subnet_description   = "Hub Public Subnet Backup"
     hub_public_subnet_dns_label     = "publabelbck"
-    hub_private_subnet_display_name = "OCI-ELZ-SUB-PRIVATE-${var.environment_prefix}-HUB-${local.region_key[0]}002"
+    hub_private_subnet_display_name = "SUB-PRIVATE-${var.environment_prefix}-HUB-${local.region_key[0]}002"
     hub_private_subnet_description  = "Hub Private Subnet Backup"
     hub_private_subnet_dns_label    = "prilabelbck"
-    hub_security_list_display_name  = "OCI-ELZ-${var.environment_prefix}-Hub-BACKUP-Security-List"
-    igw_gateway_display_name        = "OCI-ELZ-IGW-${var.environment_prefix}-HUB-BACKUP"
-    nat_gateway_display_name        = "OCI-ELZ-NGW-${var.environment_prefix}-HUB-BACKUP"
-    srv_gateway_display_name        = "OCI-ELZ-SGW-${var.environment_prefix}-HUB-BACKUP"
+    hub_security_list_display_name  = "${var.environment_prefix}-Hub-BACKUP-Security-List"
+    igw_gateway_display_name        = "IGW-${var.environment_prefix}-HUB-BACKUP"
+    nat_gateway_display_name        = "NGW-${var.environment_prefix}-HUB-BACKUP"
+    srv_gateway_display_name        = "SGW-${var.environment_prefix}-HUB-BACKUP"
   }
 }
 
@@ -85,20 +85,20 @@ module "hub_backup" {
 
 locals {
   vcn_spoke = {
-    name      = "OCI-ELZ-VCN-${var.environment_prefix}-SPK-BACKUP"
+    name      = "VCN-${var.environment_prefix}-SPK-BACKUP"
     dns_label = "backupspoke"
   }
   vcn-spoke-info = {
-    spoke_security_list_display_name = "OCI-ELZ-${var.environment_prefix}-SPK-BACKUP-Security-List"
-    route_table_display_name         = "OCI-ELZ-RTPRV-${var.environment_prefix}-SPK-BACKUP"
-    nat_gateway_display_name         = "OCI-ELZ-NGW-${var.environment_prefix}-SPK-BACKUP"
-    service_gateway_display_name     = "OCI-ELZ-SGW-${var.environment_prefix}-SPK-BACKUP"
+    spoke_security_list_display_name = "${var.environment_prefix}-SPK-BACKUP-Security-List"
+    route_table_display_name         = "RTPRV-${var.environment_prefix}-SPK-BACKUP"
+    nat_gateway_display_name         = "NGW-${var.environment_prefix}-SPK-BACKUP"
+    service_gateway_display_name     = "SGW-${var.environment_prefix}-SPK-BACKUP"
     subnet_app_dns_label             = "appdnslabel"
     subnet_db_dns_label              = "dbdnslabel"
     subnet_web_dns_label             = "webdnslabel"
-    subnet_web_display_name          = "OCI-ELZ-SUB-${var.environment_prefix}-SPK-${local.region_key[0]}001"
-    subnet_app_display_name          = "OCI-ELZ-SUB-${var.environment_prefix}-SPK-${local.region_key[0]}002"
-    subnet_db_display_name           = "OCI-ELZ-SUB-${var.environment_prefix}-SPK-${local.region_key[0]}003"
+    subnet_web_display_name          = "SUB-${var.environment_prefix}-SPK-${local.region_key[0]}001"
+    subnet_app_display_name          = "SUB-${var.environment_prefix}-SPK-${local.region_key[0]}002"
+    subnet_db_display_name           = "SUB-${var.environment_prefix}-SPK-${local.region_key[0]}003"
   }
 }
 module "spoke" {

@@ -302,7 +302,7 @@ variables:
   home_compartment_name:
     type: string
     description: "The name of the Landing Zone home compartment"
-    default: "OCI-ELZ-CMP-HOME"
+    default: "CMP-HOME"
     required: true
     title: Home Compartment Name
   prod_domain_admin_email:
@@ -969,21 +969,21 @@ variables:
     title: Enable VPN in Prod
   prod_cpe_display_name:
     type: string
-    description: "Customer Premises Equipment name in prod. Recommendation: OCI-ELZ-CPE-[Environment]-HUB-[Region] 001"
+    description: "Customer Premises Equipment name in prod. Recommendation: CPE-[Environment]-HUB-[Region] 001"
     required: false
     default: ""
     visible: show_vpn_variables
     title: CPE Display Name in Prod
   prod_cpe_ip_address:
     type: string
-    description: "Customer Premises Equipment IP address in prod. Recommendation: OCI-ELZ-CPE-[Environment]-HUB-[Region] 001"
+    description: "Customer Premises Equipment IP address in prod. Recommendation: CPE-[Environment]-HUB-[Region] 001"
     required: false
     default: ""
     visible: show_vpn_variables
     title: CPE IP Address in Prod
   prod_ipsec_display_name:
     type: string
-    description: "IPsec display name in prod. Recommendation: OCI-ELZ-IPS-[Environment]-HUB-[Region] 001"
+    description: "IPsec display name in prod. Recommendation: IPS-[Environment]-HUB-[Region] 001"
     required: false
     default: ""
     visible: show_vpn_variables
@@ -1062,21 +1062,21 @@ variables:
     title: Enable VPN in Non-Prod
   nonprod_cpe_display_name:
     type: string
-    description: "Customer Premises Equipment name in Non-prod. Recommendation: OCI-ELZ-CPE-[Environment]-HUB-[Region] 001"
+    description: "Customer Premises Equipment name in Non-prod. Recommendation: CPE-[Environment]-HUB-[Region] 001"
     required: false
     default: ""
     visible: show_vpn_variables
     title: CPE Display Name in Non-Prod
   nonprod_cpe_ip_address:
     type: string
-    description: "Customer Premises Equipment IP address in Non-prod. Recommendation: OCI-ELZ-CPE-[Environment]-HUB-[Region] 001"
+    description: "Customer Premises Equipment IP address in Non-prod. Recommendation: CPE-[Environment]-HUB-[Region] 001"
     required: false
     default: ""
     visible: show_vpn_variables
     title: CPE IP Address in Non-Prod
   nonprod_ipsec_display_name:
     type: string
-    description: "IPsec display name in Non-prod. Recommendation: OCI-ELZ-IPS-[Environment]-HUB-[Region] 001"
+    description: "IPsec display name in Non-prod. Recommendation: IPS-[Environment]-HUB-[Region] 001"
     required: false
     default: ""
     visible: show_vpn_variables
@@ -1167,7 +1167,7 @@ variables:
     title: Virtual Circuit Bandwidth Shape
   virtual_circuit_display_name:
     type: string
-    description: "The display name of this virtual circuit. Recommendation: OCI-ELZ-FCN-P-HUB-[REGION] 001"
+    description: "The display name of this virtual circuit. Recommendation: FCN-P-HUB-[REGION] 001"
     required: false
     default: ""
     visible: show_fastconnect_variables
