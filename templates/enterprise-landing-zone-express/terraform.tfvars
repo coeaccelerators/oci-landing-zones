@@ -124,8 +124,8 @@ nonprod_workload_compartment_names              = []
 # enable_network_firewall_prod    = false
 enable_traffic_threat_log_prod  = false
 nfw_subnet_type_prod            = "private"
-nfw_instance_name_prod          = "nfw_name"
-nfw_instance_policy_prod        = "nfw_policy_name"
+#nfw_instance_name_prod          = "nfw_name"
+#nfw_instance_policy_prod        = "nfw_policy_name"
 enable_network_firewall_nonprod = "false"
 
 ####################################### Access Governance ###################################################

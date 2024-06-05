@@ -63,8 +63,8 @@ enable_service_gateway_spoke        = true
 enable_network_firewall   = false
 enable_traffic_threat_log = false
 nfw_subnet_type           = "private"
-nfw_instance_name         = "nfw_name"
-nfw_instance_policy       = "nfw_policy_name"
+# nfw_instance_name         = "nfw_name"
+# nfw_instance_policy       = "nfw_policy_name"
 
 # Network Extension
 enable_vpn_or_fastconnect         = "NONE"
