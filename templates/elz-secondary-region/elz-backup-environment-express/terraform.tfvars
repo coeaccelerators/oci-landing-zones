@@ -60,7 +60,7 @@ spoke_vcn_cidr                      = "10.20.0.0/16"
 enable_nat_gateway_spoke            = true
 enable_service_gateway_spoke        = true
 
-enable_network_firewall   = false
+#enable_network_firewall   = false
 enable_traffic_threat_log = false
 nfw_subnet_type           = "private"
 # nfw_instance_name         = "nfw_name"
